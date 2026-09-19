@@ -67,8 +67,6 @@ export default function Page() {
   const [sharedLinks, setSharedLinks] = useState<string[]>([])
   const messageRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const heroPhotoRef = useRef<HTMLDivElement>(null)
-  const heroSwipeClosedRef = useRef(false)
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -78,80 +76,6 @@ export default function Page() {
       window.scrollTo(0, 0)
     }
   }, [])
-
-  useEffect(() => {
-    if (!heroStoryOpen) return
-    const photo = heroPhotoRef.current
-    if (!photo) return
-    const story = photo.querySelector('.hero-photo-story') as HTMLElement | null
-
-    let startX = 0
-    let startY = 0
-    let tracking = false
-    let dismissed = false
-
-    const dismiss = (fromTouch = false) => {
-      if (dismissed) return
-      dismissed = true
-      tracking = false
-      if (fromTouch) heroSwipeClosedRef.current = true
-      setHeroStoryOpen(false)
-    }
-
-    const onTouchStart = (event: TouchEvent) => {
-      const touch = event.touches[0]
-      startX = touch.clientX
-      startY = touch.clientY
-      tracking = true
-      dismissed = false
-    }
-
-    const onTouchMove = (event: TouchEvent) => {
-      if (!tracking || dismissed) return
-      const touch = event.touches[0]
-      const dy = touch.clientY - startY
-      const dx = Math.abs(touch.clientX - startX)
-      const atTop = !story || story.scrollTop <= 2
-      if (!atTop || dy < 12 || dy < dx) return
-      event.preventDefault()
-      if (dy > 48) dismiss(true)
-    }
-
-    const onTouchEnd = (event: TouchEvent) => {
-      if (!tracking || dismissed) {
-        tracking = false
-        return
-      }
-      const touch = event.changedTouches[0]
-      const dy = touch.clientY - startY
-      const dx = Math.abs(touch.clientX - startX)
-      const atTop = !story || story.scrollTop <= 2
-      tracking = false
-      if (atTop && dy > 48 && dy > dx) dismiss(true)
-    }
-
-    const onTouchCancel = () => {
-      tracking = false
-    }
-
-    const onScroll = () => {
-      if (window.scrollY > 4) dismiss(false)
-    }
-
-    photo.addEventListener('touchstart', onTouchStart, { passive: true })
-    photo.addEventListener('touchmove', onTouchMove, { passive: false })
-    photo.addEventListener('touchend', onTouchEnd)
-    photo.addEventListener('touchcancel', onTouchCancel)
-    window.addEventListener('scroll', onScroll, { passive: true })
-
-    return () => {
-      photo.removeEventListener('touchstart', onTouchStart)
-      photo.removeEventListener('touchmove', onTouchMove)
-      photo.removeEventListener('touchend', onTouchEnd)
-      photo.removeEventListener('touchcancel', onTouchCancel)
-      window.removeEventListener('scroll', onScroll)
-    }
-  }, [heroStoryOpen])
 
   useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
@@ -368,15 +292,8 @@ export default function Page() {
 
       <section id="top" className="hero-split">
         <div
-          ref={heroPhotoRef}
           className={`hero-photo${heroStoryOpen ? ' is-open' : ''}`}
-          onClick={() => {
-            if (heroSwipeClosedRef.current) {
-              heroSwipeClosedRef.current = false
-              return
-            }
-            setHeroStoryOpen((open) => !open)
-          }}
+          onClick={() => setHeroStoryOpen((open) => !open)}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault()
@@ -407,7 +324,7 @@ export default function Page() {
                 )}
               </p>
             ))}
-            <p className="hero-close-hint">Swipe down to close</p>
+            <p className="hero-close-hint">Tap to close</p>
           </div>
           <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
         </div>
