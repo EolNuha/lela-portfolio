@@ -223,6 +223,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .desktop-nav.open { display: flex; }
   .hero-split { display: flex; flex-direction: column; }
   .hero-photo { height: 56vh; min-height: 440px; }
+  .hero-photo-story { gap: 10px; justify-content: flex-start; padding: 56px 36px 48px; }
+  .hero-photo-story p { font-size: 10.5px; line-height: 1.4; }
   .hero-copy { min-height: 48vh; padding: 62px 25px; }
   .hero-copy h1 { font-size: 53px; margin-bottom: 22px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
