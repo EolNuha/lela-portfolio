@@ -67,7 +67,7 @@ export default function Page() {
   const [sharedLinks, setSharedLinks] = useState<string[]>([])
   const messageRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const heroTouchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const heroPhotoRef = useRef<HTMLDivElement>(null)
   const heroSwipeClosedRef = useRef(false)
 
   useEffect(() => {
@@ -78,6 +78,80 @@ export default function Page() {
       window.scrollTo(0, 0)
     }
   }, [])
+
+  useEffect(() => {
+    if (!heroStoryOpen) return
+    const photo = heroPhotoRef.current
+    if (!photo) return
+    const story = photo.querySelector('.hero-photo-story') as HTMLElement | null
+
+    let startX = 0
+    let startY = 0
+    let tracking = false
+    let dismissed = false
+
+    const dismiss = (fromTouch = false) => {
+      if (dismissed) return
+      dismissed = true
+      tracking = false
+      if (fromTouch) heroSwipeClosedRef.current = true
+      setHeroStoryOpen(false)
+    }
+
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0]
+      startX = touch.clientX
+      startY = touch.clientY
+      tracking = true
+      dismissed = false
+    }
+
+    const onTouchMove = (event: TouchEvent) => {
+      if (!tracking || dismissed) return
+      const touch = event.touches[0]
+      const dy = touch.clientY - startY
+      const dx = Math.abs(touch.clientX - startX)
+      const atTop = !story || story.scrollTop <= 2
+      if (!atTop || dy < 12 || dy < dx) return
+      event.preventDefault()
+      if (dy > 48) dismiss(true)
+    }
+
+    const onTouchEnd = (event: TouchEvent) => {
+      if (!tracking || dismissed) {
+        tracking = false
+        return
+      }
+      const touch = event.changedTouches[0]
+      const dy = touch.clientY - startY
+      const dx = Math.abs(touch.clientX - startX)
+      const atTop = !story || story.scrollTop <= 2
+      tracking = false
+      if (atTop && dy > 48 && dy > dx) dismiss(true)
+    }
+
+    const onTouchCancel = () => {
+      tracking = false
+    }
+
+    const onScroll = () => {
+      if (window.scrollY > 4) dismiss(false)
+    }
+
+    photo.addEventListener('touchstart', onTouchStart, { passive: true })
+    photo.addEventListener('touchmove', onTouchMove, { passive: false })
+    photo.addEventListener('touchend', onTouchEnd)
+    photo.addEventListener('touchcancel', onTouchCancel)
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      photo.removeEventListener('touchstart', onTouchStart)
+      photo.removeEventListener('touchmove', onTouchMove)
+      photo.removeEventListener('touchend', onTouchEnd)
+      photo.removeEventListener('touchcancel', onTouchCancel)
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [heroStoryOpen])
 
   useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
@@ -294,6 +368,7 @@ export default function Page() {
 
       <section id="top" className="hero-split">
         <div
+          ref={heroPhotoRef}
           className={`hero-photo${heroStoryOpen ? ' is-open' : ''}`}
           onClick={() => {
             if (heroSwipeClosedRef.current) {
@@ -301,28 +376,6 @@ export default function Page() {
               return
             }
             setHeroStoryOpen((open) => !open)
-          }}
-          onTouchStart={(event) => {
-            if (!heroStoryOpen) return
-            const touch = event.touches[0]
-            heroTouchStartRef.current = { x: touch.clientX, y: touch.clientY }
-            heroSwipeClosedRef.current = false
-          }}
-          onTouchEnd={(event) => {
-            if (!heroStoryOpen || !heroTouchStartRef.current) return
-            const touch = event.changedTouches[0]
-            const dy = touch.clientY - heroTouchStartRef.current.y
-            const dx = Math.abs(touch.clientX - heroTouchStartRef.current.x)
-            const story = event.currentTarget.querySelector('.hero-photo-story') as HTMLElement | null
-            const atTop = !story || story.scrollTop <= 2
-            heroTouchStartRef.current = null
-            if (atTop && dy > 56 && dy > dx * 1.15) {
-              setHeroStoryOpen(false)
-              heroSwipeClosedRef.current = true
-            }
-          }}
-          onTouchCancel={() => {
-            heroTouchStartRef.current = null
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
