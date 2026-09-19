@@ -107,7 +107,6 @@ export default function Page() {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
     const updateScrollState = () => {
       setHasScrolled(window.scrollY > 4)
-      if (window.scrollY <= 4) setMenuOpen(false)
       const current = sections.reduce((closest, sectionId) => {
         const section = document.getElementById(sectionId)
         if (!section) return closest
@@ -277,7 +276,7 @@ export default function Page() {
 
   return (
     <main className="site-shell" ref={siteRef}>
-      <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}${menuOpen ? ' is-menu-open' : ''}`}>
+      <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
         <div className="nav-pill">
           <a href="#top" className="wordmark">DORELA NUHA</a>
           <nav className={menuOpen ? 'desktop-nav open' : 'desktop-nav'}>
