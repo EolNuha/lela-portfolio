@@ -87,7 +87,7 @@ export default function Page() {
           observer.unobserve(entry.target)
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.18, rootMargin: '0px 0px -4% 0px' },
     )
 
     lines.forEach((line) => observer.observe(line))
@@ -301,13 +301,9 @@ export default function Page() {
         </div>
         <div className="hero-copy">
           <div className="hero-copy-inner">
-            <h1>
-              <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Hello,</span>
-              <br />
-              <span className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>I&apos;m Dorela</span>
-            </h1>
-            <p className="reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>I align product, people, and possibilities into a single digital architecture</p>
-            <div className="hero-actions reveal-line" data-reveal style={{ '--reveal-i': 3 } as CSSProperties}>
+            <h1>Hello,<br />I&apos;m Dorela</h1>
+            <p>I align product, people, and possibilities into a single digital architecture</p>
+            <div className="hero-actions">
               <a className="button dark" href="#projects">View case studies</a>
               <a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a>
             </div>
