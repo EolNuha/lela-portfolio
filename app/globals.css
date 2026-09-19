@@ -46,7 +46,7 @@ a { color: inherit; text-decoration: none; }
   transform: translate3d(0, 0, 0);
 }
 h2 > .reveal-line { display: inline-block; max-width: 100%; }
-.about-meta > .reveal-line,
+.about-meta > .reveal-line:not(.about-jump),
 form.reveal-line,
 .experience-list > .reveal-line,
 .project-mark.reveal-line,
@@ -180,7 +180,22 @@ footer a:hover { text-decoration: underline; }
 .about-section h2 { box-sizing: border-box; font-size: clamp(38px, 5.2vw, 70px); font-weight: 400; letter-spacing: -.07em; line-height: .96; margin: 0; max-width: none; padding: 0 8% 0 8%; width: 100%; }
 .about-section h2 strong, .contact-section h2 strong { font-weight: 700; }
 .about-meta { align-items: center; border-left: 1px solid var(--line); box-sizing: border-box; color: var(--mute); display: flex; flex-direction: column; font-size: 14px; gap: 14px; justify-content: center; letter-spacing: .04em; padding: 0 8%; text-align: center; width: 100%; }
-.about-jump { align-items: center; color: var(--ink); display: inline-flex; font-size: 13px; gap: 6px; justify-content: center; margin-top: 22px; text-decoration: none; transition: opacity .2s ease; width: fit-content; border-bottom: 1px solid rgba(17,17,17,.35); padding-bottom: 2px; }
+.about-jump {
+  align-items: center;
+  border-bottom: 1px solid rgba(17,17,17,.35);
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 13px;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 22px;
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: opacity .2s ease;
+  white-space: nowrap;
+  width: fit-content;
+}
+.about-jump svg { flex-shrink: 0; }
 .about-jump:hover { opacity: .65; }
 
 .gray-section { background: var(--charcoal); color: #fff; }
