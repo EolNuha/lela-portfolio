@@ -68,8 +68,9 @@ footer a:hover { text-decoration: underline; }
   left: 50%;
   pointer-events: none;
   position: absolute;
-  top: 62%;
-  transform: translate(-50%, -50%);
+  top: auto;
+  bottom: 18%;
+  transform: translateX(-50%);
   transition: opacity .55s var(--ease), transform .55s var(--ease);
   z-index: 3;
   width: max-content;
@@ -78,7 +79,7 @@ footer a:hover { text-decoration: underline; }
 .hero-intro.is-hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, calc(-50% + 14px));
+  transform: translateX(-50%) translateY(14px);
 }
 .hero-greeting {
   color: #fff;
@@ -121,14 +122,14 @@ footer a:hover { text-decoration: underline; }
   z-index: 1;
 }
 .hero-photo.is-open::after { opacity: .85; }
-.hero-photo img { height: 100%; object-fit: cover; object-position: center 28%; position: absolute; inset: 0; transition: opacity .7s var(--ease), transform 1.2s var(--ease); width: 100%; z-index: 0; }
+.hero-photo img { height: 100%; object-fit: cover; object-position: center 22%; position: absolute; inset: 0; transition: opacity .7s var(--ease), transform 1.2s var(--ease); width: 100%; z-index: 0; }
 .hero-photo.is-open img { opacity: .28; transform: scale(1.03); }
 .hero-photo.is-open .hero-photo-story { opacity: 1; pointer-events: auto; }
 @media (hover: hover) and (pointer: fine) {
   .hero-photo:hover img { opacity: .28; transform: scale(1.03); }
   .hero-photo:hover .hero-intro {
     opacity: 0;
-    transform: translate(-50%, calc(-50% + 14px));
+    transform: translateX(-50%) translateY(14px);
   }
   .hero-photo:hover .hero-photo-story { opacity: 1; pointer-events: auto; }
   .hero-photo:hover .hero-photo-story p {
@@ -608,7 +609,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .desktop-nav.open { display: flex; }
   .hero-split { display: flex; flex-direction: column; }
   .hero-photo { height: 100vh; height: 100dvh; min-height: 100vh; }
-  .hero-intro { top: 60%; gap: 20px; }
+  .hero-intro { bottom: 16%; gap: 20px; top: auto; }
   .hero-greeting { font-size: clamp(52px, 14vw, 72px); }
   .scroll-cue span { height: 15px; width: 15px; }
   .hero-photo-story { gap: 16px; justify-content: flex-start; padding: 108px 26px 48px; }
