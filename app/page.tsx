@@ -67,6 +67,8 @@ export default function Page() {
   const [sharedLinks, setSharedLinks] = useState<string[]>([])
   const messageRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const heroTouchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const heroSwipeClosedRef = useRef(false)
 
   useEffect(() => {
     if ('scrollRestoration' in window.history) {
@@ -293,7 +295,35 @@ export default function Page() {
       <section id="top" className="hero-split">
         <div
           className={`hero-photo${heroStoryOpen ? ' is-open' : ''}`}
-          onClick={() => setHeroStoryOpen((open) => !open)}
+          onClick={() => {
+            if (heroSwipeClosedRef.current) {
+              heroSwipeClosedRef.current = false
+              return
+            }
+            setHeroStoryOpen((open) => !open)
+          }}
+          onTouchStart={(event) => {
+            if (!heroStoryOpen) return
+            const touch = event.touches[0]
+            heroTouchStartRef.current = { x: touch.clientX, y: touch.clientY }
+            heroSwipeClosedRef.current = false
+          }}
+          onTouchEnd={(event) => {
+            if (!heroStoryOpen || !heroTouchStartRef.current) return
+            const touch = event.changedTouches[0]
+            const dy = touch.clientY - heroTouchStartRef.current.y
+            const dx = Math.abs(touch.clientX - heroTouchStartRef.current.x)
+            const story = event.currentTarget.querySelector('.hero-photo-story') as HTMLElement | null
+            const atTop = !story || story.scrollTop <= 2
+            heroTouchStartRef.current = null
+            if (atTop && dy > 56 && dy > dx * 1.15) {
+              setHeroStoryOpen(false)
+              heroSwipeClosedRef.current = true
+            }
+          }}
+          onTouchCancel={() => {
+            heroTouchStartRef.current = null
+          }}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault()
@@ -324,7 +354,7 @@ export default function Page() {
                 )}
               </p>
             ))}
-            <p className="hero-close-hint">Tap to close</p>
+            <p className="hero-close-hint">Swipe down to close</p>
           </div>
           <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
         </div>
