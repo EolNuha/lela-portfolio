@@ -206,7 +206,7 @@ footer a:hover { text-decoration: underline; }
   0%, 100% { opacity: .28; }
   50% { opacity: .9; }
 }
-.hero-copy { align-items: center; background: var(--paper); display: flex; justify-content: center; padding: 72px 7% 56px; position: relative; }
+.hero-copy { align-items: center; background: var(--paper); display: flex; justify-content: center; padding: 120px 7% 72px; position: relative; }
 .hero-copy::before,
 .white-section::before,
 .project-info::before {
@@ -669,7 +669,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .hero-photo-story p:not(.hero-close-hint) { font-size: 14px; line-height: 1.5; }
   .hero-close-hint { font-size: 8px !important; letter-spacing: .22em; }
   .hero-photo.is-open .hero-photo-story p { transition-delay: calc(.04s + var(--reveal-i, 0) * .05s); }
-  .hero-copy { align-items: flex-start; min-height: 0; padding: 52px 25px 28px; }
+  .hero-copy { align-items: flex-start; min-height: 0; padding: 96px 25px 40px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
   .about-section, .contact-inner { display: block; }
   .about-section { padding: 28px 25px 56px; }
