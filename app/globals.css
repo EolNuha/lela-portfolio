@@ -218,26 +218,10 @@ footer a:hover { text-decoration: underline; }
   overflow: hidden;
   padding: 36px 42px 48px;
   position: relative;
-  transition: filter .45s ease;
   width: 100%;
   z-index: 2;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
-}
-.project-card.is-open .project-mark-surface {
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,.22)) drop-shadow(0 22px 28px rgba(0,0,0,.28));
-}
-.project-card.is-open .project-mark::before {
-  background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0,0,0,.4) 0%, rgba(0,0,0,.16) 40%, transparent 72%);
-  bottom: -6px;
-  content: '';
-  height: 36px;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  transform: translateX(-50%);
-  width: 64px;
-  z-index: 4;
 }
 .project-mark-surface::after {
   background: linear-gradient(to bottom, var(--paper) 0%, rgba(255,255,255,.85) 24%, rgba(255,255,255,.35) 52%, transparent 100%);
