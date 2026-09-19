@@ -370,10 +370,10 @@ export default function Page() {
             </div>
             <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>
           </div>
-          <div id="project-info" className="project-info reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>
-            <h3>Connecting the Dots in Event Discovery</h3>
-            <div className="project-details">
-              <div className="project-details-inner">
+          <div id="project-info" className="project-info">
+            <div className="project-info-inner">
+              <h3>Connecting the Dots in Event Discovery</h3>
+              <div className="project-details">
                 <div className="project-points">
                   {['Problem discovery', 'User journey workflows', 'Figma wireframes', 'Success metrics'].map((point, i) => (
                     <div key={point}><span>0{i + 1}</span>{point}<ArrowUpRight size={14} /></div>

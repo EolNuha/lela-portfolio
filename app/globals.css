@@ -51,7 +51,6 @@ h2 > .reveal-line { display: inline-block; max-width: 100%; }
 form.reveal-line,
 .experience-list > .reveal-line,
 .project-mark.reveal-line,
-.project-info.reveal-line,
 .section-label.reveal-line {
   display: block;
 }
@@ -202,26 +201,97 @@ footer a:hover { text-decoration: underline; }
 .experience-pill:hover { transform: translateY(-1px); }
 
 .project-section { background: var(--paper); }
-.project-card { align-items: stretch; display: grid; gap: 0; grid-template-columns: 1.15fr 0.85fr; position: relative; }
-.project-mark { background: #171717; border-radius: 2%; color: white; min-height: 430px; overflow: visible; padding: 42px; position: relative; z-index: 2; }
-.project-mark-image { border-radius: 2%; height: 100%; inset: 0; object-fit: cover; object-position: center; position: absolute; transition: transform 1.1s var(--ease); width: 100%; }
+.project-card { align-items: center; display: flex; flex-direction: column; position: relative; width: 100%; }
+.project-mark {
+  background: #171717;
+  border-radius: 2%;
+  color: white;
+  isolation: isolate;
+  min-height: 320px;
+  overflow: visible;
+  padding: 36px 42px 48px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.project-mark::after {
+  background: linear-gradient(to bottom, var(--paper) 0%, rgba(255,255,255,.72) 28%, rgba(255,255,255,.2) 58%, transparent 100%);
+  content: '';
+  height: 34%;
+  inset: 0 0 auto;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+.project-mark-image { border-radius: 2%; height: 100%; inset: 0; object-fit: cover; object-position: center; position: absolute; transition: transform 1.1s var(--ease); width: 100%; z-index: 0; }
 .project-mark:hover .project-mark-image { transform: scale(1.025); }
-.project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 346px; position: relative; z-index: 1; }
+.project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 248px; position: relative; z-index: 1; }
 .project-mark-content > span { font-size: 10px; letter-spacing: .18em; opacity: .8; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
-.project-mark h2 { font-size: clamp(76px, 11vw, 150px); font-weight: 500; letter-spacing: -.1em; line-height: .8; margin: 105px 0 80px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+.project-mark h2 { font-size: clamp(64px, 9vw, 120px); font-weight: 500; letter-spacing: -.1em; line-height: .8; margin: 56px 0 36px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
 .project-mark h2 span { color: rgba(255,255,255,.55); }
 .project-mark p { font-size: 13px; line-height: 1.5; margin-top: auto; max-width: 270px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
-.project-mark-arrow { align-items: center; background: #efefef; border: 0; border-radius: 50%; box-shadow: 0 4px 14px rgba(0,0,0,.12); color: var(--ink); cursor: pointer; display: inline-flex; height: 42px; justify-content: center; padding: 0; position: absolute; right: 0; top: 50%; transform: translate(50%, -50%); transition: transform var(--duration) var(--ease), background .35s ease, box-shadow .35s ease; width: 42px; z-index: 3; }
+.project-mark-arrow {
+  align-items: center;
+  background: #efefef;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  height: 42px;
+  justify-content: center;
+  left: 50%;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  right: auto;
+  top: auto;
+  transform: translate(-50%, 50%) rotate(90deg);
+  transition: transform .55s cubic-bezier(.22,1,.36,1), background .35s ease, box-shadow .35s ease;
+  width: 42px;
+  z-index: 3;
+}
 .project-mark-arrow:hover { box-shadow: 0 6px 18px rgba(0,0,0,.16); }
-.project-card.is-open .project-mark-arrow { background: #fff; transform: translate(50%, -50%) rotate(180deg); }
-.project-info { align-self: center; background: #efefef; border-radius: 0; margin-left: -48px; padding: 28px 32px 28px 72px; position: relative; transition: margin-left var(--duration) var(--ease), padding var(--duration) var(--ease), align-self .55s ease; z-index: 1; }
-.project-card.is-open .project-info { align-self: stretch; margin-left: 28px; padding: 40px 36px; }
-.project-info > * { position: relative; z-index: 1; }
-.project-info h3 { font-size: 26px; font-weight: 500; letter-spacing: .02em; line-height: 1.2; margin: 0; transition: margin var(--duration) var(--ease); }
-.project-card.is-open .project-info h3 { margin: 0 0 40px; }
-.project-details { display: grid; grid-template-rows: 0fr; opacity: 0; pointer-events: none; transition: grid-template-rows var(--duration) var(--ease), opacity .35s ease; }
-.project-details-inner { min-height: 0; overflow: hidden; }
-.project-card.is-open .project-details { grid-template-rows: 1fr; opacity: 1; pointer-events: auto; }
+.project-card.is-open .project-mark-arrow { background: #fff; transform: translate(-50%, 50%) rotate(270deg); }
+.project-info {
+  background: #efefef;
+  display: grid;
+  grid-template-rows: 0fr;
+  margin: -28px auto 0;
+  max-width: 92%;
+  opacity: 0;
+  overflow: hidden;
+  position: relative;
+  transform: translate3d(0, -18px, 0);
+  transition:
+    grid-template-rows .65s cubic-bezier(.22,1,.36,1),
+    opacity .45s ease,
+    transform .65s cubic-bezier(.22,1,.36,1),
+    margin .65s cubic-bezier(.22,1,.36,1),
+    max-width .65s cubic-bezier(.22,1,.36,1);
+  width: 100%;
+  z-index: 1;
+}
+.project-card.is-open .project-info {
+  grid-template-rows: 1fr;
+  margin-top: 18px;
+  max-width: 100%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.project-info-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 36px;
+  transition: padding .65s cubic-bezier(.22,1,.36,1);
+}
+.project-card.is-open .project-info-inner { padding: 48px 36px 40px; }
+.project-info > *,
+.project-info-inner > * { position: relative; z-index: 1; }
+.project-info h3 { font-size: 26px; font-weight: 500; letter-spacing: .02em; line-height: 1.2; margin: 0 0 32px; }
+.project-details { opacity: 0; transform: translate3d(0, 10px, 0); transition: opacity .4s ease .12s, transform .5s cubic-bezier(.22,1,.36,1) .12s; }
+.project-card.is-open .project-details { opacity: 1; transform: translate3d(0, 0, 0); }
 .project-points { border-top: 1px solid rgba(17,17,17,.14); }
 .project-points div { align-items: center; border-bottom: 1px solid rgba(17,17,17,.14); display: flex; font-size: 12px; gap: 16px; padding: 15px 0; transition: opacity .2s ease; }
 .project-points div:hover { opacity: .7; }
@@ -372,14 +442,16 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .experience-trigger { gap: 14px; grid-template-columns: 45px 1fr auto; }
   .experience-trigger h3 { font-size: 16px; }
   .experience-description-inner { padding-left: 59px; padding-right: 0; }
-  .project-card { display: flex; flex-direction: column; gap: 0; grid-template-columns: none; }
-  .project-mark { min-height: 340px; padding: 28px; }
-  .project-mark h2 { margin: 92px 0 55px; }
+  .project-card { display: flex; flex-direction: column; gap: 0; }
+  .project-mark { min-height: 280px; padding: 28px 28px 44px; }
+  .project-mark-content { min-height: 220px; }
+  .project-mark h2 { margin: 48px 0 28px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
   .project-card.is-open .project-mark-arrow { background: #fff; transform: translate(-50%, 50%) rotate(270deg); }
-  .project-info { display: none; margin-left: 0; margin-top: 18px; padding: 36px 24px 28px; width: 100%; align-self: stretch; }
-  .project-card.is-open .project-info { display: block; margin-left: 0; margin-top: 18px; padding: 36px 24px 28px; width: 100%; align-self: stretch; }
-  .project-info h3 { font-size: 22px; margin-bottom: 28px; }
+  .project-info { margin-top: -24px; max-width: 94%; }
+  .project-card.is-open .project-info { margin-top: 14px; max-width: 100%; }
+  .project-card.is-open .project-info-inner { padding: 40px 24px 32px; }
+  .project-info h3 { font-size: 22px; margin-bottom: 24px; }
   .contact-inner form { margin-top: 55px; }
   footer { padding: 17px 25px; }
 }
