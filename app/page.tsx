@@ -305,6 +305,7 @@ export default function Page() {
                 )}
               </p>
             ))}
+            <p className="hero-close-hint">Tap to close</p>
           </div>
           <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
         </div>
