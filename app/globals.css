@@ -17,11 +17,11 @@
 * { box-sizing: border-box; }
 html {
   scroll-behavior: smooth;
-  background: #171512;
+  background: #fff;
 }
 body {
   margin: 0;
-  background: #171512;
+  background: #fff;
   color: var(--ink);
   font-family: 'Michroma', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -377,7 +377,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     display: block;
     height: calc(env(safe-area-inset-top, 0px) + 72px);
     left: 0;
-    opacity: .9;
+    opacity: .95;
     pointer-events: none;
     position: fixed;
     right: 0;
@@ -386,9 +386,10 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     z-index: 9;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, .78) 0%,
-      rgba(0, 0, 0, .42) 38%,
-      rgba(0, 0, 0, .12) 68%,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, .82) 28%,
+      rgba(255, 255, 255, .35) 58%,
+      rgba(255, 255, 255, .08) 78%,
       transparent 100%
     );
   }
@@ -396,10 +397,10 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     content: '';
     inset: 0;
     position: absolute;
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 22%, transparent 100%);
   }
   .top-fade.is-scrolled {
     height: calc(env(safe-area-inset-top, 0px) + 88px);
