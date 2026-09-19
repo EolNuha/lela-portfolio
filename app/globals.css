@@ -51,7 +51,7 @@ footer a:hover { text-decoration: underline; }
 
 .hero-split { display: grid; grid-template-columns: 51.5% 48.5%; min-height: 100vh; padding-top: 0; }
 .hero-photo { background: #171512; height: 100vh; min-height: 580px; overflow: hidden; position: relative; }
-.hero-photo-story { color: #fff; display: flex; flex-direction: column; gap: 18px; height: 100%; justify-content: center; opacity: 0; overflow-y: auto; padding: 96px 9% 78px; position: absolute; inset: 0; transition: opacity .7s var(--ease); z-index: 2; }
+.hero-photo-story { color: #fff; display: flex; flex-direction: column; gap: 18px; height: 100%; justify-content: center; opacity: 0; overflow-y: auto; padding: 52px 9% 44px; position: absolute; inset: 0; transition: opacity .7s var(--ease); z-index: 2; }
 .hero-photo-story p { font-size: clamp(12px, 1.2vw, 15px); line-height: 1.55; margin: 0; max-width: none; text-shadow: 0 1px 12px rgba(0,0,0,.55); }
 .hero-photo-story em { font-style: normal; font-weight: 600; }
 .hero-photo img { height: 100%; object-fit: cover; object-position: center 43%; position: absolute; inset: 0; transition: opacity .7s var(--ease), transform 1.2s var(--ease); width: 100%; z-index: 1; }
