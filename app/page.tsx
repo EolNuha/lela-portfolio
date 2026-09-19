@@ -146,6 +146,17 @@ export default function Page() {
         if (navY >= rect.top && navY <= rect.bottom) navDark = true
       }
       setNavOnDark(navDark)
+
+      const themeColor = navDark ? '#171512' : '#ffffff'
+      let themeMeta = document.querySelector('meta[name="theme-color"]')
+      if (!themeMeta) {
+        themeMeta = document.createElement('meta')
+        themeMeta.setAttribute('name', 'theme-color')
+        document.head.appendChild(themeMeta)
+      }
+      if (themeMeta.getAttribute('content') !== themeColor) {
+        themeMeta.setAttribute('content', themeColor)
+      }
     }
     updateScrollState()
     window.addEventListener('scroll', updateScrollState, { passive: true })
