@@ -397,23 +397,15 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .nav-pill {
     align-items: center;
     background: transparent;
-    border: 1px solid transparent;
-    border-radius: 999px;
+    border: 0;
     box-shadow: none;
     color: #fff;
     display: flex;
     justify-content: space-between;
     max-width: 100%;
-    min-height: 38px;
-    padding: 4px 6px 4px 16px;
+    min-height: 0;
+    padding: 0;
     position: relative;
-    transition:
-      color .28s ease,
-      background .28s ease,
-      border-color .28s ease,
-      box-shadow .28s ease,
-      backdrop-filter .28s ease,
-      -webkit-backdrop-filter .28s ease;
     width: 100%;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -421,59 +413,77 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .site-header.is-on-light .nav-pill { color: #111; }
   .site-header.is-on-dark .nav-pill { color: #fff; }
   .site-header.is-scrolled .nav-pill {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .wordmark,
+  .mobile-menu {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: none;
+    color: inherit;
+    display: inline-flex;
+    font-size: 10px;
+    letter-spacing: .22em;
+    min-height: 28px;
+    padding: 0;
+    transition:
+      color .28s ease,
+      background .28s ease,
+      border-color .28s ease,
+      box-shadow .28s ease,
+      backdrop-filter .28s ease,
+      -webkit-backdrop-filter .28s ease;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .wordmark {
+    padding: 0 2px;
+  }
+  .mobile-menu {
+    flex-shrink: 0;
+    height: 28px;
+    justify-content: center;
+    width: 32px;
+  }
+  .site-header.is-scrolled .wordmark,
+  .site-header.is-scrolled .mobile-menu {
     background: rgba(255,255,255,.1);
     border-color: rgba(255,255,255,.42);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.35),
-      inset 0 -1px 0 rgba(255,255,255,.08),
-      0 4px 24px rgba(0,0,0,.12);
+      inset 0 -1px 0 rgba(255,255,255,.08);
+    color: inherit;
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
   }
-  .site-header.is-scrolled.is-on-light .nav-pill {
+  .site-header.is-scrolled .wordmark {
+    padding: 6px 12px;
+  }
+  .site-header.is-scrolled .mobile-menu {
+    height: 28px;
+    width: 32px;
+  }
+  .site-header.is-scrolled.is-on-light .wordmark,
+  .site-header.is-scrolled.is-on-light .mobile-menu {
     background: rgba(255,255,255,.18);
     border-color: rgba(255,255,255,.55);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.55),
-      inset 0 -1px 0 rgba(255,255,255,.12),
-      0 4px 20px rgba(0,0,0,.06);
+      inset 0 -1px 0 rgba(255,255,255,.12);
     color: #111;
   }
-  .site-header.is-scrolled.is-on-dark .nav-pill {
+  .site-header.is-scrolled.is-on-dark .wordmark,
+  .site-header.is-scrolled.is-on-dark .mobile-menu {
     background: rgba(255,255,255,.1);
     border-color: rgba(255,255,255,.42);
     color: #fff;
   }
-  .wordmark {
-    background: none;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    color: inherit;
-    font-size: 10px;
-    letter-spacing: .22em;
-    padding: 0;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .site-header.is-scrolled .wordmark { color: inherit; }
-  .mobile-menu {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-radius: 999px;
-    box-shadow: none;
-    color: inherit;
-    display: inline-flex;
-    flex-shrink: 0;
-    height: 32px;
-    justify-content: center;
-    padding: 0;
-    width: 36px;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .site-header.is-scrolled .mobile-menu { color: inherit; }
   .mobile-menu:hover { opacity: .75; }
   .desktop-nav {
     align-items: flex-end;
