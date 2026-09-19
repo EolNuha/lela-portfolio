@@ -229,9 +229,9 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .hero-copy h1 { font-size: 53px; margin-bottom: 22px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
   .about-section, .contact-inner { display: block; }
-  .about-section { padding-left: 25px; padding-right: 25px; }
+  .about-section { padding: 48px 25px 56px; }
   .about-heading { display: flex; flex-direction: column; gap: 28px; }
-  .about-section h2 { font-size: 46px; max-width: none; padding: 0; }
+  .about-section h2 { font-size: 42px; max-width: none; padding: 0; text-align: center; }
   .about-meta { border-left: 0; border-top: 1px solid var(--line); gap: 10px; padding: 18px 0 0; }
   .section-label { margin-bottom: 30px; }
   .experience-trigger { gap: 14px; grid-template-columns: 45px 1fr auto; }
