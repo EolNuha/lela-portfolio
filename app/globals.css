@@ -86,9 +86,9 @@ footer a:hover { text-decoration: underline; }
   opacity: 0;
   transform: translate(-50%, calc(-50% + 14px));
 }
-.hero-photo-story { color: #fff; display: flex; flex-direction: column; gap: 18px; height: 100%; justify-content: center; opacity: 0; overflow-y: auto; padding: 72px 9% 56px; pointer-events: none; position: absolute; inset: 0; transition: opacity .7s var(--ease); z-index: 2; }
+.hero-photo-story { color: #fff; display: flex; flex-direction: column; gap: 18px; height: 100%; justify-content: center; opacity: 0; overflow-y: auto; padding: 88px 9% 56px; pointer-events: none; position: absolute; inset: 0; transition: opacity .7s var(--ease); z-index: 2; }
 .hero-photo-story p {
-  font-size: clamp(12px, 1.2vw, 15px);
+  font-size: clamp(14px, 1.45vw, 17px);
   line-height: 1.55;
   margin: 0;
   max-width: none;
@@ -454,7 +454,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     display: flex;
     height: auto;
     justify-content: center;
-    padding: 18px 28px 10px;
+    padding: calc(12px + env(safe-area-inset-top, 0px) + 14px) 28px 10px;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -590,8 +590,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .hero-split { display: flex; flex-direction: column; }
   .hero-photo { height: 100vh; height: 100dvh; min-height: 100vh; }
   .hero-greeting { font-size: clamp(52px, 14vw, 72px); padding: 0 24px; top: 60%; }
-  .hero-photo-story { gap: 10px; justify-content: flex-start; padding: 72px 28px 56px; }
-  .hero-photo-story p { font-size: 10.5px; line-height: 1.4; }
+  .hero-photo-story { gap: 16px; justify-content: flex-start; padding: 108px 26px 48px; }
+  .hero-photo-story p { font-size: 14px; line-height: 1.5; }
   .hero-photo.is-open .hero-photo-story p { transition-delay: calc(.04s + var(--reveal-i, 0) * .05s); }
   .hero-copy { align-items: flex-start; min-height: 0; padding: 52px 25px 28px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
