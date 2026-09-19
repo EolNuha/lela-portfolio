@@ -370,9 +370,9 @@ export default function Page() {
             <div className="project-mark-surface">
               <img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" />
               <div className="project-mark-content">
-                <span>CASE STUDY · 01</span>
                 <h2>NEJA<span>.</span></h2>
                 <p>Architecting a centralized discovery platform that turns fragmented event hunting into a frictionless user journey.</p>
+                <span className="project-mark-label">CASE STUDY · 01</span>
               </div>
             </div>
             <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>

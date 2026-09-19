@@ -247,10 +247,17 @@ footer a:hover { text-decoration: underline; }
 }
 .project-mark:hover .project-mark-image { transform: scale(1.025); }
 .project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 0; position: relative; z-index: 1; }
-.project-mark-content > span { font-size: 10px; letter-spacing: .18em; opacity: .8; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
-.project-mark h2 { font-size: clamp(52px, 7.5vw, 100px); font-weight: 500; letter-spacing: -.1em; line-height: .8; margin: 28px 0 20px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+.project-mark h2 { font-size: clamp(72px, 11vw, 140px); font-weight: 500; letter-spacing: -.1em; line-height: .78; margin: 8px 0 8px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
 .project-mark h2 span { color: rgba(255,255,255,.55); }
-.project-mark p { font-size: 13px; line-height: 1.5; margin-top: auto; max-width: 270px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+.project-mark p { font-size: 11px; line-height: 1.4; margin: 0; max-width: 240px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
+.project-mark-label {
+  align-self: flex-end;
+  font-size: 10px;
+  letter-spacing: .18em;
+  margin-top: auto;
+  opacity: .8;
+  text-shadow: 0 1px 10px rgba(0,0,0,.45);
+}
 .project-mark-arrow {
   align-items: center;
   background: var(--paper);
@@ -543,7 +550,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .project-mark { min-height: 0; }
   .project-mark-surface { aspect-ratio: 16 / 10; min-height: 0; padding: 22px 24px 36px; }
   .project-mark-content { min-height: 0; }
-  .project-mark h2 { margin: 22px 0 16px; }
+  .project-mark h2 { margin: 4px 0 6px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
   .project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
   .project-info { margin-top: -24px; max-width: 86%; }
