@@ -59,6 +59,7 @@ export default function Page() {
   const [projectOpen, setProjectOpen] = useState(false)
   const [heroStoryOpen, setHeroStoryOpen] = useState(false)
   const [backToTopOnDark, setBackToTopOnDark] = useState(false)
+  const [navOnDark, setNavOnDark] = useState(true)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [formError, setFormError] = useState('')
   const [attachments, setAttachments] = useState<File[]>([])
@@ -145,6 +146,25 @@ export default function Page() {
       }
 
       setBackToTopOnDark(onDark)
+
+      const navY = 28
+      let navDark = false
+      const experience = document.getElementById('experience')
+      const contact = document.getElementById('contact')
+      const photo = document.querySelector('.hero-photo')
+      if (experience) {
+        const rect = experience.getBoundingClientRect()
+        if (navY >= rect.top && navY <= rect.bottom) navDark = true
+      }
+      if (!navDark && contact) {
+        const rect = contact.getBoundingClientRect()
+        if (navY >= rect.top && navY <= rect.bottom) navDark = true
+      }
+      if (!navDark && photo) {
+        const rect = photo.getBoundingClientRect()
+        if (navY >= rect.top && navY <= rect.bottom) navDark = true
+      }
+      setNavOnDark(navDark)
     }
     updateScrollState()
     window.addEventListener('scroll', updateScrollState, { passive: true })
@@ -256,14 +276,16 @@ export default function Page() {
 
   return (
     <main className="site-shell" ref={siteRef}>
-      <header className={hasScrolled ? 'site-header is-scrolled' : 'site-header'}>
-        <a href="#top" className="wordmark">DORELA NUHA</a>
-        <nav className={menuOpen ? 'desktop-nav open' : 'desktop-nav'}>
-          {links.map(({ label, href }) => (
-            <a className={activeSection === href ? 'active' : ''} key={label} href={`#${href}`} onClick={() => setMenuOpen(false)}>{label}</a>
-          ))}
-        </nav>
-        <button className="mobile-menu" aria-label="Open navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={17} /> : <Menu size={17} />}</button>
+      <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
+        <div className="nav-pill">
+          <a href="#top" className="wordmark">DORELA NUHA</a>
+          <nav className={menuOpen ? 'desktop-nav open' : 'desktop-nav'}>
+            {links.map(({ label, href }) => (
+              <a className={activeSection === href ? 'active' : ''} key={label} href={`#${href}`} onClick={() => setMenuOpen(false)}>{label}</a>
+            ))}
+          </nav>
+          <button className="mobile-menu" aria-label="Open navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={17} /> : <Menu size={17} />}</button>
+        </div>
       </header>
 
       <section id="top" className="hero-split">
