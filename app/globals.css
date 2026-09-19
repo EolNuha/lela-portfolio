@@ -223,8 +223,6 @@ footer a:hover { text-decoration: underline; }
   position: relative;
   width: 100%;
   z-index: 2;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
 }
 .project-card.is-open .project-mark {
   border: 0;
@@ -251,6 +249,8 @@ footer a:hover { text-decoration: underline; }
   transition: transform 1.1s var(--ease);
   width: calc(100% + 2px);
   z-index: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
 }
 .project-mark:hover .project-mark-image { transform: scale(1.025); }
 .project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 248px; position: relative; z-index: 1; }
@@ -260,10 +260,10 @@ footer a:hover { text-decoration: underline; }
 .project-mark p { font-size: 13px; line-height: 1.5; margin-top: auto; max-width: 270px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
 .project-mark-arrow {
   align-items: center;
-  background: #efefef;
+  background: var(--paper);
   border: 0;
   border-radius: 50%;
-  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  box-shadow: none;
   color: var(--ink);
   cursor: pointer;
   display: inline-flex;
@@ -276,14 +276,14 @@ footer a:hover { text-decoration: underline; }
   right: auto;
   top: auto;
   transform: translate(-50%, 50%) rotate(90deg);
-  transition: transform .55s cubic-bezier(.22,1,.36,1), background .35s ease, box-shadow .35s ease;
+  transition: transform .55s cubic-bezier(.22,1,.36,1), background .35s ease;
   width: 42px;
   z-index: 3;
 }
-.project-mark-arrow:hover { box-shadow: 0 6px 18px rgba(0,0,0,.16); }
+.project-mark-arrow:hover { box-shadow: none; }
 .project-mark-arrow:focus { outline: none; }
 .project-mark-arrow:focus-visible { outline: 2px solid rgba(17,17,17,.2); outline-offset: 3px; }
-.project-card.is-open .project-mark-arrow { background: #fff; transform: translate(-50%, 50%) rotate(270deg); }
+.project-card.is-open .project-mark-arrow { background: var(--paper); transform: translate(-50%, 50%) rotate(270deg); }
 .project-info {
   background: #efefef;
   display: grid;
@@ -536,7 +536,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .project-mark-content { min-height: 220px; }
   .project-mark h2 { margin: 48px 0 28px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
-  .project-card.is-open .project-mark-arrow { background: #fff; transform: translate(-50%, 50%) rotate(270deg); }
+  .project-card.is-open .project-mark-arrow { background: var(--paper); transform: translate(-50%, 50%) rotate(270deg); }
   .project-info { margin-top: -24px; max-width: 94%; }
   .project-card.is-open .project-info { margin-top: 14px; max-width: 100%; }
   .project-card.is-open .project-info-inner { padding: 40px 24px 32px; }
