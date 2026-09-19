@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
 const portraitUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8947.JPG-xs3E7SmXoPWIWN6x29BxKQUr2nOceJ.jpeg'
@@ -65,6 +65,42 @@ export default function Page() {
   const [sharedLinks, setSharedLinks] = useState<string[]>([])
   const messageRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const siteRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const root = siteRef.current
+    if (!root) return
+
+    const lines = root.querySelectorAll<HTMLElement>('[data-reveal]')
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (reduceMotion) {
+      lines.forEach((line) => line.classList.add('is-in'))
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          entry.target.classList.add('is-in')
+          observer.unobserve(entry.target)
+        })
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    lines.forEach((line) => observer.observe(line))
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!projectOpen) return
+    const info = document.getElementById('project-info')
+    if (!info) return
+    const frame = window.requestAnimationFrame(() => info.classList.add('is-in'))
+    return () => window.cancelAnimationFrame(frame)
+  }, [projectOpen])
 
   useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
@@ -219,7 +255,7 @@ export default function Page() {
   ]
 
   return (
-    <main className="site-shell">
+    <main className="site-shell" ref={siteRef}>
       <header className={hasScrolled ? 'site-header is-scrolled' : 'site-header'}>
         <a href="#top" className="wordmark">DORELA NUHA</a>
         <nav className={menuOpen ? 'desktop-nav open' : 'desktop-nav'}>
@@ -246,8 +282,8 @@ export default function Page() {
           aria-label={heroStoryOpen ? 'Hide story and show photo' : 'Show story'}
         >
           <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
-            {aboutStory.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>
+            {aboutStory.map((paragraph, index) => (
+              <p key={paragraph.slice(0, 32)} style={{ '--reveal-i': index } as CSSProperties}>
                 {paragraph.includes('Am I in love with the physics of sound') ? (
                   <>
                     {paragraph.split('Am I in love with the physics of sound, or the human experience of expression?')[0]}
@@ -263,14 +299,43 @@ export default function Page() {
           <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
           <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
         </div>
-        <div className="hero-copy"><div className="hero-copy-inner"><h1>Hello,<br />I&apos;m Dorela</h1><p>I align product, people, and possibilities into a single digital architecture</p><div className="hero-actions"><a className="button dark" href="#projects">View case studies</a><a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a></div></div></div>
+        <div className="hero-copy">
+          <div className="hero-copy-inner">
+            <h1>
+              <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Hello,</span>
+              <br />
+              <span className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>I&apos;m Dorela</span>
+            </h1>
+            <p className="reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>I align product, people, and possibilities into a single digital architecture</p>
+            <div className="hero-actions reveal-line" data-reveal style={{ '--reveal-i': 3 } as CSSProperties}>
+              <a className="button dark" href="#projects">View case studies</a>
+              <a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section id="about" className="white-section about-section"><div className="about-heading"><h2>Good products begin with<br /><strong>better questions.</strong></h2><div className="about-meta"><span>Product strategy</span><span>UX &amp; workflows</span><span>Cross-functional leadership</span><a className="about-jump" href="#experience">See selected experience <ArrowUpRight size={14} /></a></div></div></section>
+      <section id="about" className="white-section about-section">
+        <div className="about-heading">
+          <h2>
+            <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Good products begin with</span>
+            <br />
+            <strong className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>better questions.</strong>
+          </h2>
+          <div className="about-meta">
+            <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Product strategy</span>
+            <span className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>UX &amp; workflows</span>
+            <span className="reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>Cross-functional leadership</span>
+            <a className="about-jump reveal-line" data-reveal style={{ '--reveal-i': 3 } as CSSProperties} href="#experience">See selected experience <ArrowUpRight size={14} /></a>
+          </div>
+        </div>
+      </section>
 
-      <section id="experience" className="gray-section"><h2 className="section-label">Experience</h2><div className="experience-list">{experience.map((item) => {
+      <section id="experience" className="gray-section">
+        <h2 className="section-label reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Experience</h2>
+        <div className="experience-list">{experience.map((item, index) => {
         const isExpanded = expandedExperience === item.year
-        return <article className={isExpanded ? 'is-expanded' : ''} key={item.year}>
+        return <article className={`reveal-line${isExpanded ? ' is-expanded' : ''}`} data-reveal style={{ '--reveal-i': index } as CSSProperties} key={item.year}>
           <button className="experience-trigger" type="button" aria-expanded={isExpanded} onClick={() => setExpandedExperience(isExpanded ? null : item.year)}>
             <span>{item.year}</span>
             <div><h3>{item.role}</h3><p>{item.company}</p></div>
@@ -298,9 +363,86 @@ export default function Page() {
         </article>
       })}</div></section>
 
-      <section id="projects" className="white-section project-section"><div className={`project-card${projectOpen ? ' is-open' : ''}`}><div className="project-mark"><img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" /><div className="project-mark-content"><span>CASE STUDY · 01</span><h2>NEJA<span>.</span></h2><p>Architecting a centralized discovery platform that turns fragmented event hunting into a frictionless user journey.</p></div><button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button></div><div id="project-info" className="project-info"><h3>Connecting the Dots in Event Discovery</h3><div className="project-details"><div className="project-details-inner"><div className="project-points">{['Problem discovery', 'User journey workflows', 'Figma wireframes', 'Success metrics'].map((point, i) => <div key={point}><span>0{i + 1}</span>{point}<ArrowUpRight size={14} /></div>)}</div><a href="#contact" className="text-link">Explore case study <ArrowUpRight size={14} /></a></div></div></div></div></section>
+      <section id="projects" className="white-section project-section">
+        <div className={`project-card${projectOpen ? ' is-open' : ''}`}>
+          <div className="project-mark reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>
+            <img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" />
+            <div className="project-mark-content">
+              <span>CASE STUDY · 01</span>
+              <h2>NEJA<span>.</span></h2>
+              <p>Architecting a centralized discovery platform that turns fragmented event hunting into a frictionless user journey.</p>
+            </div>
+            <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>
+          </div>
+          <div id="project-info" className="project-info reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>
+            <h3>Connecting the Dots in Event Discovery</h3>
+            <div className="project-details">
+              <div className="project-details-inner">
+                <div className="project-points">
+                  {['Problem discovery', 'User journey workflows', 'Figma wireframes', 'Success metrics'].map((point, i) => (
+                    <div key={point}><span>0{i + 1}</span>{point}<ArrowUpRight size={14} /></div>
+                  ))}
+                </div>
+                <a href="#contact" className="text-link">Explore case study <ArrowUpRight size={14} /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section id="contact" className="contact-section"><div className="contact-inner"><div><h2>Let&apos;s create things<br /><strong>that matter.</strong></h2><div className="contact-actions"><button type="button" onClick={copyEmail}>{copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy Email'}</button><a href="https://linkedin.com/in/dorela-nuha" target="_blank" rel="noreferrer">LinkedIn</a><a href="/Dorela-Nuha-CV.pdf" download><Download size={13} /> Resume</a></div></div><form onSubmit={sendMessage} encType="multipart/form-data"><p className="form-intro">Always open to great ideas.</p><input required aria-required="true" name="name" aria-label="Name" placeholder="Name *" /><input required aria-required="true" name="email" type="email" aria-label="Email Address" placeholder="Email Address *" /><div className="message-box"><textarea ref={messageRef} required aria-required="true" name="message" aria-label="Your Message" placeholder="Your Message... *" /><div className="message-box-footer">{(attachments.length > 0 || sharedLinks.length > 0) ? <div className="message-box-files">{attachments.map((file, index) => <span className="message-chip" key={`${file.name}-${file.size}-${index}`}><Paperclip size={11} aria-hidden /><em>{file.name}</em><button type="button" className="chip-remove" aria-label={`Remove ${file.name}`} onClick={() => removeAttachment(index)}><X size={12} /></button></span>)}{sharedLinks.map((link) => <span className="message-chip" key={link}><Link2 size={11} aria-hidden /><em>{link}</em><button type="button" className="chip-remove" aria-label={`Remove ${link}`} onClick={() => removeLink(link)}><X size={12} /></button></span>)}</div> : null}<div className="message-box-toolbar"><button type="button" className="message-tool" aria-label="Attach files" onClick={() => fileInputRef.current?.click()}><Paperclip size={15} /></button><button type="button" className="message-tool" aria-label="Insert a link" onClick={insertLink}><Link2 size={15} /></button><input ref={fileInputRef} type="file" multiple hidden aria-hidden onChange={(event) => setAttachments(Array.from(event.target.files ?? []))} /></div></div></div><button type="submit" disabled={formStatus === 'sending'}>{formStatus === 'sending' ? 'Sending...' : formStatus === 'sent' ? 'Message sent' : <>Send Message <ArrowUpRight size={13} /></>}</button>{formStatus === 'error' ? <p className="form-status error">{formError} <a href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></p> : null}{formStatus === 'sent' ? <p className="form-status">Thanks — your message is on its way.</p> : null}</form></div><footer><span>DORELA NUHA / PORTFOLIO · © 2026</span></footer></section>
+      <section id="contact" className="contact-section">
+        <div className="contact-inner">
+          <div>
+            <h2>
+              <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Let&apos;s create things</span>
+              <br />
+              <strong className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>that matter.</strong>
+            </h2>
+            <div className="contact-actions reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>
+              <button type="button" onClick={copyEmail}>{copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy Email'}</button>
+              <a href="https://linkedin.com/in/dorela-nuha" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="/Dorela-Nuha-CV.pdf" download><Download size={13} /> Resume</a>
+            </div>
+          </div>
+          <form onSubmit={sendMessage} encType="multipart/form-data" className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>
+            <p className="form-intro">Always open to great ideas.</p>
+            <input required aria-required="true" name="name" aria-label="Name" placeholder="Name *" />
+            <input required aria-required="true" name="email" type="email" aria-label="Email Address" placeholder="Email Address *" />
+            <div className="message-box">
+              <textarea ref={messageRef} required aria-required="true" name="message" aria-label="Your Message" placeholder="Your Message... *" />
+              <div className="message-box-footer">
+                {(attachments.length > 0 || sharedLinks.length > 0) ? (
+                  <div className="message-box-files">
+                    {attachments.map((file, index) => (
+                      <span className="message-chip" key={`${file.name}-${file.size}-${index}`}>
+                        <Paperclip size={11} aria-hidden /><em>{file.name}</em>
+                        <button type="button" className="chip-remove" aria-label={`Remove ${file.name}`} onClick={() => removeAttachment(index)}><X size={12} /></button>
+                      </span>
+                    ))}
+                    {sharedLinks.map((link) => (
+                      <span className="message-chip" key={link}>
+                        <Link2 size={11} aria-hidden /><em>{link}</em>
+                        <button type="button" className="chip-remove" aria-label={`Remove ${link}`} onClick={() => removeLink(link)}><X size={12} /></button>
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                <div className="message-box-toolbar">
+                  <button type="button" className="message-tool" aria-label="Attach files" onClick={() => fileInputRef.current?.click()}><Paperclip size={15} /></button>
+                  <button type="button" className="message-tool" aria-label="Insert a link" onClick={insertLink}><Link2 size={15} /></button>
+                  <input ref={fileInputRef} type="file" multiple hidden aria-hidden onChange={(event) => setAttachments(Array.from(event.target.files ?? []))} />
+                </div>
+              </div>
+            </div>
+            <button type="submit" disabled={formStatus === 'sending'}>
+              {formStatus === 'sending' ? 'Sending...' : formStatus === 'sent' ? 'Message sent' : <>Send Message <ArrowUpRight size={13} /></>}
+            </button>
+            {formStatus === 'error' ? <p className="form-status error">{formError} <a href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></p> : null}
+            {formStatus === 'sent' ? <p className="form-status">Thanks — your message is on its way.</p> : null}
+          </form>
+        </div>
+        <footer><span>DORELA NUHA / PORTFOLIO · © 2026</span></footer>
+      </section>
       <a href="#top" className={`back-to-top${hasScrolled ? ' is-visible' : ''}${backToTopOnDark ? ' is-on-dark' : ''}`} aria-label="Back to top">Back to top ↑</a>
     </main>
   )
