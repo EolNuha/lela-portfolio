@@ -15,10 +15,13 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: #171512;
+}
 body {
   margin: 0;
-  background: var(--paper);
+  background: #171512;
   color: var(--ink);
   font-family: 'Michroma', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -376,7 +379,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     display: flex;
     height: auto;
     justify-content: center;
-    padding: 10px 12px;
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 12px 10px;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
