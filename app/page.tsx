@@ -81,13 +81,34 @@ export default function Page() {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
     const updateScrollState = () => {
       setHasScrolled(window.scrollY > 4)
-      const greeting = document.querySelector('.hero-greeting')
-      if (greeting) {
-        const navBottom = 72
-        setNavFrosted(greeting.getBoundingClientRect().top <= navBottom)
+
+      const header = document.querySelector('.site-header')
+      const navBottom = header ? header.getBoundingClientRect().bottom : 72
+      const photo = document.querySelector('.hero-photo')
+      const storyOpen = Boolean(photo?.classList.contains('is-open'))
+
+      let frosted = false
+      if (storyOpen) {
+        const paragraphs = document.querySelectorAll('.hero-photo-story p:not(.hero-close-hint)')
+        frosted = Array.from(paragraphs).some((paragraph) => {
+          const rect = paragraph.getBoundingClientRect()
+          return rect.bottom > 0 && rect.top <= navBottom
+        })
       } else {
-        setNavFrosted(window.scrollY > 4)
+        const greeting = document.querySelector('.hero-greeting')
+        if (greeting) {
+          frosted = greeting.getBoundingClientRect().top <= navBottom
+        }
       }
+
+      if (!frosted && photo) {
+        frosted = photo.getBoundingClientRect().bottom <= navBottom
+      }
+      if (!frosted && !photo) {
+        frosted = window.scrollY > 4
+      }
+      setNavFrosted(frosted)
+
       const current = sections.reduce((closest, sectionId) => {
         const section = document.getElementById(sectionId)
         if (!section) return closest
@@ -161,11 +182,14 @@ export default function Page() {
     updateScrollState()
     window.addEventListener('scroll', updateScrollState, { passive: true })
     window.addEventListener('resize', updateScrollState)
+    const story = document.querySelector('.hero-photo-story')
+    story?.addEventListener('scroll', updateScrollState, { passive: true })
     return () => {
       window.removeEventListener('scroll', updateScrollState)
       window.removeEventListener('resize', updateScrollState)
+      story?.removeEventListener('scroll', updateScrollState)
     }
-  }, [])
+  }, [heroStoryOpen])
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(CONTACT_EMAIL)
