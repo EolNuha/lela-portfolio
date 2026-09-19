@@ -55,6 +55,7 @@ export default function Page() {
   const [copied, setCopied] = useState(false)
   const [activeSection, setActiveSection] = useState('top')
   const [hasScrolled, setHasScrolled] = useState(false)
+  const [navFrosted, setNavFrosted] = useState(false)
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null)
   const [projectOpen, setProjectOpen] = useState(false)
   const [heroStoryOpen, setHeroStoryOpen] = useState(false)
@@ -80,6 +81,13 @@ export default function Page() {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
     const updateScrollState = () => {
       setHasScrolled(window.scrollY > 4)
+      const greeting = document.querySelector('.hero-greeting')
+      if (greeting) {
+        const navBottom = 72
+        setNavFrosted(greeting.getBoundingClientRect().top <= navBottom)
+      } else {
+        setNavFrosted(window.scrollY > 4)
+      }
       const current = sections.reduce((closest, sectionId) => {
         const section = document.getElementById(sectionId)
         if (!section) return closest
@@ -249,7 +257,7 @@ export default function Page() {
 
   return (
     <main className="site-shell">
-      <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
+      <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navFrosted ? ' is-frosted' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
         <div className="nav-pill">
           <a
             href="/"
