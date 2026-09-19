@@ -289,8 +289,8 @@ export default function Page() {
           <div className={`hero-intro${heroStoryOpen ? ' is-hidden' : ''}`}>
             <p className="hero-tap-hint">Tap for more</p>
             <h1 className="hero-greeting">Hello,<br />I&apos;m Dorela</h1>
+            <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
           </div>
-          <a href="#about" className={`scroll-cue${hasScrolled || heroStoryOpen ? ' is-hidden' : ''}`} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
           <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
             {aboutStory.map((paragraph, index) => (
               <p key={paragraph.slice(0, 32)} style={{ '--reveal-i': index } as CSSProperties}>
