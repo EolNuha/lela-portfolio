@@ -290,7 +290,7 @@ footer a:hover { text-decoration: underline; }
 .project-mark-arrow:hover { box-shadow: none; }
 .project-mark-arrow:focus { outline: none; }
 .project-mark-arrow:focus-visible { outline: 2px solid rgba(17,17,17,.2); outline-offset: 3px; }
-.project-card.is-open .project-mark-arrow { background: var(--paper); transform: translate(-50%, 50%) rotate(270deg); }
+.project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
 .project-info {
   background: #efefef;
   display: grid;
@@ -312,7 +312,7 @@ footer a:hover { text-decoration: underline; }
 }
 .project-card.is-open .project-info {
   grid-template-rows: 1fr;
-  margin-top: 18px;
+  margin-top: -22px;
   max-width: 100%;
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -323,7 +323,7 @@ footer a:hover { text-decoration: underline; }
   padding: 0 36px;
   transition: padding .65s cubic-bezier(.22,1,.36,1);
 }
-.project-card.is-open .project-info-inner { padding: 48px 36px 40px; }
+.project-card.is-open .project-info-inner { padding: 52px 36px 40px; }
 .project-info > *,
 .project-info-inner > * { position: relative; z-index: 1; }
 .project-info h3 { font-size: 26px; font-weight: 500; letter-spacing: .02em; line-height: 1.2; margin: 0 0 32px; }
@@ -544,10 +544,10 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .project-mark-content { min-height: 220px; }
   .project-mark h2 { margin: 48px 0 28px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
-  .project-card.is-open .project-mark-arrow { background: var(--paper); transform: translate(-50%, 50%) rotate(270deg); }
+  .project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
   .project-info { margin-top: -24px; max-width: 94%; }
-  .project-card.is-open .project-info { margin-top: 14px; max-width: 100%; }
-  .project-card.is-open .project-info-inner { padding: 40px 24px 32px; }
+  .project-card.is-open .project-info { margin-top: -20px; max-width: 100%; }
+  .project-card.is-open .project-info-inner { padding: 48px 24px 32px; }
   .project-info h3 { font-size: 22px; margin-bottom: 24px; }
   .contact-inner form { margin-top: 55px; }
   footer { padding: 17px 25px; }
