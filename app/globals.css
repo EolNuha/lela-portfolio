@@ -221,17 +221,18 @@ footer a:hover { text-decoration: underline; }
   position: relative;
   width: 100%;
   z-index: 2;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse 115% 95% at 0% 0%, transparent 0%, rgba(0,0,0,.25) 22%, #000 58%, #000 100%);
+  mask-image: radial-gradient(ellipse 115% 95% at 0% 0%, transparent 0%, rgba(0,0,0,.25) 22%, #000 58%, #000 100%);
 }
 .project-mark-surface::after {
-  background: linear-gradient(to bottom, var(--paper) 0%, rgba(255,255,255,.85) 24%, rgba(255,255,255,.35) 52%, transparent 100%);
+  background: radial-gradient(ellipse 100% 90% at 0% 0%, #fff 0%, rgba(255,255,255,.72) 18%, rgba(255,255,255,.28) 42%, rgba(255,255,255,.08) 62%, transparent 78%);
   border-radius: inherit;
   content: '';
-  height: 38%;
+  height: 58%;
   inset: 0 0 auto;
   pointer-events: none;
   position: absolute;
+  width: 78%;
   z-index: 2;
 }
 .project-mark-image {
@@ -254,8 +255,8 @@ footer a:hover { text-decoration: underline; }
   line-height: .78;
   margin: 8px 0 0;
   text-shadow: 0 2px 18px rgba(0,0,0,.4);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 100%);
+  -webkit-mask-image: radial-gradient(ellipse 130% 120% at 0% 0%, transparent 0%, rgba(0,0,0,.2) 20%, #000 52%, #000 100%);
+  mask-image: radial-gradient(ellipse 130% 120% at 0% 0%, transparent 0%, rgba(0,0,0,.2) 20%, #000 52%, #000 100%);
 }
 .project-mark h2 span { color: rgba(255,255,255,.55); }
 .project-mark p { font-size: 11px; line-height: 1.4; margin: 18px 0 0; max-width: 240px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
