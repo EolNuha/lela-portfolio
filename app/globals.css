@@ -534,16 +534,22 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   }
   .nav-pill {
     align-items: center;
-    background: transparent;
-    border: 1px solid transparent;
+    background: rgba(10, 10, 12, .34);
+    border: 1px solid rgba(255, 255, 255, .3);
     border-radius: 999px;
-    box-shadow: none;
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, .55),
+      inset 0 -1px 0 rgba(255, 255, 255, .05),
+      inset 1px 0 0 rgba(255, 255, 255, .14),
+      0 10px 30px rgba(0, 0, 0, .28);
     color: #fff;
     display: flex;
+    isolation: isolate;
     justify-content: space-between;
     max-width: 100%;
-    min-height: 30px;
-    padding: 3px 4px 3px 12px;
+    min-height: 34px;
+    overflow: hidden;
+    padding: 4px 5px 4px 14px;
     position: relative;
     transition:
       color .28s ease,
@@ -553,31 +559,63 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
       backdrop-filter .28s ease,
       -webkit-backdrop-filter .28s ease;
     width: 100%;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    backdrop-filter: blur(24px) saturate(165%);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
   }
-  .site-header.is-on-light .nav-pill { color: #111; }
-  .site-header.is-on-dark .nav-pill { color: #fff; }
-  .site-header.is-scrolled .nav-pill {
-    background: rgba(255,255,255,.12);
-    border-color: rgba(255,255,255,.28);
+  .nav-pill::before {
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, .28) 0%,
+      rgba(255, 255, 255, .08) 22%,
+      transparent 48%
+    );
+    border-radius: inherit;
+    content: '';
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+  }
+  .nav-pill > * { position: relative; z-index: 1; }
+  .site-header.is-on-light .nav-pill {
+    background: rgba(255, 255, 255, .28);
+    border-color: rgba(255, 255, 255, .55);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.28),
-      0 8px 28px rgba(0,0,0,.18);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
+      inset 0 1.5px 0 rgba(255, 255, 255, .7),
+      inset 0 -1px 0 rgba(255, 255, 255, .12),
+      inset 1px 0 0 rgba(255, 255, 255, .25),
+      0 10px 28px rgba(0, 0, 0, .1);
+    color: #111;
+  }
+  .site-header.is-on-dark .nav-pill {
+    background: rgba(10, 10, 12, .34);
+    border-color: rgba(255, 255, 255, .3);
+    color: #fff;
+  }
+  .site-header.is-scrolled .nav-pill {
+    background: rgba(10, 10, 12, .4);
+    border-color: rgba(255, 255, 255, .32);
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, .55),
+      inset 0 -1px 0 rgba(255, 255, 255, .05),
+      inset 1px 0 0 rgba(255, 255, 255, .14),
+      0 10px 30px rgba(0, 0, 0, .28);
+    backdrop-filter: blur(24px) saturate(165%);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
   }
   .site-header.is-scrolled.is-on-light .nav-pill {
-    background: rgba(255,255,255,.42);
-    border-color: rgba(255,255,255,.5);
+    background: rgba(255, 255, 255, .36);
+    border-color: rgba(255, 255, 255, .6);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.55),
-      0 8px 24px rgba(0,0,0,.08);
+      inset 0 1.5px 0 rgba(255, 255, 255, .75),
+      inset 0 -1px 0 rgba(255, 255, 255, .14),
+      inset 1px 0 0 rgba(255, 255, 255, .28),
+      0 10px 28px rgba(0, 0, 0, .1);
     color: #111;
   }
   .site-header.is-scrolled.is-on-dark .nav-pill {
-    background: rgba(255,255,255,.12);
-    border-color: rgba(255,255,255,.28);
+    background: rgba(10, 10, 12, .4);
+    border-color: rgba(255, 255, 255, .32);
     color: #fff;
   }
   .wordmark {
@@ -596,19 +634,25 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .site-header.is-scrolled .wordmark { color: inherit; }
   .mobile-menu {
     align-items: center;
-    background: transparent;
-    border: 0;
+    background: rgba(0, 0, 0, .28);
+    border: 1px solid rgba(255, 255, 255, .28);
     border-radius: 999px;
-    box-shadow: none;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, .4),
+      inset 0 -1px 0 rgba(255, 255, 255, .05);
     color: inherit;
     display: inline-flex;
     flex-shrink: 0;
-    height: 26px;
+    height: 28px;
     justify-content: center;
     padding: 0;
     width: 28px;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .site-header.is-on-light .mobile-menu {
+    background: rgba(255, 255, 255, .35);
+    border-color: rgba(255, 255, 255, .55);
   }
   .site-header.is-scrolled .mobile-menu { color: inherit; }
   .mobile-menu:hover { opacity: .75; }
