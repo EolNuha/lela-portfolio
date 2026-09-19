@@ -218,9 +218,26 @@ footer a:hover { text-decoration: underline; }
   overflow: hidden;
   padding: 36px 42px 48px;
   position: relative;
+  transition: filter .45s ease;
   width: 100%;
+  z-index: 2;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 100%);
+}
+.project-card.is-open .project-mark-surface {
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,.22)) drop-shadow(0 22px 28px rgba(0,0,0,.28));
+}
+.project-card.is-open .project-mark::before {
+  background: radial-gradient(ellipse 90% 100% at 50% 0%, rgba(0,0,0,.4) 0%, rgba(0,0,0,.16) 40%, transparent 72%);
+  bottom: -6px;
+  content: '';
+  height: 36px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 64px;
+  z-index: 4;
 }
 .project-mark-surface::after {
   background: linear-gradient(to bottom, var(--paper) 0%, rgba(255,255,255,.85) 24%, rgba(255,255,255,.35) 52%, transparent 100%);
@@ -274,13 +291,16 @@ footer a:hover { text-decoration: underline; }
 .project-mark-arrow:hover { box-shadow: none; }
 .project-mark-arrow:focus { outline: none; }
 .project-mark-arrow:focus-visible { outline: 2px solid rgba(17,17,17,.2); outline-offset: 3px; }
-.project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
+.project-card.is-open .project-mark-arrow {
+  background: #efefef;
+  transform: translate(-50%, 50%) rotate(270deg);
+}
 .project-info {
   background: #efefef;
   display: grid;
   grid-template-rows: 0fr;
   margin: -28px auto 0;
-  max-width: 92%;
+  max-width: 86%;
   opacity: 0;
   overflow: hidden;
   position: relative;
@@ -292,12 +312,12 @@ footer a:hover { text-decoration: underline; }
     margin .65s cubic-bezier(.22,1,.36,1),
     max-width .65s cubic-bezier(.22,1,.36,1);
   width: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 .project-card.is-open .project-info {
   grid-template-rows: 1fr;
   margin-top: -22px;
-  max-width: 100%;
+  max-width: 86%;
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
@@ -541,8 +561,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .project-mark h2 { margin: 48px 0 28px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
   .project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
-  .project-info { margin-top: -24px; max-width: 94%; }
-  .project-card.is-open .project-info { margin-top: -20px; max-width: 100%; }
+  .project-info { margin-top: -24px; max-width: 86%; }
+  .project-card.is-open .project-info { margin-top: -20px; max-width: 86%; }
   .project-card.is-open .project-info-inner { padding: 48px 24px 32px; }
   .project-info h3 { font-size: 22px; margin-bottom: 24px; }
   .contact-inner form { margin-top: 55px; }
