@@ -66,42 +66,6 @@ export default function Page() {
   const [sharedLinks, setSharedLinks] = useState<string[]>([])
   const messageRef = useRef<HTMLTextAreaElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const siteRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const root = siteRef.current
-    if (!root) return
-
-    const lines = root.querySelectorAll<HTMLElement>('[data-reveal]')
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    if (reduceMotion) {
-      lines.forEach((line) => line.classList.add('is-in'))
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          entry.target.classList.add('is-in')
-          observer.unobserve(entry.target)
-        })
-      },
-      { threshold: 0.18, rootMargin: '0px 0px -4% 0px' },
-    )
-
-    lines.forEach((line) => observer.observe(line))
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (!projectOpen) return
-    const info = document.getElementById('project-info')
-    if (!info) return
-    const frame = window.requestAnimationFrame(() => info.classList.add('is-in'))
-    return () => window.cancelAnimationFrame(frame)
-  }, [projectOpen])
 
   useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
@@ -275,7 +239,7 @@ export default function Page() {
   ]
 
   return (
-    <main className="site-shell" ref={siteRef}>
+    <main className="site-shell">
       <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
         <div className="nav-pill">
           <a href="#top" className="wordmark">DORELA NUHA</a>
@@ -336,24 +300,24 @@ export default function Page() {
       <section id="about" className="white-section about-section">
         <div className="about-heading">
           <h2>
-            <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Good products begin with</span>
+            Good products begin with
             <br />
-            <strong className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>better questions.</strong>
+            <strong>better questions.</strong>
           </h2>
           <div className="about-meta">
-            <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Product strategy</span>
-            <span className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>UX &amp; workflows</span>
-            <span className="reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>Cross-functional leadership</span>
-            <a className="about-jump reveal-line" data-reveal style={{ '--reveal-i': 3 } as CSSProperties} href="#experience">See selected experience <ArrowUpRight size={14} /></a>
+            <span>Product strategy</span>
+            <span>UX &amp; workflows</span>
+            <span>Cross-functional leadership</span>
+            <a className="about-jump" href="#experience">See selected experience <ArrowUpRight size={14} /></a>
           </div>
         </div>
       </section>
 
       <section id="experience" className="gray-section">
-        <h2 className="section-label reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Experience</h2>
-        <div className="experience-list">{experience.map((item, index) => {
+        <h2 className="section-label">Experience</h2>
+        <div className="experience-list">{experience.map((item) => {
         const isExpanded = expandedExperience === item.year
-        return <article className={`reveal-line${isExpanded ? ' is-expanded' : ''}`} data-reveal style={{ '--reveal-i': index } as CSSProperties} key={item.year}>
+        return <article className={isExpanded ? 'is-expanded' : undefined} key={item.year}>
           <button className="experience-trigger" type="button" aria-expanded={isExpanded} onClick={() => setExpandedExperience(isExpanded ? null : item.year)}>
             <span>{item.year}</span>
             <div><h3>{item.role}</h3><p>{item.company}</p></div>
@@ -383,7 +347,7 @@ export default function Page() {
 
       <section id="projects" className="white-section project-section">
         <div className={`project-card${projectOpen ? ' is-open' : ''}`}>
-          <div className="project-mark reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>
+          <div className="project-mark">
             <div className="project-mark-surface">
               <img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" />
               <div className="project-mark-content">
@@ -414,17 +378,17 @@ export default function Page() {
         <div className="contact-inner">
           <div>
             <h2>
-              <span className="reveal-line" data-reveal style={{ '--reveal-i': 0 } as CSSProperties}>Let&apos;s create things</span>
+              Let&apos;s create things
               <br />
-              <strong className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>that matter.</strong>
+              <strong>that matter.</strong>
             </h2>
-            <div className="contact-actions reveal-line" data-reveal style={{ '--reveal-i': 2 } as CSSProperties}>
+            <div className="contact-actions">
               <button type="button" onClick={copyEmail}>{copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy Email'}</button>
               <a href="https://linkedin.com/in/dorela-nuha" target="_blank" rel="noreferrer">LinkedIn</a>
               <a href="/Dorela-Nuha-CV.pdf" download><Download size={13} /> Resume</a>
             </div>
           </div>
-          <form onSubmit={sendMessage} encType="multipart/form-data" className="reveal-line" data-reveal style={{ '--reveal-i': 1 } as CSSProperties}>
+          <form onSubmit={sendMessage} encType="multipart/form-data">
             <p className="form-intro">Always open to great ideas.</p>
             <input required aria-required="true" name="name" aria-label="Name" placeholder="Name *" />
             <input required aria-required="true" name="email" type="email" aria-label="Email Address" placeholder="Email Address *" />
