@@ -276,6 +276,7 @@ export default function Page() {
 
   return (
     <main className="site-shell" ref={siteRef}>
+      <div className={`top-fade${hasScrolled ? ' is-scrolled' : ''}`} aria-hidden="true" />
       <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
         <div className="nav-pill">
           <a href="#top" className="wordmark">DORELA NUHA</a>

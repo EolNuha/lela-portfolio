@@ -370,7 +370,41 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
 
 .nav-pill { display: contents; }
 
+.top-fade { display: none; }
+
 @media (max-width: 700px) {
+  .top-fade {
+    display: block;
+    height: calc(env(safe-area-inset-top, 0px) + 72px);
+    left: 0;
+    opacity: .9;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity .3s ease, height .3s ease;
+    z-index: 9;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, .78) 0%,
+      rgba(0, 0, 0, .42) 38%,
+      rgba(0, 0, 0, .12) 68%,
+      transparent 100%
+    );
+  }
+  .top-fade::after {
+    content: '';
+    inset: 0;
+    position: absolute;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 28%, transparent 100%);
+  }
+  .top-fade.is-scrolled {
+    height: calc(env(safe-area-inset-top, 0px) + 88px);
+    opacity: 1;
+  }
   .site-header {
     align-items: center;
     background: transparent;
