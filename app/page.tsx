@@ -68,6 +68,15 @@ export default function Page() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
+  useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
     const updateScrollState = () => {
       setHasScrolled(window.scrollY > 4)
@@ -242,7 +251,17 @@ export default function Page() {
     <main className="site-shell">
       <header className={`site-header${hasScrolled ? ' is-scrolled' : ''}${navOnDark ? ' is-on-dark' : ' is-on-light'}`}>
         <div className="nav-pill">
-          <a href="#top" className="wordmark">DORELA NUHA</a>
+          <a
+            href="/"
+            className="wordmark"
+            onClick={(event) => {
+              event.preventDefault()
+              window.scrollTo(0, 0)
+              window.location.assign('/')
+            }}
+          >
+            DORELA NUHA
+          </a>
           <nav className={menuOpen ? 'desktop-nav open' : 'desktop-nav'}>
             {links.map(({ label, href }) => (
               <a className={activeSection === href ? 'active' : ''} key={label} href={`#${href}`} onClick={() => setMenuOpen(false)}>{label}</a>
