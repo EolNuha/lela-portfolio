@@ -57,6 +57,7 @@ export default function Page() {
   const [hasScrolled, setHasScrolled] = useState(false)
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null)
   const [projectOpen, setProjectOpen] = useState(false)
+  const [heroStoryOpen, setHeroStoryOpen] = useState(false)
   const [backToTopOnDark, setBackToTopOnDark] = useState(false)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [formError, setFormError] = useState('')
@@ -230,8 +231,21 @@ export default function Page() {
       </header>
 
       <section id="top" className="hero-split">
-        <div className="hero-photo">
-          <div className="hero-photo-story">
+        <div
+          className={`hero-photo${heroStoryOpen ? ' is-open' : ''}`}
+          onClick={() => setHeroStoryOpen((open) => !open)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault()
+              setHeroStoryOpen((open) => !open)
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-expanded={heroStoryOpen}
+          aria-label={heroStoryOpen ? 'Hide story and show photo' : 'Show story'}
+        >
+          <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
             {aboutStory.map((paragraph) => (
               <p key={paragraph.slice(0, 32)}>
                 {paragraph.includes('Am I in love with the physics of sound') ? (
@@ -247,7 +261,7 @@ export default function Page() {
             ))}
           </div>
           <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
-          <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about"><span /></a>
+          <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
         </div>
         <div className="hero-copy"><div className="hero-copy-inner"><h1>Hello,<br />I&apos;m Dorela</h1><p>I align product, people, and possibilities into a single digital architecture</p><div className="hero-actions"><a className="button dark" href="#projects">View case studies</a><a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a></div></div></div>
       </section>
