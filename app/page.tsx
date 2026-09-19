@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
 const portraitUrl = '/dorela-hero.jpg'
@@ -311,8 +311,8 @@ export default function Page() {
             <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
           </div>
           <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
-            {aboutStory.map((paragraph, index) => (
-              <p key={paragraph.slice(0, 32)} style={{ '--reveal-i': index } as CSSProperties}>
+            {aboutStory.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>
                 {paragraph.includes('Am I in love with the physics of sound') ? (
                   <>
                     {paragraph.split('Am I in love with the physics of sound, or the human experience of expression?')[0]}
