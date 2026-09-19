@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
-const portraitUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8947.JPG-xs3E7SmXoPWIWN6x29BxKQUr2nOceJ.jpeg'
+const portraitUrl = '/dorela-hero.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
 
 const aboutStory = [
@@ -286,6 +286,7 @@ export default function Page() {
           aria-expanded={heroStoryOpen}
           aria-label={heroStoryOpen ? 'Hide story and show photo' : 'Show story'}
         >
+          <h1 className="hero-greeting">Hello,<br />I&apos;m Dorela</h1>
           <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
             {aboutStory.map((paragraph, index) => (
               <p key={paragraph.slice(0, 32)} style={{ '--reveal-i': index } as CSSProperties}>
@@ -306,7 +307,6 @@ export default function Page() {
         </div>
         <div className="hero-copy">
           <div className="hero-copy-inner">
-            <h1>Hello,<br />I&apos;m Dorela</h1>
             <p>I align product, people, and possibilities into a single digital architecture</p>
             <div className="hero-actions">
               <a className="button dark" href="#projects">View case studies</a>
