@@ -286,29 +286,29 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     -webkit-backdrop-filter: none;
   }
   .wordmark {
-    background: rgba(255,255,255,.14);
-    border: 1px solid rgba(255,255,255,.28);
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
     border-radius: 999px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 8px 24px rgba(0,0,0,.16);
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
     color: #fff;
     font-size: 10px;
     letter-spacing: .24em;
     padding: 11px 16px;
-    backdrop-filter: blur(22px) saturate(165%);
-    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
   }
   .site-header.is-scrolled .wordmark {
-    background: rgba(255,255,255,.42);
-    border-color: rgba(255,255,255,.55);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 8px 22px rgba(0,0,0,.08);
+    background: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.4);
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
     color: var(--ink);
   }
   .mobile-menu {
     align-items: center;
-    background: rgba(255,255,255,.14);
-    border: 1px solid rgba(255,255,255,.28);
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
     border-radius: 999px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 8px 24px rgba(0,0,0,.16);
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
     color: #fff;
     display: inline-flex;
     flex-shrink: 0;
@@ -316,21 +316,21 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     justify-content: center;
     padding: 0;
     width: 42px;
-    backdrop-filter: blur(22px) saturate(165%);
-    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
   }
   .site-header.is-scrolled .mobile-menu {
-    background: rgba(255,255,255,.42);
-    border-color: rgba(255,255,255,.55);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 8px 22px rgba(0,0,0,.08);
+    background: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.4);
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
     color: var(--ink);
   }
   .mobile-menu:hover { opacity: 1; }
   .desktop-nav {
-    background: rgba(255,255,255,.5);
-    border: 1px solid rgba(255,255,255,.45);
-    border-radius: 18px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 16px 40px rgba(0,0,0,.14);
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 22px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
     display: none;
     flex-direction: column;
     gap: 16px;
@@ -340,13 +340,14 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     right: 14px;
     top: 58px;
     width: 168px;
-    backdrop-filter: blur(22px) saturate(165%);
-    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
   }
   .site-header.is-scrolled .desktop-nav {
-    background: rgba(255,255,255,.62);
-    backdrop-filter: blur(22px) saturate(165%);
-    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    background: rgba(255,255,255,.15);
+    border-color: rgba(255,255,255,.4);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
   }
   .desktop-nav.open { display: flex; }
   .hero-split { display: flex; flex-direction: column; }
