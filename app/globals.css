@@ -536,7 +536,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     align-items: center;
     background: transparent;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: none;
     color: #fff;
     display: flex;
@@ -598,7 +598,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     align-items: center;
     background: transparent;
     border: 0;
-    border-radius: 4px;
+    border-radius: 0;
     box-shadow: none;
     color: inherit;
     display: inline-flex;
