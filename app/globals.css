@@ -75,7 +75,7 @@ footer a:hover { text-decoration: underline; }
   right: auto;
   text-align: center;
   text-shadow: 0 4px 32px rgba(0,0,0,.55);
-  top: 58%;
+  top: 62%;
   transform: translate(-50%, -50%);
   transition: opacity .55s var(--ease), transform .55s var(--ease);
   width: max-content;
@@ -454,7 +454,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     display: flex;
     height: auto;
     justify-content: center;
-    padding: 10px 12px;
+    padding: 18px 28px 10px;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -475,8 +475,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     display: flex;
     justify-content: space-between;
     max-width: 100%;
-    min-height: 38px;
-    padding: 4px 6px 4px 16px;
+    min-height: 30px;
+    padding: 3px 4px 3px 12px;
     position: relative;
     transition:
       color .28s ease,
@@ -492,27 +492,25 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .site-header.is-on-light .nav-pill { color: #111; }
   .site-header.is-on-dark .nav-pill { color: #fff; }
   .site-header.is-scrolled .nav-pill {
-    background: rgba(255,255,255,.1);
-    border-color: rgba(255,255,255,.42);
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.28);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.35),
-      inset 0 -1px 0 rgba(255,255,255,.08),
-      0 4px 24px rgba(0,0,0,.12);
-    backdrop-filter: blur(22px) saturate(150%);
-    -webkit-backdrop-filter: blur(22px) saturate(150%);
+      inset 0 1px 0 rgba(255,255,255,.28),
+      0 8px 28px rgba(0,0,0,.18);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
   }
   .site-header.is-scrolled.is-on-light .nav-pill {
-    background: rgba(255,255,255,.18);
-    border-color: rgba(255,255,255,.55);
+    background: rgba(255,255,255,.42);
+    border-color: rgba(255,255,255,.5);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.55),
-      inset 0 -1px 0 rgba(255,255,255,.12),
-      0 4px 20px rgba(0,0,0,.06);
+      0 8px 24px rgba(0,0,0,.08);
     color: #111;
   }
   .site-header.is-scrolled.is-on-dark .nav-pill {
-    background: rgba(255,255,255,.1);
-    border-color: rgba(255,255,255,.42);
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.28);
     color: #fff;
   }
   .wordmark {
@@ -521,8 +519,9 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     border-radius: 0;
     box-shadow: none;
     color: inherit;
-    font-size: 10px;
-    letter-spacing: .22em;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .26em;
     padding: 0;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -537,15 +536,16 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
     color: inherit;
     display: inline-flex;
     flex-shrink: 0;
-    height: 32px;
+    height: 26px;
     justify-content: center;
     padding: 0;
-    width: 36px;
+    width: 28px;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
   .site-header.is-scrolled .mobile-menu { color: inherit; }
   .mobile-menu:hover { opacity: .75; }
+  .mobile-menu svg { width: 15px; height: 15px; }
   .desktop-nav {
     align-items: flex-end;
     background: transparent;
@@ -589,7 +589,7 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .desktop-nav.open { display: flex; }
   .hero-split { display: flex; flex-direction: column; }
   .hero-photo { height: 100vh; height: 100dvh; min-height: 100vh; }
-  .hero-greeting { font-size: clamp(52px, 14vw, 72px); padding: 0 24px; top: 56%; }
+  .hero-greeting { font-size: clamp(52px, 14vw, 72px); padding: 0 24px; top: 60%; }
   .hero-photo-story { gap: 10px; justify-content: flex-start; padding: 72px 28px 56px; }
   .hero-photo-story p { font-size: 10.5px; line-height: 1.4; }
   .hero-photo.is-open .hero-photo-story p { transition-delay: calc(.04s + var(--reveal-i, 0) * .05s); }
