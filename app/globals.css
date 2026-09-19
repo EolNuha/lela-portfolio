@@ -198,7 +198,7 @@ footer a:hover { text-decoration: underline; }
   border: 0;
   box-shadow: none;
   color: white;
-  min-height: 320px;
+  min-height: 0;
   outline: none;
   overflow: visible;
   padding: 0;
@@ -212,11 +212,12 @@ footer a:hover { text-decoration: underline; }
   outline: none;
 }
 .project-mark-surface {
-  border-radius: 2%;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
   isolation: isolate;
-  min-height: 320px;
+  min-height: 0;
   overflow: hidden;
-  padding: 36px 42px 48px;
+  padding: 28px 36px 40px;
   position: relative;
   width: 100%;
   z-index: 2;
@@ -245,9 +246,9 @@ footer a:hover { text-decoration: underline; }
   z-index: 0;
 }
 .project-mark:hover .project-mark-image { transform: scale(1.025); }
-.project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 248px; position: relative; z-index: 1; }
+.project-mark-content { display: flex; flex-direction: column; height: 100%; min-height: 0; position: relative; z-index: 1; }
 .project-mark-content > span { font-size: 10px; letter-spacing: .18em; opacity: .8; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
-.project-mark h2 { font-size: clamp(64px, 9vw, 120px); font-weight: 500; letter-spacing: -.1em; line-height: .8; margin: 56px 0 36px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
+.project-mark h2 { font-size: clamp(52px, 7.5vw, 100px); font-weight: 500; letter-spacing: -.1em; line-height: .8; margin: 28px 0 20px; text-shadow: 0 2px 18px rgba(0,0,0,.4); }
 .project-mark h2 span { color: rgba(255,255,255,.55); }
 .project-mark p { font-size: 13px; line-height: 1.5; margin-top: auto; max-width: 270px; opacity: .88; text-shadow: 0 1px 10px rgba(0,0,0,.45); }
 .project-mark-arrow {
@@ -539,10 +540,10 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .experience-trigger h3 { font-size: 16px; }
   .experience-description-inner { padding-left: 59px; padding-right: 0; }
   .project-card { display: flex; flex-direction: column; gap: 0; }
-  .project-mark { min-height: 280px; }
-  .project-mark-surface { min-height: 280px; padding: 28px 28px 44px; }
-  .project-mark-content { min-height: 220px; }
-  .project-mark h2 { margin: 48px 0 28px; }
+  .project-mark { min-height: 0; }
+  .project-mark-surface { aspect-ratio: 16 / 10; min-height: 0; padding: 22px 24px 36px; }
+  .project-mark-content { min-height: 0; }
+  .project-mark h2 { margin: 22px 0 16px; }
   .project-mark-arrow { bottom: 0; left: 50%; right: auto; top: auto; transform: translate(-50%, 50%) rotate(90deg); }
   .project-card.is-open .project-mark-arrow { background: #efefef; transform: translate(-50%, 50%) rotate(270deg); }
   .project-info { margin-top: -24px; max-width: 86%; }
