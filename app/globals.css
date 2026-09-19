@@ -47,12 +47,14 @@ a { color: inherit; text-decoration: none; }
 }
 h2 > .reveal-line { display: inline-block; max-width: 100%; }
 .about-meta > .reveal-line,
-.contact-actions.reveal-line,
 form.reveal-line,
 .experience-list > .reveal-line,
 .project-mark.reveal-line,
 .section-label.reveal-line {
   display: block;
+}
+.contact-actions.reveal-line {
+  display: flex;
 }
 .experience-list > .reveal-line { width: 100%; }
 .project-mark.reveal-line {
@@ -342,8 +344,25 @@ footer a:hover { text-decoration: underline; }
 .contact-inner { align-items: start; display: grid; flex: 1; gap: 10%; grid-template-columns: 1fr 1fr; padding-bottom: 80px; position: relative; z-index: 1; }
 .contact-section h2 { font-size: clamp(42px, 6vw, 78px); font-weight: 500; letter-spacing: -.08em; line-height: .92; margin: 0 0 22px; max-width: 11ch; }
 .contact-section p { font-size: 15px; line-height: 1.45; max-width: 320px; }
-.contact-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
-.contact-actions button, .contact-actions a { align-items: center; background: transparent; border: 1px solid rgba(255,255,255,.32); color: #fff; cursor: pointer; display: inline-flex; font-size: 12px; gap: 6px; letter-spacing: .04em; padding: 12px 16px; transition: color .2s ease; }
+.contact-actions { align-items: stretch; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+.contact-actions button, .contact-actions a {
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.32);
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  gap: 6px;
+  justify-content: center;
+  letter-spacing: .04em;
+  line-height: 1;
+  min-height: 42px;
+  padding: 0 16px;
+  transition: color .2s ease;
+  white-space: nowrap;
+}
 .contact-actions button:hover, .contact-actions a:hover { color: rgba(255,255,255,.78); }
 .contact-inner form { display: flex; flex-direction: column; gap: 12px; justify-self: stretch; max-width: none; padding-top: 8px; width: 100%; }
 .form-intro { color: rgba(255,255,255,.72); font-size: 12px; letter-spacing: .04em; line-height: 1.45; margin: 0 0 4px; }
