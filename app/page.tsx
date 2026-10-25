@@ -1,9 +1,12 @@
 'use client'
 
+import Link from 'next/link'
+import { origin } from './case-studies/neja/back-link'
+import { chapters } from './case-studies/neja/section-nav'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
-const portraitUrl = '/dorela-hero.jpg'
+const portraitUrl = '/dorela-hero-street.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
 
 const aboutStory = [
@@ -12,43 +15,85 @@ const aboutStory = [
   'Rather than forcing a path that left me unmoored, I decided to explore. I deliberately dabbled across finance, sales, recruitment, marketing, operations, and coordination. Each role taught me something different about human behavior, operational friction, and how ideas become reality.',
   'When I finally paused to ask myself the right questions, I realized that product management sat at the precise intersection of everything that interested me: people, systems, design, and execution.',
   'My path has been anything but linear, but every step helped me understand what I want to build, and why.',
-  "And I'm still asking better questions.",
 ]
 
 const experience = [
   {
+    id: 'swiss-orange',
+    year: '2026',
+    dates: 'Jul – Oct 2026',
+    role: 'Project & Business Analyst, Revenue Operations & Systems',
+    company: 'Swiss Orange',
+    location: 'Pristina, Kosovo',
+    highlights: [
+      'Architected business requirements discovery and process mapping for enterprise Salesforce Revenue Cloud implementations, optimizing quote-to-cash (Q2C) workflows and eliminating deliverable friction.',
+      'Managed sprint tracking, backlogs, and milestone documentation across Jira and Confluence, ensuring 100% on-time execution for cross-functional project deliverables.',
+      'Engineered centralized Confluence knowledge repositories derived from sales, billing, and technical analysis, resolving workflow bottlenecks to accelerate deployment timelines.',
+    ],
+    skills: ['Business Requirements', 'Process Mapping', 'Q2C Workflows', 'Sprint & Backlog Management', 'Documentation'],
+    tools: ['Salesforce Revenue Cloud', 'Jira', 'Confluence', 'Miro'],
+  },
+  {
+    id: 'american-councils',
     year: '2025',
-    role: 'Alumni Instructor & Coordinator',
-    company: 'YES Alumni Orientation · U.S. Department of State',
-    description: 'Orchestrated high-impact cross-cultural educational programs and leadership curricula for international cohorts, optimizing participant engagement and program retention metrics through data-driven feedback loops and qualitative assessment frameworks that iteratively refined workshop mechanics for scaled execution.',
-    skills: ['Program Coordination', 'Event Operations', 'Leadership', 'Public Speaking', 'Cross-Cultural Communication', 'Stakeholder Management', 'Curriculum Development', 'Feedback Analysis'],
-    tools: ['Google Workspace', 'Survey Tools', 'Project Planning', 'Zoom'],
+    dates: 'Jun – Sep 2025',
+    role: 'Global Program & Operations Coordinator',
+    company: 'American Councils',
+    location: 'Washington, D.C., USA',
+    highlights: [
+      'Selected as 1 of 4 global representatives to co-lead state-sponsored strategic orientation initiatives for 500+ top-tier international scholars across 35 nations, partnering directly with U.S. Department of State officials across 100+ program hours.',
+      'Orchestrated 100% on-time arrival/departure operations across 4 high-density cohorts while facilitating 15+ leadership workshops, maintaining a 100% policy compliance record across 3 organizational tiers.',
+    ],
+    skills: ['Program Operations', 'Logistics Coordination', 'Workshop Facilitation', 'Policy Compliance', 'Stakeholder Management'],
+    tools: ['Google Workspace', 'Zoom'],
   },
   {
+    id: 'royal-york',
     year: '2024',
-    role: 'Talent Acquisition Specialist',
+    dates: 'Jun – Oct 2024',
+    role: 'Global Talent Operations & Recruitment Specialist',
     company: 'Royal York Property Management',
-    description: 'Spearheaded end-to-end recruitment lifecycles and scaled operational headcount by implementing rigorous competency-based screening matrices and ATS data analytics that significantly reduced time-to-fill metrics while aligning workforce planning strategies with aggressive company growth milestones.',
-    skills: ['Talent Acquisition', 'Candidate Sourcing', 'Interview Coordination', 'Pipeline Management', 'Employer Branding', 'Process Optimization', 'Candidate Screening', 'Data Tracking'],
-    tools: ['LinkedIn Recruiter', 'ATS Platforms', 'CRM Systems', 'Jira', 'Google Workspace'],
+    location: 'Toronto, Canada',
+    highlights: [
+      'Spearheaded talent acquisition operations across 50+ global locations (40+ Canadian, 11 European), evaluating 100+ weekly applicants across 8+ specialized departments to fulfill high-volume staffing demands.',
+      'Orchestrated 300+ strategic touchpoints weekly via LinkedIn Recruiter, building multi-time-zone pipelines and executing full-lifecycle hiring across executive, technical, and revenue-generating verticals.',
+      'Standardized multi-tier evaluation frameworks and ATS protocols, benchmarking technical and cross-cultural standards to achieve 100% data integrity and accelerate average time-to-shortlist.',
+    ],
+    skills: ['Full-Lifecycle Recruitment', 'High-Volume Hiring', 'Pipeline Building', 'Evaluation Frameworks', 'Data Governance'],
+    tools: ['LinkedIn Recruiter', 'ATS'],
   },
   {
+    id: 'alexander-chapman',
     year: '2023',
+    dates: 'Apr – Jul 2023',
     role: 'Financial Recruiter',
     company: 'Alexander Chapman',
-    description: 'Managed specialized talent acquisition mandates for high-stakes financial markets by executing targeted headhunting strategies and conducting deep-dive competency evaluations and financial acumen assessments to match elite quantitative talent with complex organizational needs.',
-    skills: ['Recruitment', 'Candidate Assessment', 'Requirements Gathering', 'Relationship Management', 'Sales & Outreach', 'Market Research', 'Talent Matching'],
-    tools: ['Microdec CRM', 'LinkedIn', 'Email Outreach', 'Candidate Databases', 'Spreadsheets'],
+    location: 'London, UK',
+    highlights: [
+      'Directed headhunting operations and end-to-end recruitment pipelines for tier-1 hedge fund and investment banking accounts across Quantitative Research, Risk Management, and Algorithmic Trading sectors.',
+      'Achieved a 90% placement match rate by designing comprehensive candidate profiling models and prequalifying passive financial professionals on advanced quantitative capabilities to shorten client time-to-hire.',
+      'Systematized high-integrity database protocols in Microdec CRM across 300+ daily candidate touchpoints, sustaining 99%+ data accuracy and optimizing market mapping reports for global financial institutions.',
+    ],
+    skills: ['Headhunting', 'Candidate Profiling', 'Market Mapping', 'Client Relationships', 'Data Governance'],
+    tools: ['Microdec CRM', 'LinkedIn'],
   },
   {
+    id: 'alpine-fleet',
     year: '2022',
+    dates: 'Aug 2022 – Feb 2023',
     role: 'Marketing & Operations Manager',
-    company: 'SDA-Intech · Alpine Fleet',
-    description: 'Directed multidisciplinary operations and multi-channel marketing campaigns to drive user acquisition, funnel optimization, and brand positioning, while streamlining internal workflows and resource allocation through digitized operational processes that directly enhanced cross-functional productivity and project turnaround times.',
-    skills: ['Operations Management', 'Budget Management', 'Team Leadership', 'Process Improvement', 'Customer Journey Mapping', 'UX Design', 'Service Design', 'Marketing Operations'],
-    tools: ['Figma', 'CRM Systems', 'Booking Systems', 'Analytics Tools', 'Spreadsheets'],
+    company: 'Alpine Fleet',
+    location: 'Ferizaj, Kosovo',
+    highlights: [
+      'Co-managed cross-border fleet logistics and dispatch operations across high-density European transit corridors (Geneva Airport to Alpine routes), auditing cost metrics and schedules to streamline turnaround times for a team of 10+ field employees.',
+      'Architected user journey prototypes and booking flows in Figma, driving digital checkout optimizations that increased online conversion rates while aligning multi-channel digital marketing initiatives with real-time demand.',
+    ],
+    skills: ['Logistics & Dispatch', 'Cost Auditing', 'User Journey Design', 'Conversion Optimization', 'Digital Marketing'],
+    tools: ['Figma'],
   },
 ]
+
+const RETURN_KEY = 'portfolio-return'
 
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -72,10 +117,23 @@ export default function Page() {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual'
     }
+    const saved = sessionStorage.getItem(RETURN_KEY)
+    if (saved) {
+      sessionStorage.removeItem(RETURN_KEY)
+      const { y, open } = JSON.parse(saved) as { y: number; open: boolean }
+      setProjectOpen(open)
+      requestAnimationFrame(() => window.scrollTo({ top: y, behavior: 'instant' }))
+      return
+    }
     if (!window.location.hash) {
       window.scrollTo(0, 0)
     }
   }, [])
+
+  const leaveToCaseStudy = () => {
+    origin.fromPortfolio = true
+    sessionStorage.setItem(RETURN_KEY, JSON.stringify({ y: window.scrollY, open: projectOpen }))
+  }
 
   useEffect(() => {
     const sections = ['top', 'about', 'experience', 'projects', 'contact']
@@ -153,7 +211,6 @@ export default function Page() {
       let navDark = false
       const experience = document.getElementById('experience')
       const contact = document.getElementById('contact')
-      const photo = document.querySelector('.hero-photo')
       if (experience) {
         const rect = experience.getBoundingClientRect()
         if (navY >= rect.top && navY <= rect.bottom) navDark = true
@@ -350,7 +407,7 @@ export default function Page() {
             ))}
             <p className="hero-close-hint">Tap to close</p>
           </div>
-          <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
+          <img src={portraitUrl} alt="Dorela Nuha smiling on a sunny city street corner" />
         </div>
         <div className="hero-copy">
           <div className="hero-copy-inner">
@@ -371,9 +428,27 @@ export default function Page() {
             <strong>better questions.</strong>
           </h2>
           <div className="about-meta">
-            <span>Product strategy</span>
-            <span>UX &amp; workflows</span>
-            <span>Cross-functional leadership</span>
+            <div className="about-meta-marquee" aria-hidden="true">
+              <div className="about-meta-track">
+                <div className="about-meta-group">
+                  <span>Product strategy</span>
+                  <span className="about-meta-sep">·</span>
+                  <span>UX &amp; workflows</span>
+                  <span className="about-meta-sep">·</span>
+                  <span>Cross-functional leadership</span>
+                  <span className="about-meta-sep">·</span>
+                </div>
+                <div className="about-meta-group">
+                  <span>Product strategy</span>
+                  <span className="about-meta-sep">·</span>
+                  <span>UX &amp; workflows</span>
+                  <span className="about-meta-sep">·</span>
+                  <span>Cross-functional leadership</span>
+                  <span className="about-meta-sep">·</span>
+                </div>
+              </div>
+            </div>
+            <p className="sr-only">Product strategy, UX and workflows, Cross-functional leadership</p>
             <a className="about-jump" href="#experience">See selected experience <ArrowUpRight size={14} /></a>
           </div>
         </div>
@@ -382,16 +457,19 @@ export default function Page() {
       <section id="experience" className="gray-section">
         <h2 className="section-label">Experience</h2>
         <div className="experience-list">{experience.map((item) => {
-        const isExpanded = expandedExperience === item.year
-        return <article className={isExpanded ? 'is-expanded' : undefined} key={item.year}>
-          <button className="experience-trigger" type="button" aria-expanded={isExpanded} onClick={() => setExpandedExperience(isExpanded ? null : item.year)}>
+        const isExpanded = expandedExperience === item.id
+        return <article className={isExpanded ? 'is-expanded' : undefined} key={item.id}>
+          <button className="experience-trigger" type="button" aria-expanded={isExpanded} onClick={() => setExpandedExperience(isExpanded ? null : item.id)}>
             <span>{item.year}</span>
             <div><h3>{item.role}</h3><p>{item.company}</p></div>
             <ChevronDown className="experience-chevron" size={17} />
           </button>
           <div className="experience-description" aria-hidden={!isExpanded}>
             <div className="experience-description-inner">
-              <p>{item.description}</p>
+              <p className="experience-dates">{item.dates} · {item.location}</p>
+              <ul className="experience-highlights">
+                {item.highlights.map((highlight) => <li key={highlight.slice(0, 32)}>{highlight}</li>)}
+              </ul>
               <div className="experience-meta">
                 <div className="experience-meta-group">
                   <span className="experience-meta-label">Skills</span>
@@ -414,14 +492,14 @@ export default function Page() {
       <section id="projects" className="white-section project-section">
         <div className={`project-card${projectOpen ? ' is-open' : ''}`}>
           <div className="project-mark">
-            <div className="project-mark-surface">
+            <Link href="/case-studies/neja" className="project-mark-surface" aria-label="Open the NEJA case study" onClick={leaveToCaseStudy}>
               <img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" />
               <div className="project-mark-content">
                 <h2>NEJA<span>.</span></h2>
                 <p>Architecting a centralized discovery platform that turns fragmented event hunting into a frictionless user journey.</p>
-                <span className="project-mark-label">CASE STUDY · 01</span>
+                <span className="project-mark-label">CASE STUDY IN PROGRESS</span>
               </div>
-            </div>
+            </Link>
             <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>
           </div>
           <div id="project-info" className="project-info">
@@ -429,11 +507,11 @@ export default function Page() {
               <h3>Connecting the Dots in Event Discovery</h3>
               <div className="project-details">
                 <div className="project-points">
-                  {['Problem discovery', 'User journey workflows', 'Figma wireframes', 'Success metrics'].map((point, i) => (
-                    <div key={point}><span>0{i + 1}</span>{point}<ArrowUpRight size={14} /></div>
+                  {chapters.map((chapter, i) => (
+                    <Link key={chapter.name} href={`/case-studies/neja#${chapter.ids[0]}`} onClick={leaveToCaseStudy}><span>{i + 1}</span>{chapter.name}<ArrowUpRight size={14} /></Link>
                   ))}
                 </div>
-                <a href="#contact" className="text-link">Explore case study <ArrowUpRight size={14} /></a>
+                <Link href="/case-studies/neja" className="text-link" onClick={leaveToCaseStudy}>Explore case study <ArrowRight size={14} /></Link>
               </div>
             </div>
           </div>
