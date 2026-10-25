@@ -531,7 +531,7 @@ export default function Page() {
             <div className="contact-actions">
               <button type="button" onClick={copyEmail}>{copied ? <Check size={13} /> : <Copy size={13} />} {copied ? 'Copied' : 'Copy Email'}</button>
               <a href="https://linkedin.com/in/dorela-nuha" target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="/Dorela-Nuha-CV.pdf" download><Download size={13} /> Resume</a>
+              <a href="/Dorela-Nuha-Resume.pdf" download="Dorela-Nuha-Resume.pdf"><Download size={13} /> Resume</a>
             </div>
           </div>
           <form onSubmit={sendMessage} encType="multipart/form-data">
