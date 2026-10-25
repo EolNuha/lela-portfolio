@@ -6,7 +6,7 @@ import { chapters } from './case-studies/neja/section-nav'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
-const portraitUrl = '/dorela-hero-street.jpg'
+const portraitUrl = '/dorela-hero.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
 
 const aboutStory = [
@@ -158,6 +158,8 @@ export default function Page() {
           frosted = greeting.getBoundingClientRect().top <= navBottom
         }
       }
+
+      
 
       if (!frosted && photo) {
         frosted = photo.getBoundingClientRect().bottom <= navBottom
@@ -407,7 +409,7 @@ export default function Page() {
             ))}
             <p className="hero-close-hint">Tap to close</p>
           </div>
-          <img src={portraitUrl} alt="Dorela Nuha smiling on a sunny city street corner" />
+          <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
         </div>
         <div className="hero-copy">
           <div className="hero-copy-inner">
