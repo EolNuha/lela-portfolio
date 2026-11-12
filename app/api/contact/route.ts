@@ -2,7 +2,7 @@ import { buildContactEmail } from '@/lib/contact-email'
 
 const TO = process.env.CONTACT_TO ?? 'dorelanuha22@gmail.com'
 // The sender's domain has to be verified in Resend; neja.app is.
-const FROM = process.env.CONTACT_FROM ?? 'Dorela Nuha Portfolio <portfolio@neja.app>'
+const FROM = process.env.CONTACT_FROM ?? 'Dorela Nuha <dorela@neja.app>'
 // Vercel rejects request bodies over 4.5 MB, so files have to fit under that together.
 const MAX_ATTACHMENT_BYTES = 4 * 1024 * 1024
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
