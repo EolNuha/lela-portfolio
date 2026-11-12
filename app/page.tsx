@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight
 
 const portraitUrl = '/dorela-portrait.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
+const CONTACT_ENDPOINT = 'https://qhxejkkbgzuwakwdcfiu.supabase.co/functions/v1/portfolio-contact'
 
 const objective = 'I’m an aspiring product manager with a track record of turning messy, cross-functional problems into clear systems that people actually use. Since 2022 I’ve worked across business analysis, program operations, recruitment, and marketing in Kosova, Canada, and the US: mapping quote-to-cash processes for Salesforce rollouts, running sprints and backlogs in Jira and Confluence, and coordinating programs for more than 500 international scholars. Today I’m building NEJA, an app for every event in Kosova, which I’m taking from user research and strategy through design and development toward its 2027 launch. I’m looking for an associate product or operations role where I can own problems end to end, stay close to users and the teams who build for them, and grow into a product manager who ships things that matter.'
 
@@ -352,10 +353,10 @@ export default function Page() {
     attachments.forEach((file) => direct.append('attachment', file))
 
     try {
-      const response = await fetch('/api/contact', { method: 'POST', body: direct })
+      const response = await fetch(CONTACT_ENDPOINT, { method: 'POST', body: direct, signal: AbortSignal.timeout(30000) })
       const result = await response.json().catch(() => ({}))
       if (response.ok && result.ok) return finish()
-      if (!result.fallback) {
+      if (response.status !== 404) {
         setFormStatus('error')
         setFormError(result.message || 'Unable to send message right now. Try emailing directly.')
         return
