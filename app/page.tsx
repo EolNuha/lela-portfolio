@@ -381,6 +381,7 @@ export default function Page() {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: payload,
+        signal: AbortSignal.timeout(20000),
       })
       const result = await response.json()
 
