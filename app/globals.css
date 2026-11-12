@@ -603,14 +603,14 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .desktop-nav.open { display: flex; }
   .hero-profile {
     align-items: center;
-    column-gap: 16px;
+    column-gap: 14px;
     display: grid;
     grid-template-areas:
       "eyebrow eyebrow"
       "portrait greeting"
       "objective objective"
       "actions actions";
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     min-height: 0;
     padding: 92px 22px 48px;
     row-gap: 14px;
@@ -618,8 +618,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .hero-side,
   .hero-profile-text { display: contents; }
   .hero-eyebrow { font-size: 9px; grid-area: eyebrow; letter-spacing: .18em; margin: 0 0 2px; }
-  .hero-portrait { border-radius: 24px 0; grid-area: portrait; width: min(42vw, 168px); }
-  .hero-greeting { align-self: center; font-size: clamp(22px, 6.6vw, 34px); grid-area: greeting; line-height: 1.08; }
+  .hero-portrait { border-radius: 24px 0; grid-area: portrait; width: 100%; }
+  .hero-greeting { align-self: center; font-size: calc((100vw - 58px) / 8.15); grid-area: greeting; line-height: 1.02; width: 100%; }
   .hero-objective { font-size: 13.5px; grid-area: objective; line-height: 1.75; margin-top: 8px; }
   .hero-actions { grid-area: actions; margin-top: 2px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
@@ -659,9 +659,22 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .project-card { display: flex; flex-direction: column; gap: 0; }
   .project-mark { min-height: 0; }
   .project-mark-surface { aspect-ratio: 16 / 10; min-height: 0; padding: 22px 24px 36px; }
-  .project-mark-surface.is-app .project-mark-image { height: 52%; inset: 0 0 auto auto; }
-  .project-mark-surface.is-app { aspect-ratio: auto; padding-bottom: 72px; }
-  .project-mark-surface.is-app .project-mark-label { align-self: flex-start; margin-top: 18px; }
+  .project-mark-surface.is-app {
+    aspect-ratio: auto;
+    padding: 26px 22px 84px;
+  }
+  .project-mark-surface.is-app h2 { font-size: 0; line-height: 0; margin: 0; width: 100%; }
+  .project-mark-surface.is-app .project-mark-logo { height: auto; margin: 0; width: 100%; }
+  .project-mark-surface.is-app .project-mark-image {
+    aspect-ratio: 1;
+    height: auto;
+    inset: 128px 4px auto auto;
+    -webkit-mask-image: radial-gradient(circle at 52% 48%, #000 36%, transparent 68%);
+    mask-image: radial-gradient(circle at 52% 48%, #000 36%, transparent 68%);
+    width: 36%;
+  }
+  .project-mark-surface.is-app p { max-width: 58%; }
+  .project-mark-surface.is-app .project-mark-label { align-self: flex-start; margin-top: 22px; }
   .project-mark-site { bottom: 40px; font-size: 9px; left: 24px; }
   .project-mark-content { min-height: 0; }
   .project-mark h2 { margin: 4px 0 0; }

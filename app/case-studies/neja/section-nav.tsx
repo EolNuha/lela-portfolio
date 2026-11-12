@@ -46,7 +46,15 @@ export function SectionNav() {
       }
       setActive(current)
       setVisible(window.scrollY > window.innerHeight * 0.6)
-      setOnLight(surfaceIsLight(28, window.innerHeight - 80))
+      const pill = pillRef.current
+      let x = window.innerWidth / 2
+      let y = 40
+      if (pill && getComputedStyle(pill).display !== 'none') {
+        const rect = pill.getBoundingClientRect()
+        x = rect.left + rect.width / 2
+        y = rect.top + Math.min(rect.height / 2, 22)
+      }
+      setOnLight(surfaceIsLight(x, y))
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
@@ -74,7 +82,7 @@ export function SectionNav() {
     history.replaceState(null, '', `#${id}`)
   }
 
-  const links = () => chapters.map(({ name, ids }) => (
+  const link = ({ name, ids }: (typeof chapters)[number]) => (
     <a
       key={name}
       href={`#${ids[0]}`}
@@ -84,17 +92,20 @@ export function SectionNav() {
     >
       <span>{name}</span>
     </a>
-  ))
+  )
+
+  const current = chapters.find((chapter) => chapter.name === active) ?? chapters[0]
 
   return (
     <>
-      <nav className={`q-rail${visible ? ' is-visible' : ''}`} aria-label="Chapters">{links()}</nav>
+      <nav className={`q-rail${visible ? ' is-visible' : ''}`} aria-label="Chapters">{chapters.map(link)}</nav>
       <nav
         ref={pillRef}
         className={`q-chapter-pill${visible ? ' is-visible' : ''}${onLight ? ' is-on-light' : ' is-on-dark'}`}
         aria-label="Sections"
+        aria-live="polite"
       >
-        {links()}
+        {link(current)}
       </nav>
     </>
   )
