@@ -255,8 +255,8 @@ footer a:hover { text-decoration: underline; }
 .cert-toggle { align-items: center; background: transparent; border: 0; color: #fff; cursor: pointer; display: flex; flex: none; justify-content: center; margin-left: -4px; opacity: .55; padding: 4px; transition: transform var(--duration) var(--ease), opacity .25s ease; }
 .cert-toggle:hover, .cert-list li.is-expanded .cert-toggle { opacity: 1; }
 .cert-list li.is-expanded .cert-toggle { transform: rotate(180deg); }
-.cert-details { display: grid; grid-column: 2 / -1; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--duration) var(--ease), opacity .35s ease; }
-.cert-details-inner { display: flex; flex-direction: column; gap: 18px; min-height: 0; overflow: hidden; padding-left: 89px; }
+.cert-details { display: grid; grid-column: 1 / -1; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--duration) var(--ease), opacity .35s ease; }
+.cert-details-inner { display: flex; flex-direction: column; gap: 18px; min-height: 0; overflow: hidden; padding-left: 0; }
 .cert-list li.is-expanded .cert-details { grid-template-rows: 1fr; opacity: 1; }
 .cert-list li.is-expanded .cert-details-inner { padding-top: 22px; }
 .cert-detail { max-width: 760px; }
@@ -601,15 +601,27 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .desktop-nav a:hover,
   .desktop-nav a.active { opacity: 1; }
   .desktop-nav.open { display: flex; }
-  .hero-profile { display: flex; flex-direction: column; gap: 36px; min-height: 0; padding: 112px 25px 64px; }
-  .hero-side { display: contents; }
-  .hero-profile-text { order: 1; }
-  .hero-actions { order: 2; }
-  .hero-portrait { border-radius: 24px 0; width: min(46vw, 190px); }
-  .hero-greeting { font-size: clamp(48px, 13vw, 64px); }
-  .hero-eyebrow { font-size: 9px; letter-spacing: .2em; margin-bottom: 16px; }
-  .hero-objective { font-size: 13.5px; line-height: 1.75; margin-top: 24px; }
-  .hero-actions { margin-top: -8px; }
+  .hero-profile {
+    align-items: center;
+    column-gap: 16px;
+    display: grid;
+    grid-template-areas:
+      "eyebrow eyebrow"
+      "portrait greeting"
+      "objective objective"
+      "actions actions";
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 0;
+    padding: 92px 22px 48px;
+    row-gap: 14px;
+  }
+  .hero-side,
+  .hero-profile-text { display: contents; }
+  .hero-eyebrow { font-size: 9px; grid-area: eyebrow; letter-spacing: .18em; margin: 0 0 2px; }
+  .hero-portrait { border-radius: 24px 0; grid-area: portrait; width: min(42vw, 168px); }
+  .hero-greeting { align-self: center; font-size: clamp(22px, 6.6vw, 34px); grid-area: greeting; line-height: 1.08; }
+  .hero-objective { font-size: 13.5px; grid-area: objective; line-height: 1.75; margin-top: 8px; }
+  .hero-actions { grid-area: actions; margin-top: 2px; }
   .white-section, .gray-section, .contact-section { padding: 80px 25px; }
   .about-section, .contact-inner { display: block; }
   .about-section { padding: 28px 25px 56px; }
@@ -629,8 +641,8 @@ footer { align-items: center; background: transparent; border-top: 1px solid rgb
   .edu-monogram { font-size: 9px; }
   .experience-company { align-items: flex-start; gap: 12px; }
   .cert-actions { grid-column: 2; justify-self: start; margin-top: 14px; padding-left: 77px; }
-  .cert-details { grid-column: 2; }
-  .cert-details-inner { padding-left: 77px; }
+  .cert-details { grid-column: 1 / -1; }
+  .cert-details-inner { padding-left: 0; }
   .cert-lightbox.has-nav { padding: 72px 16px 150px; }
   .cert-lightbox-arrow { bottom: 28px; height: 48px; top: auto; transform: none; width: 48px; }
   .cert-lightbox-arrow.is-prev { left: 20px; }

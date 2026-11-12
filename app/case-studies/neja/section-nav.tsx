@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 
 export const chapters = [
   { name: 'Intro', ids: ['top', 'concept', 'numbers', 'landing'] },
@@ -13,11 +13,28 @@ export const chapters = [
   { name: 'Wrap up', ids: ['all-screens', 'next'] },
 ]
 
+function surfaceIsLight(x: number, y: number) {
+  const hit = document.elementsFromPoint(x, y).find((el) => el instanceof HTMLElement && !el.closest('.q-chapter-pill, .q-rail, .back-to-top'))
+  let node = hit instanceof HTMLElement ? hit.closest('section') ?? hit : null
+  while (node) {
+    const match = getComputedStyle(node).backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/)
+    if (match) {
+      const alpha = match[4] === undefined ? 1 : Number(match[4])
+      if (alpha >= 0.45) {
+        const lum = (0.2126 * Number(match[1]) + 0.7152 * Number(match[2]) + 0.0722 * Number(match[3])) / 255
+        return lum > 0.62
+      }
+    }
+    node = node.parentElement
+  }
+  return false
+}
+
 export function SectionNav() {
   const [active, setActive] = useState(chapters[0].name)
   const [visible, setVisible] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [onDark, setOnDark] = useState(true)
+  const [onLight, setOnLight] = useState(false)
+  const pillRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const update = () => {
@@ -29,11 +46,7 @@ export function SectionNav() {
       }
       setActive(current)
       setVisible(window.scrollY > window.innerHeight * 0.6)
-      const y = window.innerHeight - 40
-      setOnDark(![...document.querySelectorAll('.q-light')].some((el) => {
-        const rect = el.getBoundingClientRect()
-        return 40 >= rect.left && 40 <= rect.right && y >= rect.top && y <= rect.bottom
-      }))
+      setOnLight(surfaceIsLight(28, window.innerHeight - 80))
     }
     update()
     window.addEventListener('scroll', update, { passive: true })
@@ -45,17 +58,17 @@ export function SectionNav() {
   }, [])
 
   useEffect(() => {
-    if (!open) return
-    const onKey = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false)
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open])
+    const pill = pillRef.current
+    if (!pill || !visible || getComputedStyle(pill).display === 'none') return
+    const link = pill.querySelector('.is-active')
+    if (!(link instanceof HTMLElement)) return
+    pill.scrollTo({ left: Math.max(0, link.offsetLeft - (pill.clientWidth - link.offsetWidth) / 2), behavior: 'smooth' })
+  }, [active, visible])
 
   const go = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     const el = document.getElementById(id)
     if (!el) return
     event.preventDefault()
-    setOpen(false)
     const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
     el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' })
     history.replaceState(null, '', `#${id}`)
@@ -76,19 +89,13 @@ export function SectionNav() {
   return (
     <>
       <nav className={`q-rail${visible ? ' is-visible' : ''}`} aria-label="Chapters">{links()}</nav>
-
-      <button
-        type="button"
-        className={`q-index-btn${visible ? ' is-visible' : ''}${onDark ? ' is-on-dark' : ''}`}
-        aria-expanded={open}
-        aria-controls="q-index"
-        onClick={() => setOpen((value) => !value)}
+      <nav
+        ref={pillRef}
+        className={`q-chapter-pill${visible ? ' is-visible' : ''}${onLight ? ' is-on-light' : ' is-on-dark'}`}
+        aria-label="Sections"
       >
-        Index <span>{active}</span>
-      </button>
-
-      <div className={`q-index-backdrop${open ? ' is-open' : ''}`} onClick={() => setOpen(false)} aria-hidden="true" />
-      <nav id="q-index" className={`q-index${open ? ' is-open' : ''}`} aria-label="All chapters" aria-hidden={!open} inert={!open}>{links()}</nav>
+        {links()}
+      </nav>
     </>
   )
 }
