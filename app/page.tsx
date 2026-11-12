@@ -324,15 +324,43 @@ export default function Page() {
       return
     }
 
-    const maxBytes = 5 * 1024 * 1024
-    if (attachments.some((file) => file.size > maxBytes)) {
+    const maxBytes = 4 * 1024 * 1024
+    if (attachments.reduce((total, file) => total + file.size, 0) > maxBytes) {
       setFormStatus('error')
-      setFormError('Each file must be under 5MB.')
+      setFormError('Attachments must be under 4MB in total.')
       return
     }
 
     setFormStatus('sending')
     setFormError('')
+
+    const finish = () => {
+      form.reset()
+      setAttachments([])
+      setSharedLinks([])
+      if (fileInputRef.current) fileInputRef.current.value = ''
+      setFormStatus('sent')
+      window.setTimeout(() => setFormStatus('idle'), 5000)
+    }
+
+    const direct = new FormData()
+    direct.append('name', name)
+    direct.append('email', email)
+    direct.append('message', typedMessage)
+    direct.append('website', String(data.get('website') ?? ''))
+    sharedLinks.forEach((link) => direct.append('link', link))
+    attachments.forEach((file) => direct.append('attachment', file))
+
+    try {
+      const response = await fetch('/api/contact', { method: 'POST', body: direct })
+      const result = await response.json().catch(() => ({}))
+      if (response.ok && result.ok) return finish()
+      if (!result.fallback) {
+        setFormStatus('error')
+        setFormError(result.message || 'Unable to send message right now. Try emailing directly.')
+        return
+      }
+    } catch {}
 
     const payload = new FormData()
     payload.append('name', name)
@@ -362,12 +390,7 @@ export default function Page() {
         return
       }
 
-      form.reset()
-      setAttachments([])
-      setSharedLinks([])
-      if (fileInputRef.current) fileInputRef.current.value = ''
-      setFormStatus('sent')
-      window.setTimeout(() => setFormStatus('idle'), 5000)
+      finish()
     } catch {
       setFormStatus('error')
       setFormError('Unable to send message right now. Try emailing directly.')
@@ -635,6 +658,7 @@ export default function Page() {
             <p className="form-intro">Always open to great ideas.</p>
             <input required aria-required="true" name="name" aria-label="Name" placeholder="Name *" />
             <input required aria-required="true" name="email" type="email" aria-label="Email Address" placeholder="Email Address *" />
+            <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="form-honeypot" />
             <div className="message-box">
               <textarea ref={messageRef} required aria-required="true" name="message" aria-label="Your Message" placeholder="Your Message... *" />
               <div className="message-box-footer">

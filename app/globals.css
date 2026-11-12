@@ -267,6 +267,7 @@ footer a:hover { text-decoration: underline; }
 .cert-list p { margin: 0; }
 .cert-body { align-items: center; display: flex; gap: 14px; min-width: 0; }
 .cert-logo, .experience-logo { background: #fff; border-radius: 22.5%; flex: none; height: 40px; object-fit: contain; width: 40px; }
+.form-honeypot { height: 1px; left: -9999px; opacity: 0; position: absolute; width: 1px; }
 .edu-list .cert-body { padding-left: 35px; }
 .edu-monogram { align-items: center; color: #111; display: flex; font-size: 11px; font-weight: 700; justify-content: center; letter-spacing: .02em; }
 .edu-languages { color: rgba(255,255,255,.72); font-size: 13px; margin: 22px 0 0; }
