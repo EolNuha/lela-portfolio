@@ -1,16 +1,17 @@
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type { Metadata } from 'next'
-import { Afacad, Caveat, Inter, Jost } from 'next/font/google'
+import { Alumni_Sans, Caveat, Figtree } from 'next/font/google'
 import {
-  ArrowLeft, Briefcase, Car, Clock, GraduationCap, MessageCircle, Search, Users, Wallet, Zap,
+  ArrowLeft, ArrowUpRight, Briefcase, Car, Check, Clock, GraduationCap, MessageCircle, Search, Users, Wallet, Zap,
 } from 'lucide-react'
 import { BackLink } from './back-link'
 import { BackToTop } from './back-to-top'
 import { SectionNav } from './section-nav'
+import { WelcomePhone } from './welcome'
 import { GridSystem, InTheWild, LogoConstruction, Numbers } from './brand'
 import {
-  CaseStudyMotion, ColorColumns, CountUp, DragScroll, PhoneGallery, PlaniVote, StoryReel, SystemBoard, type GalleryItem,
+  CaseStudyMotion, ColorColumns, CountUp, DragScroll, PhoneGallery, StoryReel, SystemBoard, type GalleryItem,
 } from './interactive'
 import { Phone, PhoneKeys, StatusBar } from './phone'
 import { Anatomy, Campaign, EventCards, LandingDevice, Overview, Thanks } from './showcase'
@@ -18,19 +19,20 @@ import { Sketches } from './sketch'
 import './neja.css'
 import './showcase.css'
 import './brand.css'
+import './refresh.css'
 
-const afacad = Afacad({ subsets: ['latin', 'latin-ext'], variable: '--font-afacad' })
-const inter = Inter({ subsets: ['latin', 'latin-ext'], variable: '--font-inter' })
-const jost = Jost({ subsets: ['latin', 'latin-ext'], variable: '--font-jost' })
+const alumni = Alumni_Sans({ subsets: ['latin', 'latin-ext'], weight: ['400', '600', '700', '800', '900'], variable: '--font-alumni' })
+const figtree = Figtree({ subsets: ['latin', 'latin-ext'], variable: '--font-figtree' })
 const caveat = Caveat({ subsets: ['latin', 'latin-ext'], variable: '--font-caveat' })
 const sketchHand = existsSync(join(process.cwd(), 'public/neja/sketch-hand.webp')) ? '/neja/sketch-hand.webp' : undefined
 
 export const metadata: Metadata = {
-  title: 'NEJA · Case Study in Progress · Dorela Nuha',
-  description: 'NEJA is an event discovery app for every kind of event in Kosovo, with group planning and shared rides built in. An independent product case study by Dorela Nuha, currently in progress.',
+  title: 'NEJA · Founder & Product Lead · Dorela Nuha',
+  description: 'NEJA is an app for every kind of event in Kosova that Dorela Nuha is founding and leading, from user research and strategy through design and development of an iOS and Android app. Launching in 2027.',
 }
 
 const img = (name: string) => `/neja/${name}.webp`
+const app = (name: string) => `/neja/app/${name}`
 
 type PhaseStatus = 'complete' | 'active' | 'upcoming'
 
@@ -41,10 +43,27 @@ const phases: { title: string; items: string[]; status: PhaseStatus }[] = [
   { title: 'Product Concept', items: ['Five pillars', 'Navigation model'], status: 'complete' },
   { title: 'Flows & Architecture', items: ['Journey map', 'App structure', 'Screen blueprint'], status: 'complete' },
   { title: 'Wireframes', items: ['Feed', 'Event detail', 'Plani'], status: 'complete' },
-  { title: 'Visual Design & UI', items: ['Identity', 'Color & type', 'UI screens'], status: 'active' },
-  { title: 'Prototype & Testing', items: ['Clickable prototype', 'Usability tests'], status: 'upcoming' },
-  { title: 'Launch & Iteration', items: ['Phase 1 launch', 'Success metrics'], status: 'upcoming' },
+  { title: 'Visual Design & UI', items: ['Identity', 'Color & type', 'UI screens'], status: 'complete' },
+  { title: 'App & Backend', items: ['iOS and Android app', 'Live database', 'Sign-in and tickets'], status: 'active' },
+  { title: 'Brand & Audience', items: ['neja.app and waitlist', 'Instagram series', 'Welcome email'], status: 'complete' },
+  { title: 'Final Polish & Beta', items: ['Store setup', 'Beta testers', 'Last details'], status: 'active' },
+  { title: 'Launch', items: ['Public launch, 2027', 'Success metrics'], status: 'upcoming' },
 ]
+
+const built = [
+  { title: 'The app', done: false, items: ['53 screens for iOS and Android', 'Discover, search and a map of what’s near', 'Saves and reminders that follow your account', 'A ticket wallet with secure door codes', 'Friends, follows and hosts submitting events', 'Albanian and English everywhere'] },
+  { title: 'The backend', done: false, items: ['Live database with 17 secured tables', 'Email-code sign-in, no passwords', 'Ticket issue and door check-in', 'Friend matching that never stores raw contacts', 'Rate limits on friends, follows and submissions', 'Branded welcome email from neja.app'] },
+  { title: 'Brand & launch', done: true, items: ['neja.app launch site and waitlist', 'Instagram launch series in Albanian', 'A mascot drawn in code, with 10 moods', 'Brand kit for the app, web and social', '136 events from 63 hosts already listed'] },
+]
+
+const builtStats = [
+  { value: '53', label: 'Screens built' },
+  { value: '136', label: 'Events listed' },
+  { value: '17', label: 'Secured tables' },
+  { value: '984', label: 'Strings in two languages' },
+]
+
+const social = ['ig-01.jpg', 'ig-03.jpg', 'ig-05.jpg', 'ig-07.jpg', 'ig-10.jpg']
 
 const statusLabel: Record<PhaseStatus, string> = { complete: 'Complete', active: 'In progress', upcoming: 'Up next' }
 
@@ -60,8 +79,6 @@ const personas = [
   {
     code: 'P01',
     name: 'Dren, 19',
-    role: 'The Spontaneous Student',
-    image: img('persona-student'),
     rows: [
       { icon: GraduationCap, text: 'University student in Prishtinë' },
       { icon: Wallet, text: 'Low purchasing power; actively looks for free and affordable events.' },
@@ -72,8 +89,6 @@ const personas = [
   {
     code: 'P02',
     name: 'Arta, 27',
-    role: 'The Planned Professional',
-    image: img('persona-professional'),
     rows: [
       { icon: Briefcase, text: 'Marketing professional living in Ferizaj' },
       { icon: Wallet, text: 'Medium budget; willing to spend on events that are worth the trip.' },
@@ -151,31 +166,36 @@ const blueprint = [
   { screen: 'Plani modal', elements: 'Friend selection, shareable link, quick poll: “Who’s down?”', rationale: 'Removes friction from group decisions.' },
 ]
 
+const shot = (name: string) => `/neja/app/screens/${name}.jpg`
+
 const screens: Record<string, GalleryItem> = {
-  welcome: { src: img('screen-welcome'), label: 'Welcome', title: '“Çka ka sonte?”', copy: 'The first screen asks the question people usually send to the group chat: what’s on tonight? Email, Apple, or Google sign in gets people to the feed in one tap.' },
-  signIn: { src: img('screen-sign-in'), label: 'Sign in', title: '“Hajde...”', copy: 'Log in and new account live on one screen, with clear inline errors when an email is already linked to a NEJA account.' },
-  location: { src: img('screen-location'), label: 'Location', title: 'Where do you go out?', copy: 'Location permission localizes the feed from the first session, with a manual city picker for people who would rather choose.' },
-  trending: { src: img('screen-home-trending'), label: 'Trending', title: 'What’s happening, at a glance', copy: 'A trending hero event with its date and distance, upcoming events, and active plans with friends, all above the fold.' },
-  home: { src: img('screen-home'), label: 'Discover', title: 'An immersive feed', copy: 'Every card carries a visual layer of cinematic imagery and an information layer with venue, time, price, and friends interested.' },
-  homeClean: { src: img('screen-home-clean'), label: 'Home, alternate', title: 'A calmer home', copy: 'An alternate home direction with lighter overlays, explored while defining the visual hierarchy of the feed.' },
-  event: { src: img('screen-event'), label: 'Event details', title: 'Everything needed to decide', copy: 'Date, time, venue map, friends going, ticket tiers, and the two actions that matter most: Add to Plani and Buy.' },
-  split: { src: img('screen-split'), label: 'Split bill', title: 'Pay together or alone', copy: 'Checkout opens with a simple choice between splitting the bill with friends and paying for a single ticket.' },
-  payers: { src: img('screen-payers'), label: 'Payers', title: 'Choose who’s in', copy: 'Pick payment partners from your friends, so a group ticket is settled before anyone arrives at the door.' },
-  method: { src: img('screen-payment-method'), label: 'Payment method', title: 'Saved cards, fast checkout', copy: 'Saved cards up front, with a quick path to add a new one.' },
-  addCard: { src: img('screen-add-card'), label: 'Add card', title: 'Add a card', copy: 'A focused card form with nothing else competing for attention.' },
-  confirmed: { src: img('screen-payment-complete'), label: 'Confirmed', title: 'Payment complete', copy: 'A clear confirmation the moment the payment goes through.' },
-  ticket: { src: img('screen-ticket'), label: 'Receipt', title: 'The receipt is the ticket', copy: 'A scannable barcode with the date, venue, and ticket type, ready to download or bring back to the dashboard.' },
+  locked: { src: shot('event-locked'), label: 'Browse first', title: 'Look around before signing up', copy: 'Anyone can browse the feed without an account. The event page shows what it is and who hosts it, and asks for an account only when someone wants the date, the place, and the tickets.' },
+  access: { src: shot('access'), label: 'Get access', title: 'One sheet to get in', copy: 'Signing up is a single sheet over whatever you were looking at, so you land back on the same event once you are in.' },
+  signedOut: { src: shot('signed-out'), label: 'Profile, signed out', title: '“Tickets made simple”', copy: 'The profile tab explains what an account is for before asking for one.' },
+  home: { src: shot('home'), label: 'Home', title: 'What’s on, at a glance', copy: 'A trending event up top with its dates, place, price, a link to the organiser’s ticket info, and the host. Coming Soon sits right under it.' },
+  today: { src: shot('home-today'), label: 'Happening today', title: 'Today, sorted by time', copy: 'Past events fold into one card, and everything happening today is listed by start time with its price, so the decision takes seconds.' },
+  featured: { src: shot('home-featured'), label: 'Featured this week', title: 'The week’s picks', copy: 'Featured events get a bigger card with the time and price on the side.' },
+  comingSoon: { src: shot('coming-soon'), label: 'Coming soon', title: 'Announced, not dated', copy: 'Events that are set but not booked yet show what is known so far, with a button to get a reminder the moment tickets open.' },
+  search: { src: shot('search'), label: 'Search', title: 'Recommended for you', copy: 'Search opens on recommendations tagged Trending, Today, or Free entry, with filters one tap away.' },
+  event: { src: shot('event'), label: 'Event page', title: 'Everything needed to decide', copy: 'Category, date, time, venue, and price, with Add to Plani and Save up top. Get tickets carries an arrow because it opens the organiser’s own ticket page.' },
+  prompt: { src: shot('wallet-prompt'), label: 'Back from the organiser', title: '“Got your tickets?”', copy: 'When you come back from the organiser’s page, NEJA asks if you bought tickets and how many, then keeps them in your wallet.' },
+  owned: { src: shot('event-owned'), label: 'In your wallet', title: 'The event remembers', copy: 'Once a ticket is saved, the event page shows it in a bar above Get tickets, one tap from the wallet.' },
+  ticket: { src: shot('ticket'), label: 'Wallet ticket', title: 'Every ticket in one place', copy: 'The wallet keeps the date, doors, ticket type, and how many it admits, with a link back to the organiser’s ticket page for the entry ticket itself.' },
+  plani: { src: shot('plani'), label: 'Plani', title: 'Decide together', copy: 'Plani starts empty and suggests events to plan around, so a plan always begins with something real to go to.' },
+  planNew: { src: shot('plan-new'), label: 'New plan', title: 'Pick the event first', copy: 'Every plan is built around an event from the catalog, not a blank chat.' },
+  planInvite: { src: shot('plan-invite'), label: 'Invite', title: 'Who’s coming with you?', copy: 'Then you choose who to bring. With no friends yet, the screen points straight to adding them.' },
+  profile: { src: shot('profile'), label: 'Profile', title: 'Your events, your people', copy: 'Friends, events, and memories counted up top, with a short Get Started list for new accounts.' },
 }
 
-const allScreens = [screens.welcome, screens.signIn, screens.location, screens.trending, screens.home, screens.homeClean, screens.event, screens.split, screens.payers, screens.method, screens.addCard, screens.confirmed, screens.ticket]
+const allScreens = [screens.locked, screens.access, screens.home, screens.today, screens.featured, screens.comingSoon, screens.search, screens.event, screens.prompt, screens.owned, screens.ticket, screens.plani, screens.planNew, screens.planInvite, screens.profile]
 
 const colors = [
-  { name: 'Midnight', hex: '#0B0910', role: 'Base surface', usage: 'Dark mode', texture: img('tex-midnight') },
-  { name: 'Neja Magenta', hex: '#B02779', role: 'Primary action', usage: 'Buttons, highlights', texture: img('tex-magenta') },
-  { name: 'Ultraviolet', hex: '#811E93', role: 'Payments', usage: 'Cards, checkout', texture: img('tex-ultraviolet') },
-  { name: 'Velvet', hex: '#743055', role: 'Secondary action', usage: 'Tags, plans', texture: img('tex-velvet') },
-  { name: 'Smoke', hex: '#3D3737', role: 'Sheets & overlays', usage: 'Modals, maps', texture: img('tex-smoke') },
-  { name: 'Mist', hex: '#F9F9F9', role: 'Light surfaces', usage: 'Forms, receipts', texture: img('tex-mist') },
+  { name: 'Black', hex: '#000000', role: 'Page', usage: 'Every screen', texture: img('tex-midnight') },
+  { name: 'Glass', hex: '#00000066', role: 'Frosted bars', usage: 'Tab bar, Host button', texture: img('tex-smoke') },
+  { name: 'Well', hex: '#FFFFFF12', role: 'White at 7%', usage: 'Search, steppers', texture: img('tex-velvet') },
+  { name: 'Magenta', hex: '#FF2DAA', role: 'The one accent', usage: 'Tags, alerts, logo', texture: img('tex-magenta') },
+  { name: 'Muted', hex: '#FFFFFF8C', role: 'White at 55%', usage: 'Times, hints', texture: img('tex-ultraviolet') },
+  { name: 'White', hex: '#FFFFFF', role: 'Ink', usage: 'Text, buttons, tickets', texture: img('tex-mist') },
 ]
 
 const voice = [
@@ -196,10 +216,10 @@ const tracking = [
 ]
 
 const nextSteps = [
-  { phase: '7', title: 'Component system', copy: 'Turn the screens into reusable buttons, event cards, filter chips, tags, inputs, and modals with defined variants.' },
-  { phase: '8', title: 'Clickable prototype', copy: 'Tap an event into details, save it, add it to Plani, and check out, end to end in Figma.' },
-  { phase: '8', title: 'Usability testing', copy: '“Can you find something to do this weekend in 10 seconds?” Then simplify navigation and reduce steps.' },
-  { phase: '9', title: 'Phase 1 launch', copy: 'Seed the feed with curated public listings in Prishtinë and measure Monthly Active Bookers.' },
+  { phase: '10', title: 'Beta with real people', copy: '“Can you find something to do this weekend in 10 seconds?” Test builds go to beta testers, and every hesitation becomes a fix.' },
+  { phase: '10', title: 'Store-ready', copy: 'Final screenshots, store listings, privacy labels, and Apple and Google sign-in, so both stores can review the same build.' },
+  { phase: '11', title: 'Launch · 2027', copy: 'Open in Prishtinë with a feed already full of real events, then track time to first save and 30-day retention.' },
+  { phase: 'Next', title: 'Payments, Rruga', copy: 'In-app checkout and affiliate deals once organisers are on board, and shared rides once the launch shows people ask for them.' },
 ]
 
 function Head({ title, light = false }: { title: string; light?: boolean }) {
@@ -212,39 +232,43 @@ function Head({ title, light = false }: { title: string; light?: boolean }) {
 
 export default function NejaCaseStudy() {
   return (
-    <main className={`q ${afacad.variable} ${inter.variable} ${jost.variable} ${caveat.variable}`} id="top">
+    <main className={`q ${alumni.variable} ${figtree.variable} ${caveat.variable}`} id="top">
       <CaseStudyMotion />
 
-      <Overview hero phones={[screens.location, screens.payers, screens.home, screens.event, screens.confirmed]}>
-        <nav className="q-topbar" aria-label="Case study">
+      <Overview hero phones={[screens.search, screens.home, screens.today, screens.event, screens.ticket]} center={<WelcomePhone />}>
+        <nav className="q-topbar" aria-label="NEJA">
           <BackLink><ArrowLeft size={16} /></BackLink>
-          <span className="q-status">Case study in progress</span>
+          <span className="q-topbar-end">
+            <a className="q-status is-link" href="https://neja.app" target="_blank" rel="noreferrer">neja.app<ArrowUpRight size={13} /></a>
+            <span className="q-status"><i aria-hidden="true" />Final phase · Launching 2027</span>
+          </span>
         </nav>
       </Overview>
 
       <section id="concept" className="q-sec q-dark q-concept">
         <h2 className="q-label">Concept</h2>
         <div className="q-concept-body">
-          <p className="q-strong">NEJA is an event finder for every kind of event in Kosovo: concerts, festivals, theatre, sports, exhibitions, workshops, and nights out. On top of discovery, it adds Plani for deciding with friends and Rruga for getting there and back, features no other event app in the country offers. The goal is to make the whole experience of an event easier, more accessible, and more efficient, from start to end.</p>
-          <p className="q-soft">Most people in Kosovo don’t skip events. They miss them, because they never knew they existed. Event information is scattered across Instagram stories, venue pages, posters, and word of mouth. NEJA brings it into one place and borrows the everyday mechanics of the apps Gen Z already uses, like story carousels, tags, and instant social actions. The name carries the intent: Neja is about gathering together.</p>
+          <p className="q-strong">NEJA is one app for every kind of event in Kosova: concerts, festivals, theatre, sports, exhibitions, workshops, and club nights. On top of discovery, it adds Plani for deciding with friends and Rruga for getting there and back, features no other event app in the country offers. The goal is to make the whole experience of an event easier, more accessible, and more efficient, from start to end.</p>
+          <p className="q-soft">Most people in Kosova don’t skip events. They miss them, because they never knew they existed. Event information is scattered across Instagram stories, venue pages, posters, and word of mouth. NEJA brings it into one place and borrows the everyday mechanics of the apps Gen Z already uses, like story carousels, tags, and instant social actions. The name carries the intent: Neja is about gathering together.</p>
         </div>
-        <img className="q-concept-mark" src={img('symbol')} alt="" aria-hidden="true" />
+        <img className="q-concept-mark" src={app('mascot-idle.png')} alt="" aria-hidden="true" />
         <dl className="q-meta">
-          <div><dt>Role</dt><dd>Founding Product Manager</dd></div>
+          <div><dt>Role</dt><dd>Founder & Product Lead</dd></div>
           <div><dt>Type</dt><dd>Independent product</dd></div>
-          <div><dt>Scope</dt><dd>Research, strategy, UX, UI</dd></div>
-          <div><dt>Status</dt><dd>Visual design in progress</dd></div>
+          <div><dt>Scope</dt><dd>Research, strategy, UX/UI, launch</dd></div>
+          <div><dt>Status</dt><dd>Final phase · Launching 2027</dd></div>
+          <div><dt>Launch site</dt><dd><a className="q-meta-link" href="https://neja.app" target="_blank" rel="noreferrer">neja.app<ArrowUpRight size={14} /></a></dd></div>
         </dl>
       </section>
 
       <Numbers />
 
-      <LandingDevice phone={screens.home} />
+      <LandingDevice />
 
       <section id="process" className="q-sec q-light q-process">
-        <Head title="Design Process" light />
-        <DragScroll className="q-phases-wrap" label="Design process phases">
-          <ol className="q-phases">
+        <Head title="Product Process" light />
+        <DragScroll className="q-phases-wrap" label="Product process phases">
+          <ol className="q-phases" style={{ ['--n' as string]: phases.length }}>
             {phases.map((phase, i) => (
               <li key={phase.title} className={`q-phase is-${phase.status}`} style={{ ['--d' as string]: `${i * 55}ms` }}>
                 <span className="q-phase-top">
@@ -262,21 +286,51 @@ export default function NejaCaseStudy() {
             <div data-parallax="0.06" className="q-parallax"><Phone src={screens.event.src} alt="NEJA event details screen" /></div>
           </figure>
           <figure className="q-tile is-icon">
-            <span className="q-appicon">
-              <img src={img('symbol')} alt="NEJA app icon" />
+            <span className="q-appicon is-full">
+              <img src={app('app-icon.jpg')} alt="NEJA app icon" />
               <em aria-label="3 notifications">3</em>
             </span>
           </figure>
-          <figure className="q-tile is-card">
-            <img src={img('card')} alt="NEJA payment card" loading="lazy" />
+          <figure className="q-tile is-card is-ticket">
+            <img src={app('ticket-card.jpg')} alt="A ticket in the NEJA wallet for Deep Space Prishtina, bought on the organiser’s site" loading="lazy" />
           </figure>
         </div>
+      </section>
+
+      <section id="built" className="q-sec q-dark q-built">
+        <div className="q-built-intro">
+          <h2 className="q-label">Where It Stands</h2>
+          <p className="q-strong">From design to a launch-ready app.</p>
+          <p className="q-soft">Research, design, and the brand are done. The iOS and Android app is in development on a live backend, with the core flows taking shape screen by screen. Next come the remaining features, beta testing with real people, and review on the App Store and Google Play.</p>
+          <div className="q-built-meter" role="img" aria-label="Phase 10 of 11">
+            <div className="q-built-meter-top"><span>Phase 10 of 11</span><span>Launching 2027</span></div>
+            <ol>{phases.map((phase) => <li key={phase.title} className={`is-${phase.status}`} />)}</ol>
+          </div>
+        </div>
+        <figure className="q-built-phone">
+          <div data-parallax="0.05" className="q-parallax"><WelcomePhone /></div>
+          <figcaption>The welcome screen, as built</figcaption>
+        </figure>
+        <div className="q-built-grid">
+          {built.map((group, i) => (
+            <article key={group.title} className="q-built-card" style={{ ['--d' as string]: `${i * 90}ms` }}>
+              <span className={`q-built-tag${group.done ? '' : ' is-progress'}`}>{group.done ? <><Check size={13} strokeWidth={2.4} />Built</> : <><i aria-hidden="true" />In progress</>}</span>
+              <h3>{group.title}</h3>
+              <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+        <dl className="q-built-stats">
+          {builtStats.map((stat) => (
+            <div key={stat.label}><dt>{stat.label}</dt><dd>{stat.value}</dd></div>
+          ))}
+        </dl>
       </section>
 
       <section id="research" className="q-sec q-light q-research">
         <Head title="User Research" light />
         <div className="q-research-top">
-          <p className="q-strong is-dark">To understand how young people in Kosovo find, evaluate, and attend events, I ran a survey on where they find events, what information they prioritize, where current tools fail them, and how social coordination shapes their decisions.</p>
+          <p className="q-strong is-dark">To understand how young people in Kosova find, evaluate, and attend events, I ran a survey on where they find events, what information they prioritize, where current tools fail them, and how social coordination shapes their decisions.</p>
           <div className="q-stat">
             <CountUp value={80} suffix="%" />
             <p>of participants had missed an event they wanted to attend.</p>
@@ -313,9 +367,6 @@ export default function NejaCaseStudy() {
                     return <li key={row.text}><Icon size={14} strokeWidth={1.6} />{row.text}</li>
                   })}
                 </ul>
-                <div className="q-persona-photo">
-                  <img src={persona.image} alt={`Portrait of ${persona.name.split(',')[0]}, ${persona.role.toLowerCase()}`} loading="lazy" />
-                </div>
               </article>
             </div>
           ))}
@@ -329,15 +380,12 @@ export default function NejaCaseStudy() {
                 <li><Users size={14} strokeWidth={1.6} />so I never miss an event I’d love and can easily go with my friends.</li>
               </ul>
               <span className="q-persona-note">Shared by both personas</span>
-              <div className="q-persona-photo is-scene">
-                <img src={img('gate')} alt="Two friends celebrating together at an event" loading="lazy" />
-              </div>
             </article>
           </div>
         </div>
         <div className="q-problem">
           <span>Problem statement</span>
-          <p>How might we bring every event in Kosovo into one personalized place, so people stop missing what they’d love, and make the journey from finding an event to getting home effortless?</p>
+          <p>How might we bring every event in Kosova into one personalized place, so people stop missing what they’d love, and make the journey from finding an event to getting home effortless?</p>
           <ul>{frictions.map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
       </section>
@@ -367,7 +415,7 @@ export default function NejaCaseStudy() {
         </div>
         <figure className="q-logic-photo">
           <img src={img('club-neon')} alt="" loading="lazy" />
-          <span className="q-logic-outline" aria-hidden="true"><img src={img('symbol')} alt="" /></span>
+          <span className="q-logic-outline" aria-hidden="true"><img src={app('mascot-idle.png')} alt="" /></span>
         </figure>
         <div className="q-pillars">
           {pillars.map((pillar, i) => (
@@ -386,7 +434,7 @@ export default function NejaCaseStudy() {
         <DragScroll className="q-tree-wrap" label="App structure">
           <div className="q-tree">
             <div className="q-tree-canvas">
-              <span className="q-tree-phone"><span className="q-phone is-blank"><PhoneKeys /><img src={img('symbol')} alt="" /><StatusBar /><span className="q-phone-home is-dark" aria-hidden="true" /></span></span>
+              <span className="q-tree-phone"><span className="q-phone is-blank"><PhoneKeys /><img src={app('mascot-idle.png')} alt="" /><StatusBar /><span className="q-phone-home is-dark" aria-hidden="true" /></span></span>
               <svg className="q-tree-lines" viewBox="0 0 960 340" aria-hidden="true">
                 {structurePaths.soft.map((d) => <path key={d} d={d} className="is-soft" />)}
                 <path d={structurePaths.main} />
@@ -425,7 +473,7 @@ export default function NejaCaseStudy() {
         </div>
       </section>
 
-      <Anatomy top={screens.trending} bottom={screens.ticket} />
+      <Anatomy top={screens.home} bottom={screens.ticket} />
 
       <Sketches hand={sketchHand} />
 
@@ -433,10 +481,10 @@ export default function NejaCaseStudy() {
         <Head title="First Sign In" />
         <PhoneGallery
           slots={[
-            screens.welcome,
-            screens.signIn,
-            { note: <><p className="q-note-lead">Opens on a cinematic splash, then personalizes the feed so it adapts to what each person actually goes to.</p><ul className="q-note-list"><li>Event categories</li><li>Music and interests</li><li>Favorite cities</li><li>Budget range</li><li>Transportation preferences</li><li>Atmosphere preferences</li></ul></> },
-            screens.location,
+            screens.locked,
+            screens.access,
+            { note: <><p className="q-note-lead">No wall at the door. People browse the whole feed first, and NEJA asks for an account only when they want the details, a ticket, or a plan.</p><ul className="q-note-list"><li>Browse without an account</li><li>Email sign-up with a 6-digit code</li><li>Username or email to log in</li><li>Remember me, for switching accounts</li><li>English and Albanian</li></ul></> },
+            screens.signedOut,
           ]}
         />
       </section>
@@ -445,10 +493,14 @@ export default function NejaCaseStudy() {
         <Head title="Discover" />
         <PhoneGallery
           slots={[
-            { note: <><p className="q-note-lead">Every category in one feed, trending, nearby, and personalized, so nothing worth going to slips past.</p><ul className="q-note-chips"><li>Concerts</li><li>Festivals</li><li>Theatre</li><li>Sports</li><li>Exhibitions</li><li>Workshops</li><li>Conferences</li><li>Nightlife</li></ul></> },
-            screens.trending,
+            { note: <><p className="q-note-lead">Every category in one feed: trending, happening today, coming soon, and featured, so nothing worth going to slips past.</p><ul className="q-note-chips"><li>Concerts</li><li>Club nights</li><li>Theatre</li><li>Exhibitions</li><li>Festivals</li><li>Sports</li><li>Workshops</li><li>Markets</li></ul></> },
             screens.home,
-            screens.event,
+            screens.today,
+            screens.comingSoon,
+            screens.search,
+            screens.featured,
+            null,
+            null,
           ]}
         />
       </section>
@@ -456,17 +508,15 @@ export default function NejaCaseStudy() {
       <EventCards />
 
       <section id="checkout" className="q-sec q-dark q-flow">
-        <Head title="Ticket Checkout" />
+        <Head title="Getting Tickets" />
         <PhoneGallery
           slots={[
-            screens.split,
-            screens.payers,
-            { note: <p className="q-note-lead">Split the bill with friends or pay alone. In V1, Get tickets redirects to the organizer; this checkout is the direction for V2, once partnerships make in app payments viable.</p> },
-            screens.method,
-            screens.addCard,
-            screens.confirmed,
+            screens.event,
+            { note: <><p className="q-note-lead">NEJA doesn’t sell tickets yet. Get tickets opens the organiser’s own ticket page inside the app, so their price, their payment, and their entry ticket stay exactly as they are.</p><ul className="q-note-list"><li>Tap Get tickets, buy on the organiser’s page</li><li>Come back: “Got your tickets?”</li><li>Choose how many, add to wallet</li><li>The event page shows it’s in your wallet</li><li>Free events open the event page instead</li></ul></> },
+            screens.prompt,
+            screens.owned,
             screens.ticket,
-            null,
+            { note: <p className="q-note-lead">Every Get tickets tap is a referral NEJA sends to an organiser. That traffic is what affiliate deals and in-app checkout get built on after launch, once there are organisers to partner with.</p> },
           ]}
         />
       </section>
@@ -478,26 +528,26 @@ export default function NejaCaseStudy() {
             <div className="q-feature-text">
               <h3>Discover</h3>
               <div>
-                <p>Every event in one place, across every category. Each card pairs cinematic imagery with venue, time, price, category, distance, and friends interested.</p>
+                <p>Every event in one place, across every category. Each card pairs the event’s own poster or photo with venue, time, and price, and the Happening Today list sorts the day by start time.</p>
                 <ul className="q-feature-pills"><li>Save</li><li>Add to Plani</li><li>Get tickets</li></ul>
               </div>
             </div>
-            <div className="q-feature-media is-phone"><Phone src={screens.home.src} alt="NEJA discover screen" /></div>
+            <div className="q-feature-media is-phone"><Phone src={screens.home.src} alt="NEJA home feed" /></div>
           </article>
 
           <article className="q-feature is-light">
             <div className="q-feature-text">
               <h3>Plani</h3>
               <div>
-                <p>Plans are built around events, not messages. Everyone answers In, Out, or Maybe. When someone is Out, NEJA asks what’s off and suggests alternatives, so the plan adapts instead of dying.</p>
+                <p>Plans are built around events, not messages. Pick the event first, then who is coming. Plani suggests events to plan around, so a plan never starts from a blank chat.</p>
               </div>
             </div>
-            <div className="q-feature-media"><PlaniVote /></div>
+            <div className="q-feature-media is-phone"><Phone src={screens.plani.src} alt="NEJA Plani screen" /></div>
           </article>
 
           <article className="q-feature is-light">
             <div className="q-feature-text">
-              <h3>Rruga</h3>
+              <h3>Rruga <small className="q-feature-soon">After launch</small></h3>
               <div>
                 <p>Getting there as part of the experience: ride to the event, ride home, split a ride, or join a ride group. Trusted contacts, route sharing, and arrival confirmation keep everyone safe.</p>
               </div>
@@ -536,14 +586,14 @@ export default function NejaCaseStudy() {
         <h2 className="q-label">Typography</h2>
         <div className="q-type-grid">
           <div className="q-type-main">
-            <strong>Futura</strong>
+            <strong>Alumni Sans</strong>
             <div className="q-type-copy">
-              <p>Futura brings the geometric energy of event posters while staying clear at small sizes, so event names feel loud and details stay readable.</p>
-              <p>Paired with Albanian microcopy, it gives NEJA a voice that sounds like a friend.</p>
+              <p>Alumni Sans is tall and condensed, like a poster. SemiBold sets screen and section titles such as Coming Soon, and Bold, widely tracked in capitals, labels every button from Get Tickets to Add to Wallet.</p>
+              <p><b className="q-type-pair">Figtree</b> carries everything people read: event names in bold capitals, dates, times, descriptions, and forms. The same two fonts run through the app, neja.app, and Instagram.</p>
             </div>
           </div>
           <div className="q-type-weights">
-            {[['Book', 400], ['Medium', 500], ['Demi', 600], ['Bold', 700]].map(([name, weight]) => (
+            {[['Regular', 400], ['SemiBold', 600], ['Bold', 700], ['ExtraBold', 800]].map(([name, weight]) => (
               <div key={name} className="q-weight" style={{ fontWeight: weight }}>
                 <span>{name}</span>
                 <b aria-hidden="true">N</b>
@@ -570,17 +620,17 @@ export default function NejaCaseStudy() {
           <div className="q-store-tile">
             <div className="q-store-card">
               <div className="q-store-top">
-                <span className="q-store-icon"><img src={img('symbol')} alt="" /></span>
+                <span className="q-store-icon"><img src={app('app-icon.jpg')} alt="" /></span>
                 <div>
                   <strong>NEJA</strong>
-                  <span>Every event in Kosovo, in one app</span>
+                  <span>Every event in Kosova, in one app</span>
                   <em>Get</em>
                 </div>
               </div>
               <div className="q-store-stats">
                 <div><span>Category</span><strong>Events</strong><em>All categories</em></div>
-                <div><span>City</span><strong>Prishtinë</strong><em>Kosovo</em></div>
-                <div><span>Launch</span><strong>Phase 1</strong><em>Curated feed</em></div>
+                <div><span>City</span><strong>Prishtinë</strong><em>Kosova</em></div>
+                <div><span>Launch</span><strong>2027</strong><em>iOS & Android</em></div>
               </div>
             </div>
           </div>
@@ -591,7 +641,7 @@ export default function NejaCaseStudy() {
                 <span className="q-home-time">9:41</span>
                 <span className="q-home-island" aria-hidden="true" />
                 <span className="q-home-app">
-                  <span className="q-store-icon is-lg"><img src={img('symbol')} alt="" /></span>
+                  <span className="q-store-icon is-lg"><img src={app('app-icon.jpg')} alt="" /></span>
                   <em>NEJA</em>
                 </span>
               </div>
@@ -614,7 +664,7 @@ export default function NejaCaseStudy() {
               <p className="q-story-top is-center">Plan it with your people.</p>
               <span className="q-sticker is-poll"><b>Who’s in?</b><span><em>In · 5</em><em>Maybe · 1</em></span></span>
               <span className="q-sticker is-faces" aria-hidden="true"><i /><i /><i /></span>
-              <Phone src={screens.trending.src} alt="" />
+              <Phone src={screens.home.src} alt="" />
             </div>,
             <div key="c" className="q-story-body is-c">
               <img className="q-story-bg" src={img('concert')} alt="" loading="lazy" />
@@ -623,6 +673,21 @@ export default function NejaCaseStudy() {
             </div>,
           ]}
         />
+      </section>
+
+      <section id="social" className="q-sec q-dark q-social">
+        <div className="q-social-head">
+          <h2 className="q-label">Instagram Launch Series</h2>
+          <p className="q-strong">The audience starts before the app does.</p>
+          <p className="q-soft">A launch series in Albanian, built from the same fonts, corners, and magenta as the app, so the first post someone sees already feels like the product they will download.</p>
+        </div>
+        <DragScroll className="q-social-row" label="Instagram launch posts">
+          {social.map((post, i) => (
+            <figure key={post} className="q-social-post" style={{ ['--d' as string]: `${i * 80}ms` }}>
+              <img src={app(post)} alt={`NEJA Instagram launch post ${i + 1}`} loading="lazy" draggable={false} />
+            </figure>
+          ))}
+        </DragScroll>
       </section>
 
       <Campaign />
@@ -683,7 +748,7 @@ export default function NejaCaseStudy() {
 
       <section id="all-screens" className="q-sec q-light q-all">
         <Head title="All Screens" light />
-        <PhoneGallery slots={allScreens} className="is-mini" pending="Plani, Rruga and more" />
+        <PhoneGallery slots={allScreens} className="is-mini" pending="Rruga, after launch" />
       </section>
 
       <section id="next" className="q-sec q-dark q-next">
@@ -691,7 +756,7 @@ export default function NejaCaseStudy() {
         <div className="q-next-grid">
           {nextSteps.map((step, i) => (
             <article key={step.title} style={{ ['--d' as string]: `${i * 80}ms` }}>
-              <span>Phase {step.phase}</span>
+              <span>{step.phase === 'Next' ? 'After launch' : `Phase ${step.phase}`}</span>
               <h3>{step.title}</h3>
               <p>{step.copy}</p>
             </article>
@@ -699,7 +764,7 @@ export default function NejaCaseStudy() {
         </div>
       </section>
 
-      <Thanks screens={[screens.welcome, screens.home, screens.event, screens.payers, screens.ticket]} />
+      <Thanks screens={[screens.home, screens.event, screens.prompt, screens.ticket, screens.plani]} />
 
       <SectionNav />
       <BackToTop />

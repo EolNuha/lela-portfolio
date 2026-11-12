@@ -4,93 +4,150 @@ import Link from 'next/link'
 import { origin } from './case-studies/neja/back-link'
 import { chapters } from './case-studies/neja/section-nav'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { ArrowRight, ArrowUpRight, Check, ChevronDown, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Copy, Download, Link2, Menu, Paperclip, X } from 'lucide-react'
 
-const portraitUrl = '/dorela-hero.jpg'
+const portraitUrl = '/dorela-portrait.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
 
-const aboutStory = [
-  'My path did not begin in a lecture hall. It began on a stage.',
-  'My long-held ambition of becoming a vocalist led me into audio engineering, where I immersed myself in acoustics, frequency manipulation, and the technical side of sound. But the deeper I went, the more I found myself asking: Am I in love with the physics of sound, or the human experience of expression?',
-  'Rather than forcing a path that left me unmoored, I decided to explore. I deliberately dabbled across finance, sales, recruitment, marketing, operations, and coordination. Each role taught me something different about human behavior, operational friction, and how ideas become reality.',
-  'When I finally paused to ask myself the right questions, I realized that product management sat at the precise intersection of everything that interested me: people, systems, design, and execution.',
-  'My path has been anything but linear, but every step helped me understand what I want to build, and why.',
-]
+const objective = 'I’m an aspiring product manager with a track record of turning messy, cross-functional problems into clear systems that people actually use. Since 2022 I’ve worked across business analysis, program operations, recruitment, and marketing in Kosova, Canada, and the US: mapping quote-to-cash processes for Salesforce rollouts, running sprints and backlogs in Jira and Confluence, and coordinating programs for more than 500 international scholars. Today I’m building NEJA, an app for every event in Kosova, which I’m taking from user research and strategy through design and development toward its 2027 launch. I’m looking for an associate product or operations role where I can own problems end to end, stay close to users and the teams who build for them, and grow into a product manager who ships things that matter.'
 
 const experience = [
   {
     id: 'swiss-orange',
     year: '2026',
-    dates: 'Jul – Oct 2026',
-    role: 'Project & Business Analyst, Revenue Operations & Systems',
-    company: 'Swiss Orange',
-    location: 'Pristina, Kosovo',
+    dates: 'Aug – Oct 2026 · Contract',
+    role: 'Project and Business Analyst – Revenue Operations',
+    company: 'Swiss Orange Group',
+    location: 'Pristina, Kosova',
     highlights: [
-      'Architected business requirements discovery and process mapping for enterprise Salesforce Revenue Cloud implementations, optimizing quote-to-cash (Q2C) workflows and eliminating deliverable friction.',
-      'Managed sprint tracking, backlogs, and milestone documentation across Jira and Confluence, ensuring 100% on-time execution for cross-functional project deliverables.',
-      'Engineered centralized Confluence knowledge repositories derived from sales, billing, and technical analysis, resolving workflow bottlenecks to accelerate deployment timelines.',
+      'Translated stakeholder needs into business requirements and end-to-end quote-to-cash (Q2C) process maps for enterprise Salesforce Revenue Cloud implementations.',
+      'Directed sprint backlogs, release milestones and project documentation in Jira and Confluence across cross-functional teams, sustaining a 100% on-time release record.',
+      'Established centralized Confluence knowledge bases from sales, billing and technical analysis, eliminating recurring workflow bottlenecks and accelerating deployment timelines.',
     ],
-    skills: ['Business Requirements', 'Process Mapping', 'Q2C Workflows', 'Sprint & Backlog Management', 'Documentation'],
-    tools: ['Salesforce Revenue Cloud', 'Jira', 'Confluence', 'Miro'],
+    skills: ['Requirements Gathering', 'Process Mapping', 'Quote-to-Cash (Q2C)', 'Workflow Automation', 'Sprint & Backlog Management', 'Stakeholder Management'],
+    tools: ['Salesforce Revenue Cloud', 'Salesforce Sales Cloud', 'Jira', 'Confluence', 'n8n', 'Miro', 'draw.io', 'Slack'],
   },
   {
     id: 'american-councils',
     year: '2025',
-    dates: 'Jun – Sep 2025',
-    role: 'Global Program & Operations Coordinator',
-    company: 'American Councils',
+    dates: 'Jul – Sep 2025 · Seasonal',
+    role: 'Arrival Orientation Alumni Instructor – Global Programs',
+    company: 'American Councils for International Education',
     location: 'Washington, D.C., USA',
     highlights: [
-      'Selected as 1 of 4 global representatives to co-lead state-sponsored strategic orientation initiatives for 500+ top-tier international scholars across 35 nations, partnering directly with U.S. Department of State officials across 100+ program hours.',
-      'Orchestrated 100% on-time arrival/departure operations across 4 high-density cohorts while facilitating 15+ leadership workshops, maintaining a 100% policy compliance record across 3 organizational tiers.',
+      'Selected as 1 of 4 alumni leads worldwide to deliver the U.S. Department of State arrival orientation for 500+ scholars from 35 countries across 100+ program hours.',
+      'Orchestrated arrival and departure logistics for 4 cohorts with zero schedule slippage and facilitated 15+ leadership workshops in partnership with Department of State officials and program staff.',
     ],
-    skills: ['Program Operations', 'Logistics Coordination', 'Workshop Facilitation', 'Policy Compliance', 'Stakeholder Management'],
-    tools: ['Google Workspace', 'Zoom'],
+    skills: ['Program Operations', 'Stakeholder Management', 'Cross-Functional Coordination', 'Logistics Planning', 'Workshop Facilitation'],
+    tools: ['Asana', 'Microsoft Excel', 'Google Forms', 'Google Docs', 'Microsoft Teams', 'Canva'],
   },
   {
     id: 'royal-york',
     year: '2024',
-    dates: 'Jun – Oct 2024',
-    role: 'Global Talent Operations & Recruitment Specialist',
+    dates: 'Aug – Oct 2024',
+    role: 'Talent Acquisition Specialist – Global Recruiting',
     company: 'Royal York Property Management',
     location: 'Toronto, Canada',
     highlights: [
-      'Spearheaded talent acquisition operations across 50+ global locations (40+ Canadian, 11 European), evaluating 100+ weekly applicants across 8+ specialized departments to fulfill high-volume staffing demands.',
-      'Orchestrated 300+ strategic touchpoints weekly via LinkedIn Recruiter, building multi-time-zone pipelines and executing full-lifecycle hiring across executive, technical, and revenue-generating verticals.',
-      'Standardized multi-tier evaluation frameworks and ATS protocols, benchmarking technical and cross-cultural standards to achieve 100% data integrity and accelerate average time-to-shortlist.',
+      'Drove high-volume recruitment for 50+ locations across Canada and Europe (40+ Canadian, 11 European), screening 100+ applicants weekly across 8+ departments.',
+      'Built multi-time-zone talent pipelines through 300+ weekly LinkedIn Recruiter touchpoints, managing full-cycle hiring for executive, technical and revenue-generating roles.',
+      'Standardized candidate evaluation criteria and applicant tracking system (ATS) data protocols, improving data accuracy and reducing average time-to-shortlist.',
     ],
-    skills: ['Full-Lifecycle Recruitment', 'High-Volume Hiring', 'Pipeline Building', 'Evaluation Frameworks', 'Data Governance'],
-    tools: ['LinkedIn Recruiter', 'ATS'],
-  },
-  {
-    id: 'alexander-chapman',
-    year: '2023',
-    dates: 'Apr – Jul 2023',
-    role: 'Financial Recruiter',
-    company: 'Alexander Chapman',
-    location: 'London, UK',
-    highlights: [
-      'Directed headhunting operations and end-to-end recruitment pipelines for tier-1 hedge fund and investment banking accounts across Quantitative Research, Risk Management, and Algorithmic Trading sectors.',
-      'Achieved a 90% placement match rate by designing comprehensive candidate profiling models and prequalifying passive financial professionals on advanced quantitative capabilities to shorten client time-to-hire.',
-      'Systematized high-integrity database protocols in Microdec CRM across 300+ daily candidate touchpoints, sustaining 99%+ data accuracy and optimizing market mapping reports for global financial institutions.',
-    ],
-    skills: ['Headhunting', 'Candidate Profiling', 'Market Mapping', 'Client Relationships', 'Data Governance'],
-    tools: ['Microdec CRM', 'LinkedIn'],
+    skills: ['Recruiting Operations', 'Pipeline Management', 'Process Standardization', 'Data Quality', 'Full-Cycle Recruiting'],
+    tools: ['Zoho Recruit', 'Workable', 'LinkedIn Recruiter', 'HubSpot', 'Indeed', 'Google Sheets', 'Zoom'],
   },
   {
     id: 'alpine-fleet',
     year: '2022',
-    dates: 'Aug 2022 – Feb 2023',
-    role: 'Marketing & Operations Manager',
-    company: 'Alpine Fleet',
-    location: 'Ferizaj, Kosovo',
+    dates: 'Sep 2022 – Feb 2023',
+    role: 'Operations Manager – Logistics & Digital Marketing',
+    company: 'AlpineFleet',
+    location: 'Geneva, Switzerland (remote from Ferizaj, Kosova)',
     highlights: [
-      'Co-managed cross-border fleet logistics and dispatch operations across high-density European transit corridors (Geneva Airport to Alpine routes), auditing cost metrics and schedules to streamline turnaround times for a team of 10+ field employees.',
-      'Architected user journey prototypes and booking flows in Figma, driving digital checkout optimizations that increased online conversion rates while aligning multi-channel digital marketing initiatives with real-time demand.',
+      'Co-managed cross-border dispatch for Geneva Airport to Alpine resort transfers, auditing cost and schedule data to accelerate fleet turnaround for a 10+ person field team.',
+      'Designed booking-flow prototypes in Figma and optimized the online checkout, increasing online conversion, while aligning Google Ads and Meta campaigns with real-time demand.',
     ],
-    skills: ['Logistics & Dispatch', 'Cost Auditing', 'User Journey Design', 'Conversion Optimization', 'Digital Marketing'],
-    tools: ['Figma'],
+    skills: ['Operations Management', 'Cost Analysis', 'User Journey Mapping', 'Prototyping', 'Conversion Optimization', 'Performance Marketing'],
+    tools: ['Figma', 'Google Analytics', 'Google Ads', 'Meta Ads Manager', 'WordPress', 'Google Sheets'],
   },
+]
+
+const cert = (file: string) => `/certifications/${file}.jpg`
+
+type CertImage = { src: string; alt: string }
+
+type Certification = {
+  year: string
+  title: string
+  issuer: string
+  issued: string
+  logo: string
+  images: CertImage[]
+  details: { title: string; text: string }[]
+  skills: string[]
+  course?: string
+}
+
+const certifications: Certification[] = [
+  {
+    year: '2026', title: 'Product Management: An Introduction', issuer: 'IBM via Coursera', issued: 'Nov 2026', logo: cert('logo-coursera'),
+    images: [{ src: cert('ibm-product-management-intro'), alt: 'IBM Product Management: An Introduction course certificate' }],
+    details: [{ title: 'IBM Course Certificate', text: 'Completed IBM’s Product Management: An Introduction through Coursera, the first course of the IBM Product Manager Professional Certificate. Covers the product manager’s role, responsibilities, and core skills, the end-to-end product management lifecycle, value creation, and the link between portfolio, product, and project management. Credential ID 2A5W8UVZPB8J.' }],
+    skills: ['Product Management', 'Product Strategy', 'Product Lifecycle Management', 'Portfolio Management'],
+  },
+  {
+    year: '2026', title: 'Product-Led Fundamentals', issuer: 'ProductLed', issued: 'Oct 2026', logo: cert('logo-productled'),
+    images: [{ src: cert('productled-fundamentals'), alt: 'Product-Led Fundamentals certificate' }],
+    details: [{ title: 'Product-Led Fundamentals Certificate', text: 'Awarded by Wes Bush for mastering product-led GTM framework design, time-to-value (TTV) optimization, and scalable self-serve acquisition models that position the core product as the primary growth catalyst.' }],
+    skills: ['Product-Led Growth (PLG)', 'Go-to-Market Strategy', 'User Acquisition & Retention', 'Time-to-Value (TTV) Optimization', 'Customer Journey Optimization'],
+  },
+  {
+    year: '2025', title: 'Kennedy-Lugar YES Program Alumni Instructor Certificate', issuer: 'American Councils for International Education', issued: 'Aug 2025', logo: cert('logo-american-councils'),
+    images: [{ src: cert('yes-alumni-instructor'), alt: 'YES Program DC Orientation Alumni Instructor certificate' }],
+    details: [{ title: 'YES Program DC Orientation Alumni Instructor Certificate', text: 'Awarded by American Councils for International Education and the U.S. Department of State for leading workshop facilitation, stakeholder coordination, and onboarding programs for incoming exchange cohorts during the Washington, DC Orientation.' }],
+    skills: ['Student Leadership', 'Program Facilitation', 'Cohort Management', 'Onboarding'],
+  },
+  {
+    year: '2024', title: 'YES Alumni City Representative Certificate of Appreciation', issuer: 'Kennedy-Lugar Youth Exchange and Study (YES) Program', issued: 'Aug 2024', logo: cert('logo-yes'),
+    images: [{ src: cert('yes-city-representative'), alt: 'YES Alumni City Representative certificate of appreciation' }],
+    details: [{ title: 'YES Alumni City Representative Certificate of Appreciation', text: 'Awarded by American Councils and the U.S. Department of State for leadership, community development, and event organization as YES Alumni City Representative.' }],
+    skills: ['Event Management', 'Community Leadership', 'Public Relations', 'Cross-Cultural Communication'],
+  },
+  {
+    year: '2024', title: 'Certificate of Teaching Excellence, Pre-Departure Orientation', issuer: 'U.S. Department of State', issued: 'Jun 2024', logo: cert('logo-state-department'),
+    images: [
+      { src: cert('teaching-excellence-yes'), alt: 'Certificate of Teaching Excellence, YES Pre-Departure Orientation' },
+      { src: cert('teaching-excellence-flex'), alt: 'Certificate of Teaching Excellence, FLEX Pre-Departure Orientation' },
+    ],
+    details: [
+      { title: 'YES Pre-Departure Orientation', text: 'Awarded for teaching excellence as a Teaching Assistant during the YES Program Pre-Departure Orientation in Prizren, Kosova, facilitating cultural adaptation and leadership preparation for exchange students.' },
+      { title: 'FLEX Pre-Departure Orientation', text: 'Awarded by American Councils for International Education for serving as a Teaching Assistant during the FLEX Pre-Departure Orientation in Podgorica, Montenegro.' },
+    ],
+    skills: ['Public Speaking', 'Training Program Development', 'Leadership Development'],
+  },
+  {
+    year: '2023', title: 'Alumni Internship Program Certificate of Completion', issuer: 'U.S. Department of State', issued: 'Aug 2023', logo: cert('logo-state-department'),
+    images: [{ src: cert('alumni-internship-ivy-journey'), alt: 'YES Alumni Intern, Ivy Journey certificate of completion' }],
+    details: [{ title: 'YES Alumni Intern, Ivy Journey', text: 'Completed a competitive summer internship at Ivy Journey through the U.S. Department of State and American Councils Alumni Internship Program, contributing to cross-functional projects, student support, and program operations.' }],
+    skills: ['Professional Development', 'Program Management', 'Educational Consulting'],
+  },
+  {
+    year: '2022', title: 'Kennedy-Lugar YES Program Completion Certificate', issuer: 'PAX, Program of Academic Exchange', issued: 'Jun 2022', logo: cert('logo-pax'),
+    images: [
+      { src: cert('yes-completion-state-department'), alt: 'U.S. Department of State YES Program certificate of completion' },
+      { src: cert('pax-completion'), alt: 'PAX Academic Exchange certificate of completion' },
+    ],
+    details: [
+      { title: 'U.S. Department of State YES Program Certificate of Completion', text: 'Awarded by the Bureau of Educational and Cultural Affairs for successfully completing the U.S. Department of State Kennedy-Lugar Youth Exchange and Study (YES) program in the United States.' },
+      { title: 'PAX Academic Exchange Certificate of Completion', text: 'Awarded by PAX Program of Academic Exchange in recognition of successfully completing the J-1 exchange program in the United States.' },
+    ],
+    skills: ['Cultural Adaptability', 'International Exchange'],
+  },
+]
+
+const education = [
+  { year: '2026', school: 'UBT – University for Business and Technology', detail: 'Bachelor of Science in Audio Engineering · GPA 4.0 · Top Academic Honors', monogram: 'UBT' },
+  { year: '2022', school: 'Kennedy-Lugar Youth Exchange and Study (YES) Program', detail: 'Amherst, NH, USA · Aug 2021 – May 2022 · Merit-based U.S. Department of State Scholar · City Representative · GPA 4.0', logo: cert('logo-yes') },
 ]
 
 const RETURN_KEY = 'portfolio-return'
@@ -102,10 +159,11 @@ export default function Page() {
   const [hasScrolled, setHasScrolled] = useState(false)
   const [navFrosted, setNavFrosted] = useState(false)
   const [expandedExperience, setExpandedExperience] = useState<string | null>(null)
+  const [certPreview, setCertPreview] = useState<{ images: CertImage[]; index: number } | null>(null)
+  const [expandedCert, setExpandedCert] = useState<string | null>(null)
   const [projectOpen, setProjectOpen] = useState(false)
-  const [heroStoryOpen, setHeroStoryOpen] = useState(false)
   const [backToTopOnDark, setBackToTopOnDark] = useState(false)
-  const [navOnDark, setNavOnDark] = useState(true)
+  const [navOnDark, setNavOnDark] = useState(false)
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [formError, setFormError] = useState('')
   const [attachments, setAttachments] = useState<File[]>([])
@@ -130,6 +188,20 @@ export default function Page() {
     }
   }, [])
 
+  const certSwipeStart = useRef<number | null>(null)
+  const stepCert = (step: number) => setCertPreview((current) => current && { ...current, index: (current.index + step + current.images.length) % current.images.length })
+
+  useEffect(() => {
+    if (!certPreview) return
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setCertPreview(null)
+      if (event.key === 'ArrowRight') stepCert(1)
+      if (event.key === 'ArrowLeft') stepCert(-1)
+    }
+    window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  }, [certPreview])
+
   const leaveToCaseStudy = () => {
     origin.fromPortfolio = true
     sessionStorage.setItem(RETURN_KEY, JSON.stringify({ y: window.scrollY, open: projectOpen }))
@@ -140,34 +212,7 @@ export default function Page() {
     const updateScrollState = () => {
       setHasScrolled(window.scrollY > 4)
 
-      const header = document.querySelector('.site-header')
-      const navBottom = header ? header.getBoundingClientRect().bottom : 72
-      const photo = document.querySelector('.hero-photo')
-      const storyOpen = Boolean(photo?.classList.contains('is-open'))
-
-      let frosted = false
-      if (storyOpen) {
-        const paragraphs = document.querySelectorAll('.hero-photo-story p:not(.hero-close-hint)')
-        frosted = Array.from(paragraphs).some((paragraph) => {
-          const rect = paragraph.getBoundingClientRect()
-          return rect.bottom > 0 && rect.top <= navBottom
-        })
-      } else {
-        const greeting = document.querySelector('.hero-greeting')
-        if (greeting) {
-          frosted = greeting.getBoundingClientRect().top <= navBottom
-        }
-      }
-
-      
-
-      if (!frosted && photo) {
-        frosted = photo.getBoundingClientRect().bottom <= navBottom
-      }
-      if (!frosted && !photo) {
-        frosted = window.scrollY > 4
-      }
-      setNavFrosted(frosted)
+      setNavFrosted(window.scrollY > 4)
 
       const current = sections.reduce((closest, sectionId) => {
         const section = document.getElementById(sectionId)
@@ -196,12 +241,6 @@ export default function Page() {
               const markRect = mark.getBoundingClientRect()
               onDark = pointX >= markRect.left && pointX <= markRect.right
             }
-          } else if (sectionId === 'top') {
-            const photo = section.querySelector('.hero-photo')
-            if (photo) {
-              const photoRect = photo.getBoundingClientRect()
-              onDark = pointY >= photoRect.top && pointY <= photoRect.bottom && pointX >= photoRect.left && pointX <= photoRect.right
-            }
           }
           break
         }
@@ -221,10 +260,6 @@ export default function Page() {
         const rect = contact.getBoundingClientRect()
         if (navY >= rect.top && navY <= rect.bottom) navDark = true
       }
-      if (!navDark && photo) {
-        const rect = photo.getBoundingClientRect()
-        if (navY >= rect.top && navY <= rect.bottom) navDark = true
-      }
       setNavOnDark(navDark)
 
       const themeColor = navDark ? '#171512' : '#ffffff'
@@ -241,14 +276,11 @@ export default function Page() {
     updateScrollState()
     window.addEventListener('scroll', updateScrollState, { passive: true })
     window.addEventListener('resize', updateScrollState)
-    const story = document.querySelector('.hero-photo-story')
-    story?.addEventListener('scroll', updateScrollState, { passive: true })
     return () => {
       window.removeEventListener('scroll', updateScrollState)
       window.removeEventListener('resize', updateScrollState)
-      story?.removeEventListener('scroll', updateScrollState)
     }
-  }, [heroStoryOpen])
+  }, [])
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText(CONTACT_EMAIL)
@@ -373,52 +405,20 @@ export default function Page() {
         </div>
       </header>
 
-      <section id="top" className="hero-split">
-        <div
-          className={`hero-photo${heroStoryOpen ? ' is-open' : ''}`}
-          onClick={() => setHeroStoryOpen((open) => !open)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault()
-              setHeroStoryOpen((open) => !open)
-            }
-          }}
-          role="button"
-          tabIndex={0}
-          aria-expanded={heroStoryOpen}
-          aria-label={heroStoryOpen ? 'Hide story and show photo' : 'Show story'}
-        >
-          <div className={`hero-intro${heroStoryOpen ? ' is-hidden' : ''}`}>
-            <p className="hero-tap-hint">Tap for more</p>
-            <h1 className="hero-greeting">Hello,<br />I&apos;m Dorela</h1>
-            <a href="#about" className={hasScrolled ? 'scroll-cue is-hidden' : 'scroll-cue'} aria-label="Scroll to about" onClick={(event) => event.stopPropagation()}><span /></a>
+      <section id="top" className="hero-profile">
+        <div className="hero-side">
+          <figure className="hero-portrait">
+            <img src={portraitUrl} alt="Portrait of Dorela Nuha in a white shirt" />
+          </figure>
+          <div className="hero-actions">
+            <a className="button dark" href="#projects">View my work</a>
+            <a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a>
           </div>
-          <div className="hero-photo-story" aria-hidden={!heroStoryOpen}>
-            {aboutStory.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>
-                {paragraph.includes('Am I in love with the physics of sound') ? (
-                  <>
-                    {paragraph.split('Am I in love with the physics of sound, or the human experience of expression?')[0]}
-                    <em>Am I in love with the physics of sound, or the human experience of expression?</em>
-                    {paragraph.split('Am I in love with the physics of sound, or the human experience of expression?')[1]}
-                  </>
-                ) : (
-                  paragraph
-                )}
-              </p>
-            ))}
-            <p className="hero-close-hint">Tap to close</p>
-          </div>
-          <img src={portraitUrl} alt="Dorela Nuha in graduation attire holding a bouquet" />
         </div>
-        <div className="hero-copy">
-          <div className="hero-copy-inner">
-            <p>I align product, people, and possibilities into a single digital architecture</p>
-            <div className="hero-actions">
-              <a className="button dark" href="#projects">View case studies</a>
-              <a className="button light" href="#contact">Get in touch <ArrowUpRight size={13} /></a>
-            </div>
-          </div>
+        <div className="hero-profile-text">
+          <p className="hero-eyebrow">Product · Operations · Strategy</p>
+          <h1 className="hero-greeting">Hello,<br />I&apos;m Dorela</h1>
+          <p className="hero-objective">{objective}</p>
         </div>
       </section>
 
@@ -463,7 +463,10 @@ export default function Page() {
         return <article className={isExpanded ? 'is-expanded' : undefined} key={item.id}>
           <button className="experience-trigger" type="button" aria-expanded={isExpanded} onClick={() => setExpandedExperience(isExpanded ? null : item.id)}>
             <span>{item.year}</span>
-            <div><h3>{item.role}</h3><p>{item.company}</p></div>
+            <div className="experience-company">
+              <img className="experience-logo" src={`/companies/${item.id}.jpg`} alt="" />
+              <div><h3>{item.role}</h3><p>{item.company}</p></div>
+            </div>
             <ChevronDown className="experience-chevron" size={17} />
           </button>
           <div className="experience-description" aria-hidden={!isExpanded}>
@@ -489,31 +492,125 @@ export default function Page() {
             </div>
           </div>
         </article>
-      })}</div></section>
+      })}</div>
+        <h2 className="section-label cert-label">Education</h2>
+        <ul className="cert-list edu-list">
+          {education.map((item) => (
+            <li key={item.school}>
+              <span>{item.year}</span>
+              <div className="cert-body">
+                {item.logo ? <img className="cert-logo" src={item.logo} alt="" /> : <span className="cert-logo edu-monogram" aria-hidden="true">{item.monogram}</span>}
+                <div><h3>{item.school}</h3><p>{item.detail}</p></div>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p className="edu-languages"><span>Languages</span>English (Bilingual/Native) · Albanian (Native)</p>
+        <h2 className="section-label cert-label">Certifications</h2>
+        <ul className="cert-list">
+          {certifications.map((item) => {
+            const isExpanded = expandedCert === item.title
+            return (
+              <li key={item.title} className={isExpanded ? 'is-expanded' : ''}>
+                <span>{item.year}</span>
+                <div className="cert-body">
+                  <button type="button" className="cert-toggle" aria-expanded={isExpanded} aria-label={`${isExpanded ? 'Hide' : 'Show'} details for ${item.title}`} onClick={() => setExpandedCert(isExpanded ? null : item.title)}>
+                    <ChevronDown size={17} />
+                  </button>
+                  <img className="cert-logo" src={item.logo} alt="" />
+                  <div><h3>{item.title}</h3><p>{item.issuer} · {item.images.length ? `Issued ${item.issued}` : item.issued}</p></div>
+                </div>
+                <div className="cert-actions">
+                  {item.images.length > 0 ? (
+                    <button type="button" className="cert-view" onClick={() => setCertPreview({ images: item.images, index: 0 })}>
+                      {item.images.length > 1 ? `View certificates (${item.images.length})` : 'View certificate'} <ArrowUpRight size={12} />
+                    </button>
+                  ) : item.course ? (
+                    <a className="cert-view" href={item.course} target="_blank" rel="noreferrer">View course <ArrowUpRight size={12} /></a>
+                  ) : null}
+                </div>
+                <div className="cert-details" aria-hidden={!isExpanded}>
+                  <div className="cert-details-inner">
+                    {item.details.map((detail) => (
+                      <div className="cert-detail" key={detail.title}>
+                        <h4>{detail.title}</h4>
+                        <p>{detail.text}</p>
+                      </div>
+                    ))}
+                    <div className="experience-meta-group">
+                      <span className="experience-meta-label">Skills</span>
+                      <div className="experience-pills">
+                        {item.skills.map((skill) => <span className="experience-pill skill" key={skill}>{skill}</span>)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+        {certPreview && (
+          <div
+            className={`cert-lightbox${certPreview.images.length > 1 ? ' has-nav' : ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label={certPreview.images[certPreview.index].alt}
+            onClick={() => setCertPreview(null)}
+            onTouchStart={(event) => { certSwipeStart.current = event.touches[0].clientX }}
+            onTouchEnd={(event) => {
+              if (certSwipeStart.current === null) return
+              const distance = event.changedTouches[0].clientX - certSwipeStart.current
+              certSwipeStart.current = null
+              if (Math.abs(distance) > 40) stepCert(distance < 0 ? 1 : -1)
+            }}
+          >
+            <button type="button" className="cert-lightbox-close" aria-label="Close"><X size={18} /></button>
+            <img key={certPreview.images[certPreview.index].src} src={certPreview.images[certPreview.index].src} alt={certPreview.images[certPreview.index].alt} onClick={(event) => event.stopPropagation()} />
+            {certPreview.images.length > 1 && (
+              <>
+                <button type="button" className="cert-lightbox-arrow is-prev" aria-label="Previous certificate" onClick={(event) => { event.stopPropagation(); stepCert(-1) }}><ChevronLeft size={22} /></button>
+                <button type="button" className="cert-lightbox-arrow is-next" aria-label="Next certificate" onClick={(event) => { event.stopPropagation(); stepCert(1) }}><ChevronRight size={22} /></button>
+                <div className="cert-lightbox-nav" onClick={(event) => event.stopPropagation()}>
+                  <div className="cert-lightbox-pager">
+                    {certPreview.images.map((image, index) => (
+                      <button key={image.src} type="button" className={index === certPreview.index ? 'is-active' : ''} aria-label={`Show ${image.alt}`} onClick={() => setCertPreview({ ...certPreview, index })} />
+                    ))}
+                  </div>
+                  <p aria-live="polite">{certPreview.index + 1} / {certPreview.images.length} · {certPreview.images[certPreview.index].alt}</p>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </section>
 
       <section id="projects" className="white-section project-section">
         <div className={`project-card${projectOpen ? ' is-open' : ''}`}>
           <div className="project-mark">
-            <Link href="/case-studies/neja" className="project-mark-surface" aria-label="Open the NEJA case study" onClick={leaveToCaseStudy}>
-              <img className="project-mark-image" src="/neja.png" alt="Crowd moving through a neon-lit corridor" />
+            <Link href="/case-studies/neja" className="project-mark-surface is-app" aria-label="Open NEJA, the app I’m founding" onClick={leaveToCaseStudy}>
+              <img className="project-mark-image" src="/neja/app/app-icon-1024.jpg" alt="The NEJA app icon, a magenta star mascot" />
               <div className="project-mark-content">
-                <h2>NEJA<span>.</span></h2>
-                <p>Architecting a centralized discovery platform that turns fragmented event hunting into a frictionless user journey.</p>
-                <span className="project-mark-label">CASE STUDY IN PROGRESS</span>
+                <h2><img className="project-mark-logo" src="/neja/app/logo.svg" alt="NEJA" /></h2>
+                <p>The app I’m founding for every event in Kosova, led from user research to launch: strategy and metrics, a design system shared by the app, site and Instagram, and an iOS and Android app in development.</p>
+                <span className="project-mark-label">MY PRODUCT · LAUNCHING 2027</span>
               </div>
             </Link>
-            <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide case study details' : 'Show case study details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>
+            <a className="project-mark-site" href="https://neja.app" target="_blank" rel="noreferrer">neja.app <ArrowUpRight size={12} /></a>
+            <button type="button" className="project-mark-arrow" aria-expanded={projectOpen} aria-controls="project-info" aria-label={projectOpen ? 'Hide product details' : 'Show product details'} onClick={() => setProjectOpen((open) => !open)}><ArrowRight size={18} /></button>
           </div>
           <div id="project-info" className="project-info">
             <div className="project-info-inner">
-              <h3>Connecting the Dots in Event Discovery</h3>
+              <h3>From Research to Launch, as Founder and Product Lead</h3>
               <div className="project-details">
                 <div className="project-points">
                   {chapters.map((chapter, i) => (
                     <Link key={chapter.name} href={`/case-studies/neja#${chapter.ids[0]}`} onClick={leaveToCaseStudy}><span>{i + 1}</span>{chapter.name}<ArrowUpRight size={14} /></Link>
                   ))}
                 </div>
-                <Link href="/case-studies/neja" className="text-link" onClick={leaveToCaseStudy}>Explore case study <ArrowRight size={14} /></Link>
+                <div className="project-links">
+                  <Link href="/case-studies/neja" className="text-link" onClick={leaveToCaseStudy}>Explore the product <ArrowRight size={14} /></Link>
+                  <a href="https://neja.app" className="text-link" target="_blank" rel="noreferrer">Visit neja.app <ArrowUpRight size={14} /></a>
+                </div>
               </div>
             </div>
           </div>

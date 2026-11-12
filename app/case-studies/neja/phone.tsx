@@ -2,7 +2,7 @@ type PhoneProps = { src: string; alt: string; className?: string; lazy?: boolean
 
 const LIGHT_SCREENS = ['screen-event', 'screen-payers', 'screen-ticket', 'screen-split', 'screen-payment-method', 'screen-add-card', 'screen-payment-complete']
 
-const HEADER_IN_STATUS_AREA = ['screen-home-trending', 'screen-home-clean']
+const HEADER_IN_STATUS_AREA = ['screen-home-trending', 'screen-home-clean', '/neja/app/screens/']
 
 export const screenTone = (src: string) => (LIGHT_SCREENS.some((name) => src.includes(name)) ? 'light' : 'dark')
 export const hasStatusBar = (src: string) => !HEADER_IN_STATUS_AREA.some((name) => src.includes(name))

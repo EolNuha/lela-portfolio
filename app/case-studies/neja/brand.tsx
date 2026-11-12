@@ -1,24 +1,17 @@
-import type { CSSProperties } from 'react'
 import { CountUp } from './interactive'
 import { Phone } from './phone'
 
 const img = (name: string) => `/neja/${name}.webp`
+const app = (name: string) => `/neja/app/${name}`
 
 type Screen = { src: string; label: string }
 
-const SYMBOL_POINTS: [number, number][] = [
-  [0, 0], [42, 0], [171, 146], [244, 83], [244, 0], [284, 0], [284, 168], [244, 192], [244, 139], [143, 224], [244, 336], [244, 207], [284, 230],
-  [284, 398], [242, 398], [113, 252], [40, 315], [40, 398], [0, 398], [0, 230], [40, 206], [40, 259], [141, 174], [40, 62], [40, 191], [0, 168],
-]
-const SYMBOL_PATH = `M${SYMBOL_POINTS.map(([x, y]) => `${x} ${y}`).join('L')}Z`
-
 function Mark({ className = '' }: { className?: string }) {
-  return (
-    <svg className={`q-symbol ${className}`} viewBox="0 0 284 398" aria-hidden="true">
-      <path d={SYMBOL_PATH} />
-    </svg>
-  )
+  return <img className={`q-symbol ${className}`} src={app('mascot-idle.png')} alt="" aria-hidden="true" />
 }
+
+const cornerPath = (x: number, y: number, size: number, r: number) =>
+  `M${x + r} ${y}H${x + size}V${y + size - r}A${r} ${r} 0 0 1 ${x + size - r} ${y + size}H${x}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}Z`
 
 function Wordmark({ className = '' }: { className?: string }) {
   return <span className={`q-wordmark ${className}`} role="img" aria-label="NEJA" />
@@ -32,11 +25,11 @@ function SectionHead({ title, light = false, mark = false }: { title: string; li
   )
 }
 
-const numbers = [
-  { value: 13, suffix: '+', label: 'Unique mobile screens' },
-  { value: 8, label: 'Journey stages mapped' },
-  { value: 5, label: 'Product pillars' },
-  { value: 1, label: 'App for all events', photo: true },
+const numbers: { value: number; suffix?: string; label: string; photo?: boolean }[] = [
+  { value: 53, label: 'Screens built' },
+  { value: 136, label: 'Events already listed' },
+  { value: 984, label: 'Strings in two languages' },
+  { value: 1, label: 'App for every event', photo: true },
 ]
 
 export function Numbers() {
@@ -48,7 +41,7 @@ export function Numbers() {
           Built for every<br />kind of event
         </span>
         <h2 className="q-nums-title">Attendee<br /><em>App</em></h2>
-        <p>Event discovery is built around speed and relevance. People see nearby and trending events instantly, with filters <b>focused on time, location, and category</b> to cut decision friction.</p>
+        <p>Event discovery is built around speed and relevance. People see nearby and trending events instantly, with filters <b>focused on time, location, and category</b> to cut decision friction. It is no longer a concept: it runs on iOS and Android.</p>
         <svg className="q-nums-arrow" viewBox="0 0 150 64" aria-hidden="true">
           <path d="M5 30c14 22 44 31 72 24 21-5 40-18 61-38" />
           <path d="M117 13.5c8.5-.6 15-1.3 21.5-2.5-1.6 7-3.1 12.6-5.4 19.4" />
@@ -66,10 +59,10 @@ export function Numbers() {
   )
 }
 
-const LOCKUP = { x: 260, y: 121, symbolW: 284, symbolH: 398, gap: 80, wordW: 716, wordH: 199 }
+const LOCKUP = { x: 254, y: 170, symbolW: 300, symbolH: 300, gap: 80, wordW: 713, wordH: 190, radius: 66 }
 
 export function LogoConstruction() {
-  const { x, y, symbolW, symbolH, gap, wordW, wordH } = LOCKUP
+  const { x, y, symbolW, symbolH, gap, wordW, wordH, radius } = LOCKUP
   const wordX = x + symbolW + gap
   const wordY = y + (symbolH - wordH) / 2
   const right = wordX + wordW
@@ -78,15 +71,17 @@ export function LogoConstruction() {
   const hLines = [y, bottom]
   const hDashed = [wordY, wordY + wordH, y + symbolH / 2]
   const vLines = [x, x + symbolW, wordX, right]
+  const icon = cornerPath(x, y, symbolW, radius)
   return (
     <section id="logo" className="q-sec q-light q-logo-sec">
       <SectionHead title="Logo Construction" light />
       <figure className="q-logo-lockup">
-        <svg viewBox="0 0 1600 640" role="img" aria-label="NEJA logo lockup on a construction grid">
+        <svg viewBox="0 0 1600 640" role="img" aria-label="NEJA lockup: the mascot app icon and the NEJA wordmark on a construction grid">
           <defs>
             <mask id="q-wordmark-mask" maskUnits="userSpaceOnUse">
-              <image href={img('wordmark')} x={wordX} y={wordY} width={wordW} height={wordH} preserveAspectRatio="none" />
+              <image href={app('logo.svg')} x={wordX} y={wordY} width={wordW} height={wordH} preserveAspectRatio="none" />
             </mask>
+            <clipPath id="q-icon-clip"><path d={icon} /></clipPath>
           </defs>
           <g className="q-lk-grid">
             {hLines.map((v) => <line key={`h${v}`} x1="0" x2="1600" y1={v} y2={v} />)}
@@ -98,54 +93,36 @@ export function LogoConstruction() {
           <rect className="q-lk-clear" x={x - clear} y={y - clear} width={right - x + clear * 2} height={symbolH + clear * 2} />
           <rect className="q-lk-box" x={x} y={y} width={symbolW} height={symbolH} />
           <rect className="q-lk-box" x={wordX} y={wordY} width={wordW} height={wordH} />
-          <path className="q-lk-ink" d={SYMBOL_PATH} transform={`translate(${x} ${y})`} />
+          <image href={app('app-icon.jpg')} x={x} y={y} width={symbolW} height={symbolH} clipPath="url(#q-icon-clip)" preserveAspectRatio="xMidYMid slice" />
+          <path className="q-lk-corner" d={`M${x} ${y + radius}A${radius} ${radius} 0 0 1 ${x + radius} ${y}M${x + symbolW} ${bottom - radius}A${radius} ${radius} 0 0 1 ${x + symbolW - radius} ${bottom}`} />
           <rect className="q-lk-ink" x={wordX} y={wordY} width={wordW} height={wordH} mask="url(#q-wordmark-mask)" />
-          <rect className="q-lk-unit" x={x} y={y} width="40" height="40" />
+          <rect className="q-lk-unit" x={wordX} y={y} width="40" height="40" />
           <g className="q-lk-label">
             <text x={x + symbolW / 2} y={y - 22}>{symbolW}</text>
             <text x={x + symbolW + gap / 2} y={y - 22}>2x</text>
             <text x={wordX + wordW / 2} y={y - 22}>{wordW}</text>
             <text x={x - 34} y={y + symbolH / 2 + 8}>{symbolH}</text>
             <text x={right + 40} y={wordY + wordH / 2 + 8}>{wordH}</text>
-            <text x={x + 20} y={y - 22} className="is-accent">x</text>
+            <text x={x + radius / 2 - 6} y={y + radius / 2 + 2} className="is-accent">r</text>
+            <text x={wordX + 20} y={y - 22} className="is-accent">x</text>
             <text x={x - clear / 2} y={y - clear / 2 + 8} className="is-accent">2x</text>
             <text x={right + clear / 2} y={bottom + clear / 2 + 8} className="is-accent">2x</text>
           </g>
         </svg>
       </figure>
       <div className="q-logo-tiles">
-        <figure className="q-logo-tile is-light" aria-label="Primary mark">
-          <svg viewBox="-60 -40 404 478" aria-hidden="true">
-            <defs>
-              <linearGradient id="q-logo-fill" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#ff5fb4" /><stop offset=".5" stopColor="#b02779" /><stop offset="1" stopColor="#811e93" />
-              </linearGradient>
-            </defs>
-            <path d={SYMBOL_PATH} fill="url(#q-logo-fill)" />
-          </svg>
+        <figure className="q-logo-tile is-light">
+          <span className="q-logo-word" role="img" aria-label="NEJA wordmark in magenta" />
+          <figcaption>Wordmark · magenta on light</figcaption>
         </figure>
-        <figure className="q-logo-tile is-dark" aria-label="Vector construction">
-          <svg viewBox="-60 -40 404 478" aria-hidden="true">
-            <defs>
-              <linearGradient id="q-construct-line" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="284" y2="398">
-                <stop offset="0" stopColor="#ff7cc4" /><stop offset=".55" stopColor="#d23b8f" /><stop offset="1" stopColor="#9b3fd1" />
-              </linearGradient>
-            </defs>
-            <path className="q-logo-body" d={SYMBOL_PATH} />
-            <g className="q-logo-edges">
-              {SYMBOL_POINTS.map(([x1, y1], i) => {
-                const [x2, y2] = SYMBOL_POINTS[(i + 1) % SYMBOL_POINTS.length]
-                return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} pathLength={1} style={{ ['--i' as string]: i } as CSSProperties} />
-              })}
-            </g>
-            <g className="q-logo-nodes">
-              {SYMBOL_POINTS.map(([px, py], i) => (
-                <rect key={i} x={px - 5.5} y={py - 5.5} width={11} height={11} rx={2.5} style={{ ['--i' as string]: i } as CSSProperties} />
-              ))}
-            </g>
-          </svg>
+        <figure className="q-logo-tile is-dark">
+          <span className="q-logo-icon">
+            <img src={app('app-icon.jpg')} alt="NEJA app icon: the magenta mascot on black" loading="lazy" />
+          </span>
+          <figcaption>App icon · the mascot, with the signature corner</figcaption>
         </figure>
       </div>
+      <p className="q-logo-note">Two corners round, two stay sharp. That one corner shapes the app icon, every card and button in the app, the launch site, and the Instagram posts, so the brand reads as NEJA even without the logo.</p>
     </section>
   )
 }
@@ -226,9 +203,9 @@ export function InTheWild() {
           </svg>
           <div className="q-banner">
             <div className="q-banner-sheet">
-              <span className="q-banner-logo"><Mark />NEJA</span>
+              <span className="q-banner-logo"><Mark /><img src={app('logo.svg')} alt="NEJA" /></span>
               <strong>Find it, plan it, and get there together.</strong>
-              <p>Every event in Kosovo, in one app. Concerts, festivals, theatre, and nights out.</p>
+              <p>Every event in Kosova, in one app. Concerts, festivals, theatre, and club nights.</p>
               <img src={img('hero-crowd')} alt="" loading="lazy" />
             </div>
           </div>

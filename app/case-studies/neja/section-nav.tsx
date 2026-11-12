@@ -4,11 +4,12 @@ import { useEffect, useState, type MouseEvent } from 'react'
 
 export const chapters = [
   { name: 'Intro', ids: ['top', 'concept', 'numbers', 'landing'] },
-  { name: 'Research', ids: ['process', 'research', 'personas', 'journey', 'logic'] },
+  { name: 'Progress', ids: ['process', 'built'] },
+  { name: 'Research', ids: ['research', 'personas', 'journey', 'logic'] },
   { name: 'Experience', ids: ['structure', 'anatomy', 'sketches'] },
   { name: 'Interface', ids: ['sign-in', 'discover', 'event-cards', 'checkout', 'features'] },
   { name: 'Brand', ids: ['system', 'logo', 'type', 'color', 'grid'] },
-  { name: 'Launch', ids: ['store', 'stories', 'campaign', 'wild', 'strategy'] },
+  { name: 'Launch', ids: ['store', 'stories', 'social', 'campaign', 'wild', 'strategy'] },
   { name: 'Wrap up', ids: ['all-screens', 'next'] },
 ]
 

@@ -2,9 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react'
 import {
-  ArrowLeft, ArrowRight, Bell, Bookmark, Calendar, Camera, Car, Check, ChevronLeft, ChevronRight, Clock, Compass, CreditCard,
-  Eye, EyeOff, Heart, House, MapPin, MessageCircle, Mic, Music, Navigation, Plus, QrCode, Route, Search, Settings, Share2,
-  Sparkles, Star, Ticket, User, Users, X,
+  ArrowLeft, ArrowRight, ArrowUpRight, Bell, Bookmark, Building2, CalendarDays, Check, ChevronDown, ChevronLeft, ChevronRight,
+  CircleAlert, Ellipsis, Forward, GalleryHorizontalEnd, Heart, ImagePlus, LocateFixed, Lock, Mail, MapPin, Minus, Navigation,
+  Phone as PhoneIcon, Play, Plus, Search, ShieldCheck, ShoppingBag, Ticket, UserPlus, UserRound, Users, Wallet, X,
 } from 'lucide-react'
 import { Phone, PhoneKeys, StatusBar, hasStatusBar, screenTone } from './phone'
 
@@ -232,145 +232,195 @@ export function PlaniVote() {
   )
 }
 
-const systemIcons = [House, Compass, Search, Heart, Bookmark, Ticket, Calendar, Clock, MapPin, Navigation, Route, Car, Users, User, MessageCircle, Mic, Camera, Music, Star, Bell, Share2, Plus, Check, X, ChevronLeft, ChevronRight, CreditCard, QrCode, Settings, Sparkles]
-const categories = ['All', 'Concerts', 'Festivals', 'Theatre', 'Sports', 'Exhibitions', 'Workshops', 'Conferences', 'Nightlife']
-const days = [{ d: 'Thu', n: 20 }, { d: 'Fri', n: 21 }, { d: 'Sat', n: 22 }, { d: 'Sun', n: 23 }]
-const tabs = [{ name: 'Discover', icon: Compass }, { name: 'Plani', icon: Users }, { name: 'Rruga', icon: Route }, { name: 'Going', icon: Bookmark }, { name: 'Profile', icon: User }]
+const systemIcons = [
+  ChevronLeft, ChevronRight, ChevronDown, X, Check, Plus, Minus, ArrowUpRight, Search, MapPin, LocateFixed, CalendarDays, Ticket, Bookmark, Heart,
+  Bell, Users, UserPlus, UserRound, Mail, PhoneIcon, Lock, ShieldCheck, ImagePlus, GalleryHorizontalEnd, Building2, CircleAlert, Ellipsis, Play, Forward,
+]
 
-function Segmented({ options, label }: { options: string[]; label: string }) {
-  const [active, setActive] = useState(0)
+type MarkProps = { filled: boolean }
+
+function HomeMark({ filled }: MarkProps) {
   return (
-    <div className="q-seg" role="radiogroup" aria-label={label} style={{ ['--n' as string]: options.length, ['--i' as string]: active }}>
-      <span className="q-seg-thumb" aria-hidden="true" />
-      {options.map((option, i) => (
-        <button type="button" role="radio" aria-checked={i === active} key={option} className={i === active ? 'is-on' : ''} onClick={() => setActive(i)}>{option}</button>
-      ))}
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      {filled && <path d="M5.5 20V9.2L12 3.9l6.5 5.3V17a3 3 0 0 1-3 3zM10 20v-4.5a2 2 0 0 1 2-2h2V20z" fill="currentColor" fillRule="evenodd" stroke="none" />}
+      <path d="M3.5 10.5L12 3.5l8.5 7" />
+      <path d="M5.5 9.2V20h10a3 3 0 0 0 3-3V9.2" />
+      <path d="M10 20v-4.5a2 2 0 0 1 2-2h2V20" />
+    </svg>
   )
 }
 
+const PIN = 'M12 21.4c0 0 7.2-6.9 7.2-12.1C19.2 5.4 16 2.3 12 2.3S4.8 5.4 4.8 9.3c0 5.2 7.2 12.1 7.2 12.1z'
+function PinMark({ filled }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      {filled && <path d={`${PIN}M14.5 9.3a2.5 2.5 0 1 0-5 0a2.5 2.5 0 1 0 5 0z`} fill="currentColor" fillRule="evenodd" stroke="none" />}
+      <path d={PIN} />
+      {!filled && <circle cx={12} cy={9.3} r={2.5} />}
+    </svg>
+  )
+}
+
+function SearchMark({ filled }: MarkProps) {
+  return <Search fill={filled ? 'currentColor' : 'none'} strokeWidth={1.7} />
+}
+
+const BUBBLE = 'M4 20V8a4 4 0 0 1 4-4h12v9a4 4 0 0 1-4 4H8l-4 3z'
+function PlaniMark({ filled }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      {filled && <path d={`${BUBBLE}M11.1 10.5a1.1 1.1 0 1 0-2.2 0a1.1 1.1 0 1 0 2.2 0zM15.1 10.5a1.1 1.1 0 1 0-2.2 0a1.1 1.1 0 1 0 2.2 0z`} fill="currentColor" fillRule="evenodd" stroke="none" />}
+      <path d={BUBBLE} />
+      {!filled && <><circle cx={10} cy={10.5} r={1.1} fill="currentColor" stroke="none" /><circle cx={14} cy={10.5} r={1.1} fill="currentColor" stroke="none" /></>}
+    </svg>
+  )
+}
+
+function ProfileMark({ filled }: MarkProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx={12} cy={7.5} r={4} fill={filled ? 'currentColor' : 'none'} />
+      <path d={`M5 20.5v-1a4.5 4.5 0 0 1 4.5-4.5h5a4.5 4.5 0 0 1 4.5 4.5v1${filled ? 'z' : ''}`} fill={filled ? 'currentColor' : 'none'} />
+    </svg>
+  )
+}
+
+function FunnelMark() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M10 12L4.3 5.5Q3 4 5 4H21L14 12V18A2 2 0 0 1 12 20H10Z" fill="currentColor" stroke="currentColor" strokeWidth={2} strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+const tabs = [
+  { name: 'Discover', Mark: HomeMark },
+  { name: 'Map', Mark: PinMark },
+  { name: 'Search', Mark: SearchMark },
+  { name: 'Plani', Mark: PlaniMark },
+  { name: 'Profile', Mark: ProfileMark },
+]
+
 export function SystemBoard() {
-  const [chips, setChips] = useState<string[]>(['All'])
-  const [day, setDay] = useState(2)
   const [tab, setTab] = useState(0)
-  const [saved, setSaved] = useState(true)
-  const [notify, setNotify] = useState(true)
+  const [mode, setMode] = useState(0)
+  const [saved, setSaved] = useState(false)
+  const [reminders, setReminders] = useState(true)
+  const [remember, setRemember] = useState(true)
+  const [count, setCount] = useState(1)
   const [showPassword, setShowPassword] = useState(false)
 
-  const toggleChip = (chip: string) => {
-    if (chip === 'All') return setChips(['All'])
-    setChips((current) => {
-      const rest = current.filter((item) => item !== 'All' && item !== chip)
-      const next = current.includes(chip) ? rest : [...rest, chip]
-      return next.length ? next : ['All']
-    })
-  }
-
   return (
-    <div className="q-system">
+    <div className="q-system is-app">
       <div className="q-panel is-icons">
         <h3>Icons</h3>
         <div className="q-icons">
-          {systemIcons.map((Icon, i) => <span key={i}><Icon size={18} strokeWidth={1.6} /></span>)}
+          {systemIcons.map((Icon, i) => <span key={i}><Icon size={18} strokeWidth={1.7} /></span>)}
         </div>
+        <p className="q-ds-note">Lucide line icons at a 1.7 stroke. The tab bar, filter, and share icons are drawn for NEJA, with the same corner as everything else.</p>
       </div>
 
       <div className="q-panel is-elements">
-        <h3>Elements</h3>
-        <div className="q-days" role="radiogroup" aria-label="Day">
-          {days.map((item, i) => (
-            <button type="button" role="radio" aria-checked={i === day} key={item.n} className={i === day ? 'is-on' : ''} onClick={() => setDay(i)}>
-              <span>{item.d}</span><strong>{item.n}</strong>
-            </button>
-          ))}
-          <span className="q-badge is-hot">Trending</span>
-          <span className="q-badge">Tonight</span>
-          <span className="q-badge">4.5 km away</span>
-          <span className="q-going" aria-label="5 friends going">
-            <i /><i /><i>+3</i><em>5 going</em>
-          </span>
+        <h3>Labels</h3>
+        <div className="q-ds-row">
+          <span className="q-ds-section">Coming Soon <ArrowUpRight size={20} strokeWidth={2.2} /></span>
+          <span className="q-ds-date"><span>13 – 15</span><strong>NOV</strong><em>Trending</em></span>
+          <span className="q-ds-tags">{['Trending', 'Today', 'Free entry'].map((tag) => <i key={tag}>{tag}</i>)}</span>
         </div>
-        <div className="q-chips" role="group" aria-label="Categories">
-          {categories.map((chip) => (
-            <button type="button" key={chip} className={chips.includes(chip) ? 'is-on' : ''} aria-pressed={chips.includes(chip)} onClick={() => toggleChip(chip)}>
-              {chip}{chips.includes(chip) && chip !== 'All' && <X size={11} />}
-            </button>
-          ))}
+        <div className="q-ds-row">
+          <span className="q-ds-meta">FREE · Ticket Info <ArrowUpRight size={14} /></span>
+          <span className="q-ds-host">Hosted by <b>@artpolis</b></span>
+          <span className="q-ds-rowtime"><span>Today</span><b>20:00</b><em>Not listed</em></span>
         </div>
+        <div className="q-ds-notice"><CircleAlert size={16} />That username and password don’t match.</div>
       </div>
 
       <div className="q-panel is-iconbuttons">
         <h3>Icon Buttons</h3>
-        <div className="q-iconbuttons">
-          <span className="q-ib is-xl"><Plus size={26} strokeWidth={1.8} /></span>
-          <span className="q-ib"><ChevronLeft size={18} /></span>
-          <button type="button" className={`q-ib${saved ? ' is-on' : ''}`} onClick={() => setSaved(!saved)} aria-pressed={saved} aria-label="Save event"><Heart size={16} fill={saved ? 'currentColor' : 'none'} /></button>
-          <span className="q-ib is-ghost"><Share2 size={16} /></span>
-          <span className="q-ib is-ghost"><Search size={16} /></span>
-        </div>
-        <div className="q-toggles">
-          <button type="button" className={`q-switch${notify ? ' is-on' : ''}`} onClick={() => setNotify(!notify)} role="switch" aria-checked={notify} aria-label="Notifications"><span /></button>
-          <span>{notify ? 'Plan reminders on' : 'Plan reminders off'}</span>
+        <div className="q-ds-row">
+          <span className="q-ds-fab" aria-hidden="true"><Plus size={22} strokeWidth={2} /></span>
+          <span className="q-ds-round" aria-hidden="true"><Forward size={15} strokeWidth={2} /></span>
+          <span className="q-ds-round is-outline" aria-hidden="true"><Ticket size={16} strokeWidth={1.8} /></span>
+          <span className="q-ds-tile" aria-hidden="true"><FunnelMark /></span>
+          <span className="q-ds-tile is-outline" aria-hidden="true"><ShoppingBag size={18} strokeWidth={1.7} /></span>
         </div>
       </div>
 
       <div className="q-panel is-segmented">
-        <h3>Segmented Controls</h3>
-        <Segmented options={['In', 'Maybe', 'Out']} label="Plani answer" />
-        <Segmented options={['Pay together', 'Pay alone']} label="Payment" />
+        <h3>Controls</h3>
+        <div className="q-ds-control">
+          <span>Event reminders</span>
+          <button type="button" role="switch" aria-checked={reminders} aria-label="Event reminders" className={`q-ds-toggle${reminders ? ' is-on' : ''}`} onClick={() => setReminders(!reminders)}>
+            <i>{reminders && <Check size={13} strokeWidth={3} />}</i>
+          </button>
+        </div>
+        <div className="q-ds-control">
+          <span>Tickets</span>
+          <span className="q-ds-stepper">
+            <button type="button" aria-label="One fewer" onClick={() => setCount(Math.max(1, count - 1))}><Minus size={16} /></button>
+            <b aria-live="polite">{count}</b>
+            <button type="button" aria-label="One more" onClick={() => setCount(Math.min(10, count + 1))}><Plus size={16} /></button>
+          </span>
+        </div>
+        <button type="button" role="checkbox" aria-checked={remember} className="q-ds-check" onClick={() => setRemember(!remember)}>
+          <i className={remember ? 'is-on' : ''}>{remember && <Check size={13} strokeWidth={3} />}</i>Remember me
+        </button>
       </div>
 
       <div className="q-panel is-tabs">
-        <h3>Tab Bar</h3>
-        <div className="q-tabbar" role="tablist" aria-label="Main navigation">
-          {tabs.map((item, i) => {
-            const Icon = item.icon
-            return (
-              <button type="button" role="tab" aria-selected={i === tab} key={item.name} className={i === tab ? 'is-on' : ''} onClick={() => setTab(i)}>
-                <Icon size={18} strokeWidth={1.7} /><span>{item.name}</span>
-              </button>
-            )
-          })}
+        <h3>Navigation</h3>
+        <div className="q-ds-tabbar" role="tablist" aria-label="Main navigation" style={{ ['--i' as string]: tab }}>
+          <span className="q-ds-tabbar-marker" aria-hidden="true" />
+          {tabs.map(({ name, Mark }, i) => (
+            <button type="button" role="tab" aria-selected={i === tab} aria-label={name} key={name} className={i === tab ? 'is-on' : ''} onClick={() => setTab(i)}>
+              <Mark filled={i === tab} />
+            </button>
+          ))}
+        </div>
+        <div className="q-ds-underline" role="tablist" aria-label="Account">
+          {['Log in', 'New Account'].map((label, i) => (
+            <button type="button" role="tab" aria-selected={i === mode} key={label} className={i === mode ? 'is-on' : ''} onClick={() => setMode(i)}>{label}</button>
+          ))}
         </div>
       </div>
 
       <div className="q-panel is-buttons">
         <h3>Buttons</h3>
-        <div className="q-buttons">
-          <span className="q-btn is-accent">Get tickets</span>
-          <span className="q-btn is-light">Add to Plani</span>
-          <span className="q-btn is-dark">Continue with email</span>
-          <span className="q-btn is-accent is-hover">Get tickets</span>
-          <span className="q-btn is-light is-hover">Add to Plani</span>
-          <span className="q-btn is-dark is-hover">Continue with email</span>
-          <span className="q-btn is-disabled">Get tickets</span>
-          <span className="q-btn is-disabled">Add to Plani</span>
-          <span className="q-btn is-disabled">Continue with email</span>
+        <div className="q-ds-buttons">
+          <span className="q-ds-ticket">
+            <span>Get tickets <ArrowUpRight size={20} strokeWidth={2} /></span>
+            <i className="q-ds-perf" aria-hidden="true" />
+            <b>€3</b>
+          </span>
+          <span className="q-ds-ticket is-plain"><span>Event page <ArrowUpRight size={20} strokeWidth={2} /></span></span>
+          <span className="q-ds-cta">Log in / Sign up</span>
+          <span className="q-ds-outline"><Mail size={18} strokeWidth={1.7} />Continue with email</span>
+          <span className="q-ds-small-row">
+            <span className="q-ds-pill"><Plus size={15} strokeWidth={1.8} />Add to Plani</span>
+            <button type="button" className={`q-ds-pill${saved ? ' is-on' : ''}`} aria-pressed={saved} onClick={() => setSaved(!saved)}>
+              <Bookmark size={15} strokeWidth={1.8} fill={saved ? 'currentColor' : 'none'} />{saved ? 'Saved' : 'Save'}
+            </button>
+            <span className="q-ds-prompt"><Wallet size={15} strokeWidth={1.8} />Add to wallet</span>
+          </span>
         </div>
-        <div className="q-links">
-          <span>Skip</span>
-          <span>Forgot password?</span>
-          <span>New account? <strong>Sign up</strong></span>
+        <div className="q-ds-links">
+          <span>Forgot your password?</span>
+          <span>Remove from wallet</span>
         </div>
       </div>
 
       <div className="q-panel is-fields">
-        <h3>Text Fields</h3>
-        <label className="q-field">
-          <span>Email</span>
-          <input type="email" defaultValue="elira@neja.app" aria-label="Email" />
+        <h3>Fields</h3>
+        <div className="q-ds-searchrow">
+          <span className="q-ds-search"><Search size={18} strokeWidth={1.8} />Search</span>
+          <span className="q-ds-tile" aria-hidden="true"><FunnelMark /></span>
+        </div>
+        <label className="q-ds-field">
+          <input type="text" defaultValue="elira" aria-label="Username or email" />
         </label>
-        <label className="q-field">
-          <span>Password</span>
+        <label className="q-ds-field">
           <input type={showPassword ? 'text' : 'password'} defaultValue="hajde2026" aria-label="Password" />
-          <button type="button" onClick={() => setShowPassword(!showPassword)} aria-label={showPassword ? 'Hide password' : 'Show password'}>
-            {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
-          </button>
-        </label>
-        <label className="q-field is-error">
-          <span>Email</span>
-          <input type="email" defaultValue="arta@gmail.com" aria-label="Email with error" aria-invalid="true" />
-          <em>This email is already linked to a NEJA account.</em>
+          <button type="button" onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'hide' : 'show'}</button>
         </label>
       </div>
     </div>
@@ -475,7 +525,7 @@ export function StoryReel({ stories }: { stories: ReactNode[] }) {
               ))}
             </div>
             <div className="q-story-head">
-              <span className="q-story-avatar"><img src="/neja/symbol.webp" alt="" /></span>
+              <span className="q-story-avatar"><img src="/neja/app/app-icon.jpg" alt="" /></span>
               <strong>neja</strong>
               <Check size={10} strokeWidth={3} className="q-story-verified" />
               <span className="q-story-time">{i + 2}h</span>

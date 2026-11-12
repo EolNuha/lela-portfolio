@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dorela Nuha — Product Manager',
+  title: 'Dorela Nuha — Aspiring Product Manager',
   description: 'Dorela Nuha is a product manager turning insights into seamless user experiences and impactful products.',
   generator: 'v0.app',
   icons: {
