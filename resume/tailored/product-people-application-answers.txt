@@ -33,34 +33,36 @@ At work, you see yourself more as:
 ═══════════════════════════════════════════════════════════
 Q1 — Two-year anniversary (paste)
 ═══════════════════════════════════════════════════════════
-I’d feel it was an excellent choice if, after two years, I’d supported senior interim PMs across several client missions, gotten trusted to own messy discovery-to-delivery streams myself, and left every engagement clearer than I found it — structured backlogs, honest product narratives, and teams that still wanted me back.
+Two years in, I’d want to walk into unfamiliar rooms, read the chaos fast, and leave them clearer than I found them. I’d have worked beside senior interim PMs across several missions, earned the trust to own my own messy discovery-to-delivery streams, and left teams who still ask for me back.
 
-I’d also want to have grown inside Product People’s own practice: shared knowledge in Rubber Ducky / Sharing sessions, taken candid feedback without drama, and earned a promotion case by performing at the next level, not by collecting titles.
+I’d have grown inside Product People too: shared hard lessons in Rubber Ducky and Sharing sessions, taken candid feedback without flinching, and earned a promotion case by performing at the next level, as one of the greats, not as a mere title.
 
-What I’d have to unlearn: treating “building my own product” as the only proof of PM skill. Founder work taught me ownership; consulting would force me to create impact without ego — drop into someone else’s chaos, adapt to their personalities in days, and measure success by client outcomes and commercial bets, not by how much of the roadmap I personally authored. I’d evolve from “I must decide everything” to “I bring clarity, push back politely, and help the senior PM and the client win.”
+What I’d unlearn is the founder reflex that impact only counts if I built it myself. Building my own product taught me ownership and humility. It also taught me what not to focus on, and to measure success not by authority but by client outcomes and commercial bets. Clarity over ego, every time.
 
 ═══════════════════════════════════════════════════════════
 Q2 — Feature to REMOVE / deprecate (paste)
 ═══════════════════════════════════════════════════════════
-On NEJA (the events app I own), I want to remove — and have already started killing — any checkout path that invents a “Payment Complete” / wallet ticket after we only open the organiser’s affiliate ticket link.
+On NEJA, the events app I own, I’d remove the checkout path that can still say Payment Complete and invent a wallet ticket after we only open an organiser’s affiliate link.
 
-Why: it creates false confidence. Guests think NEJA charged them or that a door-ready pass exists when neither is true. That’s worse than a missing feature; it’s a trust bug dressed as success UX.
+I didn’t ship that as a clever trick. As a first-time founder building something Kosovo doesn’t have yet, I kept moving between two futures: take payments in the app, or start with organiser ticket links and earn the right to charge later. While I was still deciding, the product wore a “purchase finished” shape. Unfinished commerce wanted a finished feeling.
 
-Why it existed / why it lingered: early launch pressure favored a complete-feeling funnel (Buy → success → Wallet) over honesty about our affiliate model. Deprecating it means rewriting copy, stopping auto wallet creation, and accepting a less “pretty” success state (“Opened the organiser’s site — NEJA didn’t charge you”) until real payments exist. I delayed because shipping felt like progress; user trust and commercial clarity matter more. Cutting misleading success states is product work, not polish.
+I’m removing it because people believe what the screen tells them. If it says paid, they think they paid. That taught me the product habit I want to bring into a product role: protect trust before you protect how polished the funnel looks. Commit to how the product actually works, then design the screen. Don’t decorate a decision you haven’t made.
+
+Why it stayed: I wouldn’t cut the misleading state until the honest replacement existed, clear handoff copy and a path that doesn’t fake a ticket. I’ve made the affiliate-first call now. The cut is in progress. The feature lasts only as long as that replacement takes, and not one day longer.
 
 ═══════════════════════════════════════════════════════════
 Q3 — Decision in last 6 months I’d make differently (paste)
 ═══════════════════════════════════════════════════════════
-I’d reverse the decision to keep an in-app “Payment Method” / card UI path alive while NEJA still doesn’t take card payments.
+I’d change how I entered product. For too long I treated building my own app as the only proof I belonged, and I delayed calling myself product until everything looked finished. Coming from analysis, ops, and recruiting, that felt safer than saying I was still learning in public.
 
-At the time it felt like future-proofing and looking like a real checkout. What changed my mind was launch-audit reality: dead ends when an event has no ticket URL, mock Visa rows on free tickets, and copy that implied secure NEJA checkout. That burns trust faster than a simpler “open organiser link / free ticket to Wallet” flow.
+What changed my mind was watching myself polish unfinished decisions instead of owning them. I kept trying to look complete while I was still choosing the real model. That is a career habit, not just a shipping habit: wait, decorate, then arrive.
 
-I’d decide earlier: one honest paid path (organiser URL or hide Buy) and one honest free path — no decorative payment chrome. Supporting a senior PM on a client, I’d push the same way: don’t ship theatre that contradicts the commercial model.
+I’d do it differently. Enter earlier. Be honest about what I know and what I’m still deciding. Learn with teams, feedback, and messy client work, not only by founding alone. The product skill I want to be hired for is judgment under uncertainty, not a perfect founder story.
 
 ═══════════════════════════════════════════════════════════
 Q4 — LLMs: what changed / what you deliberately didn’t (paste)
 ═══════════════════════════════════════════════════════════
-Changed: I use LLMs (mainly Cursor) as a force multiplier for drafting PRDs, Jira/Confluence structure, auditing UX copy against reality, and accelerating implementation on NEJA — so I can spend more hours on prioritization, host outreach, and deciding what not to build. I also use them to stress-test requirements (“what would a guest wrongly believe if we say Payment Complete?”).
+Changed: I use LLMs (mainly Cursor) as a force multiplier for drafting PRDs, Jira/Confluence structure, auditing UX copy against reality, and accelerating implementation on NEJA — so I can spend more hours on prioritization, host outreach, and deciding what not to build. I also use them to stress-test requirements (“what would a guest wrongly believe if this screen shipped as written?”).
 
 Deliberately not changed: I still talk to people myself. Survey synthesis, host conversations, and saying no to misleading features stay human. Models draft; I own the judgment, the stakeholder pushback, and the commercial call. Same rule I’d bring to client work: AI for speed and coverage, not for replacing discovery or accountability.
 
@@ -75,3 +77,8 @@ AFTER YOU SUBMIT
 - Expect a Product Challenge if you pass application review (they rank questionnaire > CV).
 - Process is selective (~0.3% acceptance) and often includes live simulation + AI usage demo.
 - Cluster 3 base is ~€19k (L2) / €27k (L3) + bonuses — you already said Yes to match.
+
+═══════════════════════════════════════════════════════════
+Q6 — Country of tax residence
+═══════════════════════════════════════════════════════════
+Kosovo
