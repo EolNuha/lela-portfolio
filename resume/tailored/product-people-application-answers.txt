@@ -1,0 +1,77 @@
+Product People — Associate Product Management Consultant
+Apply: https://job-boards.eu.greenhouse.io/productpeople/jobs/4801179101
+
+═══════════════════════════════════════════════════════════
+FORM FIELDS
+═══════════════════════════════════════════════════════════
+First Name: Dorela
+Last Name: Nuha
+Email: dorelanuha22@gmail.com
+Country (phone): Kosovo +383
+Phone: [your number]
+Resume: upload PDF from tailored/product-people-associate-pm.pdf (print the HTML if PDF missing)
+LinkedIn: https://www.linkedin.com/in/dorela-nuha
+Country of Tax Residence: Kosovo
+Professional Language Proficiencies: English + Albanian (pick the closest option; English must be professional/fluent)
+Potential Start Date: Available immediately / ASAP
+Salary expectations match?: Yes
+GDPR Consent: Yes
+Newsletter: your choice
+
+═══════════════════════════════════════════════════════════
+DROPDOWNS (pick these)
+═══════════════════════════════════════════════════════════
+Which statement do you agree with more?
+→ Sometimes you need to break the rules to get the job done.
+
+You prefer most to:
+→ Ask others how they are doing.
+
+At work, you see yourself more as:
+→ A user/client advocate.
+
+═══════════════════════════════════════════════════════════
+Q1 — Two-year anniversary (paste)
+═══════════════════════════════════════════════════════════
+I’d feel it was an excellent choice if, after two years, I’d supported senior interim PMs across several client missions, gotten trusted to own messy discovery-to-delivery streams myself, and left every engagement clearer than I found it — structured backlogs, honest product narratives, and teams that still wanted me back.
+
+I’d also want to have grown inside Product People’s own practice: shared knowledge in Rubber Ducky / Sharing sessions, taken candid feedback without drama, and earned a promotion case by performing at the next level, not by collecting titles.
+
+What I’d have to unlearn: treating “building my own product” as the only proof of PM skill. Founder work taught me ownership; consulting would force me to create impact without ego — drop into someone else’s chaos, adapt to their personalities in days, and measure success by client outcomes and commercial bets, not by how much of the roadmap I personally authored. I’d evolve from “I must decide everything” to “I bring clarity, push back politely, and help the senior PM and the client win.”
+
+═══════════════════════════════════════════════════════════
+Q2 — Feature to REMOVE / deprecate (paste)
+═══════════════════════════════════════════════════════════
+On NEJA (the events app I own), I want to remove — and have already started killing — any checkout path that invents a “Payment Complete” / wallet ticket after we only open the organiser’s affiliate ticket link.
+
+Why: it creates false confidence. Guests think NEJA charged them or that a door-ready pass exists when neither is true. That’s worse than a missing feature; it’s a trust bug dressed as success UX.
+
+Why it existed / why it lingered: early launch pressure favored a complete-feeling funnel (Buy → success → Wallet) over honesty about our affiliate model. Deprecating it means rewriting copy, stopping auto wallet creation, and accepting a less “pretty” success state (“Opened the organiser’s site — NEJA didn’t charge you”) until real payments exist. I delayed because shipping felt like progress; user trust and commercial clarity matter more. Cutting misleading success states is product work, not polish.
+
+═══════════════════════════════════════════════════════════
+Q3 — Decision in last 6 months I’d make differently (paste)
+═══════════════════════════════════════════════════════════
+I’d reverse the decision to keep an in-app “Payment Method” / card UI path alive while NEJA still doesn’t take card payments.
+
+At the time it felt like future-proofing and looking like a real checkout. What changed my mind was launch-audit reality: dead ends when an event has no ticket URL, mock Visa rows on free tickets, and copy that implied secure NEJA checkout. That burns trust faster than a simpler “open organiser link / free ticket to Wallet” flow.
+
+I’d decide earlier: one honest paid path (organiser URL or hide Buy) and one honest free path — no decorative payment chrome. Supporting a senior PM on a client, I’d push the same way: don’t ship theatre that contradicts the commercial model.
+
+═══════════════════════════════════════════════════════════
+Q4 — LLMs: what changed / what you deliberately didn’t (paste)
+═══════════════════════════════════════════════════════════
+Changed: I use LLMs (mainly Cursor) as a force multiplier for drafting PRDs, Jira/Confluence structure, auditing UX copy against reality, and accelerating implementation on NEJA — so I can spend more hours on prioritization, host outreach, and deciding what not to build. I also use them to stress-test requirements (“what would a guest wrongly believe if we say Payment Complete?”).
+
+Deliberately not changed: I still talk to people myself. Survey synthesis, host conversations, and saying no to misleading features stay human. Models draft; I own the judgment, the stakeholder pushback, and the commercial call. Same rule I’d bring to client work: AI for speed and coverage, not for replacing discovery or accountability.
+
+═══════════════════════════════════════════════════════════
+Q5 — How would you improve the questionnaire? (optional)
+═══════════════════════════════════════════════════════════
+Add one short prompt that forces a commercial answer: “Name a metric you would refuse to optimize, and why.” It would surface whether candidates can protect user trust and long-term revenue, not only ship velocity — which matches how you describe supporting post–product-market-fit clients.
+
+═══════════════════════════════════════════════════════════
+AFTER YOU SUBMIT
+═══════════════════════════════════════════════════════════
+- Expect a Product Challenge if you pass application review (they rank questionnaire > CV).
+- Process is selective (~0.3% acceptance) and often includes live simulation + AI usage demo.
+- Cluster 3 base is ~€19k (L2) / €27k (L3) + bonuses — you already said Yes to match.

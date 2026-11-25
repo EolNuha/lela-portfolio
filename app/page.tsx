@@ -10,66 +10,66 @@ const portraitUrl = '/dorela-portrait.jpg'
 const CONTACT_EMAIL = 'dorelanuha22@gmail.com'
 const CONTACT_ENDPOINT = 'https://qhxejkkbgzuwakwdcfiu.supabase.co/functions/v1/portfolio-contact'
 
-const objective = 'I’m an aspiring product manager with a track record of turning messy, cross-functional problems into clear systems that people actually use. Since 2022 I’ve worked across business analysis, program operations, recruitment, and marketing in Kosova, Canada, and the US: mapping quote-to-cash processes for Salesforce rollouts, running sprints and backlogs in Jira and Confluence, and coordinating programs for more than 500 international scholars. Today I’m building NEJA, an app for every event in Kosova, which I’m taking from user research and strategy through design and development toward its 2027 launch. I’m looking for an associate product or operations role where I can own problems end to end, stay close to users and the teams who build for them, and grow into a product manager who ships things that matter.'
+const objective = 'I’m an associate product manager who turns messy, cross-functional problems into clear discovery, delivery, and systems people actually use. Since 2022 I’ve worked across business analysis, program operations, and recruiting in Kosova, Canada, and the US: mapping quote-to-cash processes for Salesforce rollouts, running sprints and backlogs in Jira and Confluence, and coordinating programs for more than 500 international scholars. Today I’m building NEJA, an app for every event in Kosova — owning research, strategy, requirements, and launch prep toward 2027. I’m looking for an associate product or product operations role where I can drop into ambiguity, stay close to users and the teams who build for them, and ship outcomes that matter.'
 
 const experience = [
   {
     id: 'swiss-orange',
     year: '2026',
-    dates: 'Aug – Oct 2026',
-    role: 'Project and Business Analyst - Revenue Operations',
+    dates: 'Aug – Oct 2026 · Contract',
+    role: 'Project and Business Analyst – Revenue Operations',
     company: 'Swiss Orange Group',
-    location: 'Pristina, Kosovo',
+    location: 'Pristina, Kosova',
     highlights: [
-      'Translated stakeholder needs into business requirements and end-to-end quote-to-cash (Q2C) process maps for enterprise Salesforce Revenue Cloud implementations.',
-      'Directed sprint backlogs, release milestones and project documentation in Jira and Confluence across cross-functional teams, sustaining a 100% on-time release record.',
-      'Established Confluence knowledge bases from sales, billing and technical analysis; summarized figures for leadership and followed up with managers to clear bottlenecks.',
+      'Turned ambiguous stakeholder needs into requirements and end-to-end quote-to-cash process maps for enterprise Salesforce Revenue Cloud work.',
+      'Orchestrated sprint backlogs, release milestones and Confluence knowledge bases across sales, billing and technical partners — 100% on-time releases under deadline pressure.',
+      'Brought clarity to messy handoffs so deployment timelines stopped stalling on the same bottlenecks.',
     ],
-    skills: ['Operations Coordination', 'Deadline Management', 'Sales & Billing Summaries', 'Manager Follow-Up', 'Process Mapping'],
-    tools: ['Excel', 'Outlook', 'PowerPoint', 'Jira', 'Confluence', 'Salesforce Revenue Cloud'],
+    skills: ['Requirements', 'Process Mapping', 'Quote-to-Cash (Q2C)', 'Sprint & Backlog Management', 'Stakeholder Alignment', 'Product Ops'],
+    tools: ['Salesforce Revenue Cloud', 'Salesforce Sales Cloud', 'Jira', 'Confluence', 'n8n', 'Miro', 'draw.io', 'Slack'],
   },
   {
     id: 'american-councils',
     year: '2025',
-    dates: 'Jul – Sep 2025',
-    role: 'Arrival Orientation Alumni Instructor - Global Programs',
-    company: 'American Councils',
+    dates: 'Jul – Sep 2025 · Seasonal',
+    role: 'Arrival Orientation Alumni Instructor – Global Programs',
+    company: 'American Councils for International Education',
     location: 'Washington, D.C., USA',
     highlights: [
       'Selected as 1 of 4 alumni leads worldwide to deliver the U.S. Department of State arrival orientation for 500+ scholars from 35 countries across 100+ program hours.',
-      'Orchestrated arrival and departure logistics for 4 cohorts with zero schedule slippage; prepared agendas and facilitated 15+ leadership workshops with Department of State officials and program staff.',
+      'Integrated with Department of State officials and program staff in days, facilitated 15+ workshops, and kept four cohorts on schedule — calm execution with strong personalities in the room.',
     ],
-    skills: ['Calendar & Logistics', 'Agendas & Briefings', 'Stakeholder Management', 'Leadership', 'Policy Compliance'],
-    tools: ['Excel', 'Google Docs', 'Microsoft Teams', 'Asana'],
+    skills: ['Program Operations', 'Stakeholder Alignment', 'Cross-Functional Coordination', 'Facilitation', 'Logistics'],
+    tools: ['Asana', 'Microsoft Excel', 'Google Forms', 'Google Docs', 'Microsoft Teams', 'Canva'],
   },
   {
     id: 'royal-york',
     year: '2024',
     dates: 'Aug – Oct 2024',
-    role: 'Talent Acquisition Specialist - Global Recruiting',
+    role: 'Talent Acquisition Specialist – Global Recruiting',
     company: 'Royal York Property Management',
     location: 'Toronto, Canada',
     highlights: [
       'Drove high-volume recruitment for 50+ locations across Canada and Europe (40+ Canadian, 11 European), screening 100+ applicants weekly across 8+ departments.',
-      'Built multi-time-zone talent pipelines through 300+ weekly LinkedIn Recruiter touchpoints; followed up with managers on deadlines and drafted confidential correspondence.',
-      'Standardized evaluation criteria and ATS data protocols, improving data accuracy and reducing average time-to-shortlist.',
+      'Built multi-time-zone talent pipelines through 300+ weekly LinkedIn Recruiter touchpoints, managing full-cycle hiring for executive, technical and revenue-generating roles.',
+      'Standardized candidate evaluation criteria and applicant tracking system (ATS) data protocols, improving data accuracy and reducing average time-to-shortlist.',
     ],
-    skills: ['Manager Follow-Up', 'Confidential Correspondence', 'Deadline Tracking', 'Pipeline Management', 'Data Accuracy'],
-    tools: ['Excel', 'Outlook', 'LinkedIn Recruiter', 'Zoho Recruit', 'HubSpot'],
+    skills: ['Recruiting Operations', 'Pipeline Management', 'Process Standardization', 'Data Quality', 'Full-Cycle Recruiting'],
+    tools: ['Zoho Recruit', 'Workable', 'LinkedIn Recruiter', 'HubSpot', 'Indeed', 'Google Sheets', 'Zoom'],
   },
   {
     id: 'alpine-fleet',
     year: '2022',
     dates: 'Sep 2022 – Feb 2023',
-    role: 'Operations Manager - Logistics & Digital Marketing',
+    role: 'Operations Manager – Logistics & Digital Marketing',
     company: 'AlpineFleet',
-    location: 'Ferizaj, Kosovo',
+    location: 'Geneva, Switzerland (remote from Ferizaj, Kosova)',
     highlights: [
-      'Co-managed cross-border dispatch schedules for Geneva Airport to Alpine transfers; audited cost and timing data to accelerate fleet turnaround for a 10+ person distribution logistics team.',
-      'Flagged delays early and coordinated support needs while aligning Google Ads and Meta campaigns with real-time demand and optimizing the online booking checkout.',
+      'Co-managed cross-border dispatch for Geneva Airport to Alpine resort transfers, auditing cost and schedule data to accelerate fleet turnaround for a 10+ person field team.',
+      'Designed booking-flow prototypes in Figma and optimized the online checkout, increasing online conversion, while aligning Google Ads and Meta campaigns with real-time demand.',
     ],
-    skills: ['Distribution Logistics', 'Schedule Coordination', 'Cost & Timing Audits', 'Delay Escalation', 'Partner Coordination'],
-    tools: ['Excel', 'Google Sheets', 'Figma', 'Google Ads', 'Meta Ads'],
+    skills: ['Operations Management', 'Cost Analysis', 'User Journey Mapping', 'Prototyping', 'Conversion Optimization', 'Performance Marketing'],
+    tools: ['Figma', 'Google Analytics', 'Google Ads', 'Meta Ads Manager', 'WordPress', 'Google Sheets'],
   },
 ]
 
@@ -441,7 +441,7 @@ export default function Page() {
           </div>
         </div>
         <div className="hero-profile-text">
-          <p className="hero-eyebrow">Product · Operations · Strategy</p>
+          <p className="hero-eyebrow">Associate Product · Discovery &amp; Delivery · Product Ops</p>
           <h1 className="hero-greeting">Hello,<br />I&apos;m Dorela</h1>
           <p className="hero-objective">{objective}</p>
         </div>
@@ -616,8 +616,8 @@ export default function Page() {
               <img className="project-mark-image" src="/neja/app/app-icon-1024.jpg" alt="The NEJA app icon, a magenta star mascot" />
               <div className="project-mark-content">
                 <h2><img className="project-mark-logo" src="/neja/app/logo.svg" alt="NEJA" /></h2>
-                <p>The app I’m founding for every event in Kosova, led from user research to launch: strategy and metrics, a design system shared by the app, site and Instagram, and an iOS and Android app in development.</p>
-                <span className="project-mark-label">MY PRODUCT · LAUNCHING 2027</span>
+                <p>The app I’m founding for every event in Kosova — discovery to delivery: research and personas, commercial metrics, product requirements for a 53-screen iOS and Android app, and go-to-market toward the 2027 launch.</p>
+                <span className="project-mark-label">FOUNDER &amp; PRODUCT LEAD · LAUNCHING 2027</span>
               </div>
             </Link>
             <a className="project-mark-site" href="https://neja.app" target="_blank" rel="noreferrer">neja.app <ArrowUpRight size={12} /></a>
@@ -625,7 +625,7 @@ export default function Page() {
           </div>
           <div id="project-info" className="project-info">
             <div className="project-info-inner">
-              <h3>From Research to Launch, as Founder and Product Lead</h3>
+              <h3>Discovery to delivery — founder and product lead</h3>
               <div className="project-details">
                 <div className="project-points">
                   {chapters.map((chapter, i) => (
