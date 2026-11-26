@@ -23,10 +23,10 @@ const experience = [
     highlights: [
       'Translated stakeholder needs into business requirements and end-to-end quote-to-cash (Q2C) process maps for enterprise Salesforce Revenue Cloud implementations.',
       'Directed sprint backlogs, release milestones and project documentation in Jira and Confluence across cross-functional teams, sustaining a 100% on-time release record.',
-      'Established Confluence knowledge bases from sales, billing and technical analysis; summarized figures for leadership and followed up with managers to clear bottlenecks.',
+      'Established Confluence knowledge bases from sales, billing and technical analysis to eliminate bottlenecks.',
     ],
-    skills: ['Operations Coordination', 'Deadline Management', 'Sales & Billing Summaries', 'Manager Follow-Up', 'Process Mapping'],
-    tools: ['Excel', 'Outlook', 'PowerPoint', 'Jira', 'Confluence', 'Salesforce Revenue Cloud'],
+    skills: ['Requirements', 'Process Mapping', 'Q2C Workflows', 'Sprint & Backlog Management', 'Stakeholder Management'],
+    tools: ['Jira', 'Confluence', 'Salesforce Revenue Cloud', 'Salesforce Sales Cloud'],
   },
   {
     id: 'american-councils',
@@ -37,7 +37,7 @@ const experience = [
     location: 'Washington, D.C., USA',
     highlights: [
       'Selected as 1 of 4 alumni leads worldwide to deliver the U.S. Department of State arrival orientation for 500+ scholars from 35 countries across 100+ program hours.',
-      'Orchestrated arrival and departure logistics for 4 cohorts with zero schedule slippage; prepared agendas and facilitated 15+ leadership workshops with Department of State officials and program staff.',
+      'Orchestrated arrival and departure logistics for 4 cohorts with zero schedule slippage and facilitated 15+ leadership workshops in partnership with Department of State officials and program staff.',
     ],
     skills: ['Calendar & Logistics', 'Agendas & Briefings', 'Stakeholder Management', 'Leadership', 'Policy Compliance'],
     tools: ['Excel', 'Google Docs', 'Microsoft Teams', 'Asana'],
@@ -51,10 +51,10 @@ const experience = [
     location: 'Toronto, Canada',
     highlights: [
       'Drove high-volume recruitment for 50+ locations across Canada and Europe (40+ Canadian, 11 European), screening 100+ applicants weekly across 8+ departments.',
-      'Built multi-time-zone talent pipelines through 300+ weekly LinkedIn Recruiter touchpoints; followed up with managers on deadlines and drafted confidential correspondence.',
-      'Standardized evaluation criteria and ATS data protocols, improving data accuracy and reducing average time-to-shortlist.',
+      'Built multi-time-zone talent pipelines through 300+ weekly LinkedIn Recruiter touchpoints.',
+      'Standardized evaluation criteria and ATS data protocols, improving data accuracy and reducing time-to-shortlist.',
     ],
-    skills: ['Manager Follow-Up', 'Confidential Correspondence', 'Deadline Tracking', 'Pipeline Management', 'Data Accuracy'],
+    skills: ['Pipeline Management', 'Stakeholder Management', 'Process Mapping', 'Data Accuracy'],
     tools: ['Excel', 'Outlook', 'LinkedIn Recruiter', 'Zoho Recruit', 'HubSpot'],
   },
   {
@@ -65,10 +65,10 @@ const experience = [
     company: 'AlpineFleet',
     location: 'Ferizaj, Kosovo',
     highlights: [
-      'Co-managed cross-border dispatch schedules for Geneva Airport to Alpine transfers; audited cost and timing data to accelerate fleet turnaround for a 10+ person distribution logistics team.',
-      'Flagged delays early and coordinated support needs while aligning Google Ads and Meta campaigns with real-time demand and optimizing the online booking checkout.',
+      'Co-managed cross-border dispatch for Geneva Airport transfers, auditing costs to accelerate fleet turnaround.',
+      'Designed booking-flow prototypes in Figma and optimized the online checkout, increasing online conversion, while aligning Google Ads and Meta campaigns with real-time demand.',
     ],
-    skills: ['Distribution Logistics', 'Schedule Coordination', 'Cost & Timing Audits', 'Delay Escalation', 'Partner Coordination'],
+    skills: ['Prototyping', 'Go-to-Market', 'Process Mapping', 'Stakeholder Management'],
     tools: ['Excel', 'Google Sheets', 'Figma', 'Google Ads', 'Meta Ads'],
   },
 ]
